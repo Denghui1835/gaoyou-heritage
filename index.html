@@ -1,18 +1,324 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>遗产融绘 · 魅力高邮 — 多类型遗产系统性保护</title>
-    <meta name="description" content="2026大学生新文科实践创新大赛——融绘贯通：多类型遗产系统性保护利用的路径探索与实践。高邮湖泊湿地，集农业文化遗产、世界灌溉工程遗产、非物质文化遗产于一体。" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="./assets/index-DvimlyGL.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DfgRup8G.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>遗产融绘 · 魅力高邮</title>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root {
+  --ink: #1a1a2e;
+  --warm: #faf8f5;
+  --card: #ffffff;
+  --border: #e8e4df;
+  --serif: 'Noto Serif SC','Source Han Serif SC','STSong',serif;
+  --sans: 'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--warm);
+  color: var(--ink);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Shared ── */
+.section { padding:64px 20px; max-width:680px; margin:0 auto; }
+.section-label { font-size:14px; letter-spacing:0.3em; color:#a0a0a0; text-transform:uppercase; margin-bottom:12px; }
+.section-title { font-family:var(--serif); font-size:28px; font-weight:700; line-height:1.4; margin-bottom:16px; color:var(--ink); }
+.section-subtitle { font-size:17px; color:#666; line-height:1.8; margin-bottom:32px; }
+
+.card { background:var(--card); border-radius:16px; padding:32px 24px; margin-bottom:24px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 4px 16px rgba(0,0,0,0.03); border:1px solid var(--border); }
+.card-title { font-family:var(--serif); font-size:22px; font-weight:700; margin-bottom:8px; }
+.card-desc { font-size:16px; color:#555; line-height:1.9; }
+
+.tag { display:inline-block; font-size:13px; padding:4px 12px; border-radius:20px; margin:4px 4px 4px 0; font-weight:500; }
+.tag-green { background:#e8f5e9; color:#2d6a4f; }
+.tag-blue  { background:#e3f2fd; color:#1b6b93; }
+.tag-red   { background:#ffebee; color:#b23b2c; }
+
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:32px; }
+.stat-item { text-align:center; padding:20px 12px; background:white; border-radius:12px; border:1px solid var(--border); }
+.stat-num { font-family:var(--serif); font-size:32px; font-weight:700; line-height:1.1; }
+.stat-num.green{ color:#2d6a4f; } .stat-num.blue{ color:#1b6b93; } .stat-num.red{ color:#b23b2c; } .stat-num.gold{ color:#b8860b; }
+.stat-label { font-size:14px; color:#888; margin-top:4px; }
+
+/* ── Hero ── */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  padding:40px 20px;
+  background:linear-gradient(170deg,#0f0f1a 0%,#1a2740 40%,#1a3a2a 100%);
+  position:relative; overflow:hidden;
+}
+.hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse at 25% 60%,rgba(27,107,147,0.12) 0%,transparent 55%),
+             radial-gradient(ellipse at 65% 40%,rgba(45,106,79,0.08) 0%,transparent 50%);
+}
+.hero-badge { color:rgba(255,255,255,0.55); font-size:13px; letter-spacing:0.25em; margin-bottom:24px; }
+.hero-title { font-family:var(--serif); font-size:42px; font-weight:900; letter-spacing:0.04em; line-height:1.2; margin-bottom:12px;
+  background:linear-gradient(180deg,#eef4fb 0%,#8ec8e3 35%,#4aab73 75%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-sub { font-size:20px; font-weight:300; color:rgba(255,255,255,0.7); margin-bottom:8px; letter-spacing:0.05em; }
+.hero-location { font-size:16px; color:rgba(255,255,255,0.35); }
+.hero-divider { width:48px; height:2px; background:linear-gradient(90deg,#4aab73,#1b6b93); margin:28px auto; border-radius:1px; }
+.hero-scroll { position:absolute; bottom:40px; color:rgba(255,255,255,0.3); font-size:14px; animation:float 2s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+/* ── Map ── */
+.map-section { padding:64px 0 48px; max-width:680px; margin:0 auto; }
+.map-inner { margin:0 20px; }
+.map-container { width:100%; height:400px; border-radius:16px; overflow:hidden; border:1px solid var(--border); box-shadow:0 4px 24px rgba(0,0,0,0.04); }
+.map-legend { display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin:20px 0 12px; }
+.map-legend-item { display:flex; align-items:center; gap:6px; font-size:14px; color:#666; }
+.map-dot { width:10px; height:10px; border-radius:50%; }
+.map-dot.blue{ background:#1b6b93; } .map-dot.green{ background:#2d6a4f; } .map-dot.red{ background:#b23b2c; }
+.map-note { text-align:center; font-size:13px; color:#aaa; margin-top:12px; }
+
+/* ── Pain Cards ── */
+.pain-card { border-left:3px solid transparent; }
+.pain-card:nth-child(1){ border-left-color:#b8860b; } .pain-card:nth-child(2){ border-left-color:#1b6b93; } .pain-card:nth-child(3){ border-left-color:#b23b2c; }
+.pain-num { font-family:var(--serif); font-size:48px; font-weight:900; color:#e8e4df; line-height:1; margin-bottom:-8px; }
+.solution-label { font-size:13px; font-weight:700; letter-spacing:0.1em; color:#999; text-transform:uppercase; margin:20px 0 6px; }
+
+/* ── Outputs ── */
+.output-grid { display:grid; gap:16px; }
+.output-card { display:flex; align-items:flex-start; gap:16px; background:white; border-radius:12px; padding:24px; border:1px solid var(--border); }
+.output-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+.output-icon.green{background:#e8f5e9;color:#2d6a4f;} .output-icon.blue{background:#e3f2fd;color:#1b6b93;} .output-icon.red{background:#ffebee;color:#b23b2c;} .output-icon.purple{background:#f3e5f5;color:#7b1fa2;}
+.output-text h4 { font-size:17px; font-weight:600; margin-bottom:4px; }
+.output-text p { font-size:15px; color:#666; line-height:1.7; }
+
+/* ── Chain ── */
+.chain { display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:8px; }
+.chain-step { background:white; border:1px solid var(--border); border-radius:12px; padding:16px 24px; width:100%; text-align:center; }
+.chain-step h4 { font-size:17px; font-weight:600; margin-bottom:2px; }
+.chain-step p { font-size:14px; color:#888; }
+.chain-arrow { font-size:20px; color:#ccc; }
+
+/* ── Footer ── */
+.footer { text-align:center; padding:48px 20px 40px; border-top:1px solid var(--border); }
+.footer h3 { font-family:var(--serif); font-size:22px; font-weight:700; margin-bottom:8px; }
+.footer p { font-size:14px; color:#999; line-height:1.7; }
+
+/* ── Leaflet fix ── */
+.leaflet-popup-content { font-family:var(--sans); font-size:15px; line-height:1.7; }
+.leaflet-popup-content b { font-size:16px; }
+
+/* ── Desktop ── */
+@media (min-width:768px) {
+  .hero-title { font-size:56px; }
+  .hero-sub { font-size:24px; }
+  .section-title { font-size:32px; }
+  .output-grid { grid-template-columns:1fr 1fr; }
+  .chain { flex-direction:row; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero-badge">2026 大学生新文科实践创新大赛 · 文史哲组</div>
+  <h1 class="hero-title">融绘贯通</h1>
+  <p class="hero-sub">多类型遗产系统性保护利用的路径探索与实践</p>
+  <div class="hero-divider"></div>
+  <p class="hero-location">高邮湖泊湿地 — 农业文化遗产 · 世界灌溉工程遗产 · 非物质文化遗产</p>
+  <div class="hero-scroll">▼ 向下探索</div>
+</section>
+
+<!-- ═══════ 三遗概览 ═══════ -->
+<section class="section">
+  <div class="section-label">项目简介</div>
+  <h2 class="section-title">三类遗产，共生共存</h2>
+  <p class="section-subtitle">高邮湖泊湿地是国内罕见的多类型遗产高度复合区——中国重要农业文化遗产、世界灌溉工程遗产、非物质文化遗产在「水—田—人」的脉络中深度交织。</p>
+
+  <div class="card" style="border-left:3px solid #2d6a4f;">
+    <div class="card-title" style="color:#2d6a4f;">农业文化遗产</div>
+    <p class="card-desc">高邮湖泊湿地农业系统，以「稻鸭鱼蟹」立体共作模式为核心，2017 年入选中国重要农业文化遗产。水产养殖认知率 93.5%，稻作耕种 91.2%。</p>
+    <div style="margin-top:12px;"><span class="tag tag-green">稻鸭鱼蟹共作</span><span class="tag tag-green">鱼鹰捕鱼</span><span class="tag tag-green">种质资源</span></div>
+  </div>
+
+  <div class="card" style="border-left:3px solid #1b6b93;">
+    <div class="card-title" style="color:#1b6b93;">灌溉工程遗产</div>
+    <p class="card-desc">里运河-高邮灌区，2021 年入选世界灌溉工程遗产。平津堰（唐）、南关坝（明）至今仍发挥灌溉作用，是古代河湖水位调控的工程典范。</p>
+    <div style="margin-top:12px;"><span class="tag tag-blue">平津堰（唐）</span><span class="tag tag-blue">南关坝（明）</span><span class="tag tag-blue">车逻闸</span><span class="tag tag-blue">子婴闸</span></div>
+  </div>
+
+  <div class="card" style="border-left:3px solid #b23b2c;">
+    <div class="card-title" style="color:#b23b2c;">非物质文化遗产</div>
+    <p class="card-desc">高邮民歌（国家级非遗）入选小学教材，咸鸭蛋制作技艺（省级非遗）闻名全国。知晓率 88.37%，但深层文化内涵尚未有效传播。</p>
+    <div style="margin-top:12px;"><span class="tag tag-red">高邮民歌</span><span class="tag tag-red">咸鸭蛋制作</span><span class="tag tag-red">十二红</span><span class="tag tag-red">七公会</span></div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-item"><div class="stat-num green">215</div><div class="stat-label">份有效问卷</div></div>
+    <div class="stat-item"><div class="stat-num blue">10</div><div class="stat-label">人次深度访谈</div></div>
+    <div class="stat-item"><div class="stat-num red">800+</div><div class="stat-label">张实地照片</div></div>
+    <div class="stat-item"><div class="stat-num gold">53.95%</div><div class="stat-label">从未听说灌区</div></div>
+  </div>
+</section>
+
+<!-- ═══════ 共生地图 ═══════ -->
+<section class="map-section">
+  <div class="section-label" style="text-align:center;padding:0 20px;">核心交互体验</div>
+  <h2 class="section-title" style="text-align:center;padding:0 20px;">共生地图 · 水田人</h2>
+  <p class="section-subtitle" style="text-align:center;padding:0 20px;">点击彩色标记，探索灌区闸口、农遗基地、非遗工坊的空间分布</p>
+
+  <div class="map-legend">
+    <div class="map-legend-item"><span class="map-dot blue"></span>灌区闸口</div>
+    <div class="map-legend-item"><span class="map-dot green"></span>农业遗产</div>
+    <div class="map-legend-item"><span class="map-dot red"></span>非遗文化</div>
+  </div>
+
+  <div class="map-inner"><div class="map-container" id="map"></div></div>
+  <div class="map-note">数据来源：高邮实地调研 · 2025.08 / 2026.01</div>
+</section>
+
+<!-- ═══════ 调研发现 ═══════ -->
+<section class="section">
+  <div class="section-label">调研数据</div>
+  <h2 class="section-title">调研发现 · 数据说话</h2>
+
+  <div class="card">
+    <div class="card-title" style="font-size:18px;">认知度严重分化</div>
+    <p class="card-desc">非遗知晓率 88%，但文化内涵少有人知；农业文化遗产了解者仅 17%；<b>超过半数受访者从未听说「里运河-高邮灌区」</b>。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="font-size:18px;">技艺认知率高，但代际断裂明显</div>
+    <p class="card-desc">水产养殖、稻作耕种认知均超 90%。但 <b>50 岁以下群体对传统生产模式了解显著不足</b>——古法因成本高而绝迹，传承出现断层。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="font-size:18px;">价值认同强烈，认知流于符号化</div>
+    <p class="card-desc">83.9% 受访者认同遗产的经济价值，72.9% 认可教育意义。但认知停留在「鸭蛋」「民歌」等标签，<b>41.57% 的非本地受访者从未接触过任何传统技艺</b>。</p>
+  </div>
+</section>
+
+<!-- ═══════ 三重困境 ═══════ -->
+<section class="section">
+  <div class="section-label">调研诊断</div>
+  <h2 class="section-title">三重困境 · 精准把脉</h2>
+
+  <div class="card pain-card">
+    <div class="pain-num">01</div>
+    <div class="card-title" style="color:#b8860b;">文化疏离</div>
+    <p class="card-desc">农民、渔民、非遗传承人之间交流极少。长江禁捕后大量渔民转产上岸，与搬迁地村民日渐生疏——不同群体各守一方文化，却不知它们本为一体。</p>
+    <div class="solution-label">▸ 应对方案</div>
+    <p class="card-desc">建立数字平台，以地图可视化呈现三类遗产空间分布，让不同群体直观感知共生格局。</p>
+  </div>
+
+  <div class="card pain-card">
+    <div class="pain-num">02</div>
+    <div class="card-title" style="color:#1b6b93;">阐释断裂</div>
+    <p class="card-desc">水利、农业、文旅、渔政各自为政。有了堰闸才有灌溉，有了灌溉才有稻鸭，有了稻鸭才有民歌——可没人讲述这条完整的故事线。</p>
+    <div class="solution-label">▸ 应对方案</div>
+    <p class="card-desc">打造「从闸口到餐桌」文旅 IP，统合三类遗产讲述统一的高邮文化叙事。</p>
+  </div>
+
+  <div class="card pain-card">
+    <div class="pain-num">03</div>
+    <div class="card-title" style="color:#b23b2c;">代际断层</div>
+    <p class="card-desc">传统技艺存续面临危机，青年群体对本地遗产认知与参与度普遍偏低。民歌、婚俗等非遗在年轻人中的知晓率骤降。</p>
+    <div class="solution-label">▸ 应对方案</div>
+    <p class="card-desc">设计交互式数字游戏，将调水、稻鸭共作、民歌传唱转化为沉浸式叙事体验。</p>
+  </div>
+</section>
+
+<!-- ═══════ 项目产出 ═══════ -->
+<section class="section">
+  <div class="section-label">项目成果</div>
+  <h2 class="section-title">四大产出 · 融绘贯通</h2>
+  <p class="section-subtitle">各项产出统一于「遗产融绘，魅力高邮」文旅 IP，形成可识别、可传播的区域文化品牌。</p>
+
+  <div class="output-grid">
+    <div class="output-card">
+      <div class="output-icon blue">🖥</div>
+      <div class="output-text"><h4>「遗产融绘，魅力高邮」网站</h4><p>地图可视化呈现遗产空间分布，搭建公众认知的数字化入口。</p></div>
+    </div>
+    <div class="output-card">
+      <div class="output-icon green">🧭</div>
+      <div class="output-text"><h4>主题游学路线</h4><p>「从闸口到餐桌」故事线串联灌区、农田、非遗工坊。</p></div>
+    </div>
+    <div class="output-card">
+      <div class="output-icon red">🎮</div>
+      <div class="output-text"><h4>交互式数字游戏</h4><p>将调水、稻鸭共作、民歌传唱转化为沉浸式叙事内容。</p></div>
+    </div>
+    <div class="output-card">
+      <div class="output-icon purple">📡</div>
+      <div class="output-text"><h4>全媒体传播矩阵</h4><p>公众号 + 社媒账号 + 统一文旅IP，形成区域文化品牌。</p></div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;">
+    <div class="card" style="text-align:center;">
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:16px;">项目逻辑链</h3>
+      <div class="chain">
+        <div class="chain-step"><h4>田野调研</h4><p>215 份问卷·10 人访谈</p></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step"><h4>三重困境</h4><p>文化疏离·阐释断裂·代际断层</p></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step"><h4>三大对策</h4><p>数字平台·文旅IP·交互游戏</p></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step"><h4>四大产出</h4><p>网站·研学·游戏·传播</p></div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step"><h4>文化品牌</h4><p>「遗产融绘，魅力高邮」</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <h3>融绘贯通</h3>
+  <p>2026 大学生新文科实践创新大赛 · 文史哲组<br>高邮湖泊湿地多类型遗产系统性保护项目</p>
+  <p style="margin-top:8px;">© 2026 融绘贯通项目团队</p>
+</footer>
+
+<!-- ═══════ Leaflet Map ═══════ -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+var m=L.map('map',{center:[32.82,119.42],zoom:11,zoomControl:true,attributionControl:false});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(m);
+
+var C={gate:'#1b6b93',farm:'#2d6a4f',culture:'#b23b2c'};
+function dot(c){return L.divIcon({className:'',html:'<div style="width:14px;height:14px;border-radius:50%;background:'+c+';box-shadow:0 0 10px '+c+'80;border:2px solid white;"></div>',iconSize:[14,14],iconAnchor:[7,7]});}
+function pop(n,t,d){return '<b>'+n+'</b><br><small style="color:#999">'+t+'</small><br>'+d;}
+
+// 灌区闸口
+[{n:'车逻闸',a:32.738,o:119.468,d:'里运河-高邮灌区代表性闸口，明清时期建造。'},
+ {n:'南关坝',a:32.775,o:119.452,d:'灌区核心调控工程，古代水利智慧典范。'},
+ {n:'子婴闸',a:32.948,o:119.368,d:'灌区北部关键闸口。'},
+ {n:'界首小闸',a:32.918,o:119.425,d:'界首镇灌区闸口。'},
+ {n:'平津堰',a:32.790,o:119.430,d:'始建于唐代的活态水利工程。'}].forEach(function(s){L.marker([s.a,s.o],{icon:dot(C.gate)}).bindPopup(pop(s.n,'灌区闸口',s.d)).addTo(m);});
+
+// 农业遗产
+[{n:'永安村稻鸭共作区',a:32.885,o:119.418,d:'稻鸭鱼蟹共作模式核心实践区。'},
+ {n:'沿湖村生态农业区',a:32.658,o:119.355,d:'最美渔村，渔文化与农业融合示范区。'},
+ {n:'高邮鸭养殖基地',a:32.792,o:119.455,d:'国家地理标志物种保种与养殖基地。'}].forEach(function(s){L.marker([s.a,s.o],{icon:dot(C.farm)}).bindPopup(pop(s.n,'农业遗产',s.d)).addTo(m);});
+
+// 非遗
+[{n:'高邮民歌传习所',a:32.782,o:119.445,d:'国家级非遗高邮民歌传承基地。'},
+ {n:'芦苇荡湿地公园',a:32.835,o:119.285,d:'高邮湖滩郊野公园，生态观光与非遗展示。'},
+ {n:'渔民祭祀文化区',a:32.845,o:119.350,d:'开捕节、七公会等传统渔俗活动区域。'}].forEach(function(s){L.marker([s.a,s.o],{icon:dot(C.culture)}).bindPopup(pop(s.n,'非遗文化',s.d)).addTo(m);});
+
+// 湖面轮廓
+L.polygon([[32.95,119.25],[32.98,119.35],[32.92,119.48],[32.85,119.52],[32.72,119.48],[32.62,119.42],[32.60,119.30],[32.68,119.20],[32.78,119.18],[32.88,119.22],[32.95,119.25]],{color:'#1b6b93',weight:2,opacity:0.35,fillColor:'#1b6b93',fillOpacity:0.06}).addTo(m);
+
+// 水脉连线
+[[[32.790,119.430],[32.738,119.468],[32.885,119.418]],[[32.775,119.452],[32.792,119.455],[32.782,119.445]],[[32.948,119.368],[32.918,119.425],[32.885,119.418]],[[32.885,119.418],[32.658,119.355],[32.845,119.350]]].forEach(function(c){L.polyline(c,{color:'#7eb8da',weight:1.5,opacity:0.5,dashArray:'4 6'}).addTo(m);});
+})();
+</script>
+
+</body>
 </html>
