@@ -27,16 +27,12 @@ body{font-family:var(--sans);background:var(--warm);color:var(--ink);line-height
 .hsc{position:absolute;bottom:40px;color:rgba(255,255,255,.3);font-size:14px;animation:float 2s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 .msec{padding:48px 0 40px;max-width:680px;margin:0 auto}.min{margin:0 16px}
-.mc{width:100%;height:360px;border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.04);background:#e8f0f4;position:relative}
+.mc{width:100%;height:380px;border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.04);background:#e8f0f4}
 .mlg{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:16px 0}
 .mli{display:flex;align-items:center;gap:5px;font-size:13px;color:#666}
 .md{width:10px;height:10px;border-radius:50%}
 .md-b{background:var(--blu)}.md-g{background:var(--grn)}.md-r{background:var(--red)}
 .mn{text-align:center;font-size:12px;color:#aaa;margin-top:10px}
-.map-placeholder{position:absolute;inset:0;background:linear-gradient(135deg,#dce8f0 0%,#c8dbd0 30%,#d4e0e8 60%,#c8d8d0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8899a6;text-align:center;padding:20px}
-.map-placeholder svg{width:80px;height:80px;margin-bottom:12px;opacity:.5}
-.map-fallback{font-size:14px;line-height:2}
-.map-fallback div{margin:4px 0}
 .pc{border-left:3px solid transparent}
 .pc:nth-child(1){border-left-color:var(--gld)}.pc:nth-child(2){border-left-color:var(--blu)}.pc:nth-child(3){border-left-color:var(--red)}
 .pn{font-family:var(--serif);font-size:44px;font-weight:900;color:#e8e4df;line-height:1;margin-bottom:-6px}
@@ -117,24 +113,10 @@ s2 += '<div class="bar-row"><span class="bar-label">鱼鸭混养</span><div clas
 s2 += '</div><div class="info-box"><strong>关键发现</strong>41.57% 非本地受访者从未接触任何传统技艺。认知集中于稻鸭共作和鱼鹰捕鱼两项视觉冲击力强的项目，其余技术鲜为人知。</div></div>'
 s2 += '</section>'
 
-# Section 3: Map (no JS, pure static fallback with location data)
-loc_points = """<div class="map-fallback">
-<div style="color:#1b6b93;font-weight:700">◆ 灌区闸口</div>
-<div>平津堰（唐） · 车逻闸（明/清） · 南关坝（明）</div>
-<div>子婴闸（清） · 界首小闸（清）</div>
-<div style="margin-top:8px;color:#2d6a4f;font-weight:700">◆ 农业遗产</div>
-<div>永安村稻鸭共作区（核心区） · 沿湖村生态农业区</div>
-<div>高邮鸭养殖基地（国家地理标志）</div>
-<div style="margin-top:8px;color:#b23b2c;font-weight:700">◆ 非遗文化</div>
-<div>高邮民歌传习所（国家级） · 芦苇荡湿地公园</div>
-<div>渔民祭祀文化区（开捕节·七公会）</div>
-</div>"""
-
-s3 = '<section class="msec"><div class="lbl" style="text-align:center;padding:0 16px">核心交互体验</div><h2 class="tt" style="text-align:center;padding:0 16px">共生地图 · 水田人</h2><p class="sub" style="text-align:center;padding:0 16px">灌区闸口调节水位 → 灌溉湿地农田 → 孕育稻鸭鱼蟹 → 滋养非遗文化。高邮湖泊湿地 11 处遗产点位，分布在「水—田—人」的共生网络中。</p>'
+# Section 3: Interactive Map with Gaode tiles
+s3 = '<section class="msec"><div class="lbl" style="text-align:center;padding:0 16px">核心交互体验</div><h2 class="tt" style="text-align:center;padding:0 16px">共生地图 · 水田人</h2><p class="sub" style="text-align:center;padding:0 16px">灌区闸口调节水位 → 灌溉湿地农田 → 孕育稻鸭鱼蟹 → 滋养非遗文化。点击彩色标记，探索 11 处遗产点位的空间分布与共生关系。</p>'
 s3 += '<div class="mlg"><div class="mli"><span class="md md-b"></span>灌区闸口（5 处）</div><div class="mli"><span class="md md-g"></span>农业遗产（3 处）</div><div class="mli"><span class="md md-r"></span>非遗文化（3 处）</div></div>'
-s3 += '<div class="min"><div class="mc"><div class="map-placeholder"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="35" fill="none" stroke="#8899a6" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="32" cy="38" r="3" fill="#1b6b93"/><circle cx="50" cy="35" r="3" fill="#2d6a4f"/><circle cx="42" cy="50" r="3" fill="#b23b2c"/><line x1="32" y1="38" x2="42" y2="50" stroke="#8899a6" stroke-width="0.8" stroke-dasharray="3 3"/><line x1="50" y1="35" x2="42" y2="50" stroke="#8899a6" stroke-width="0.8" stroke-dasharray="3 3"/><text x="40" y="68" text-anchor="middle" font-size="8" fill="#8899a6">水 · 田 · 人</text></svg>'
-s3 += loc_points
-s3 += '</div></div></div>'
+s3 += '<div class="min"><div class="mc" id="map"></div></div>'
 s3 += '<div class="mn">数据来源：实地调研 · 11 个遗产点位 · 灌区闸口/农业基地/非遗场所</div></section>'
 
 # Section 4: Pain points
@@ -153,7 +135,32 @@ s5 += '<div class="oc"><div class="oi oi-p">📡</div><div class="ot"><h4>全媒
 s5 += '<div style="margin-top:36px"><div class="cd" style="text-align:center"><h3 style="font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:14px">项目逻辑链</h3>'
 s5 += '<div class="ch"><div class="cs"><h4>田野调研</h4><p>215 份问卷 · 10 人访谈</p></div><div class="ca">→</div><div class="cs"><h4>三重困境</h4><p>疏离·断裂·断层</p></div><div class="ca">→</div><div class="cs"><h4>三大对策</h4><p>平台·IP·游戏</p></div><div class="ca">→</div><div class="cs"><h4>四大产出</h4><p>网站·研学·游戏</p></div><div class="ca">→</div><div class="cs"><h4>文化品牌</h4><p>「遗产融绘」</p></div></div></div></div></section>'
 
-footer = """<footer class="ft"><h3>融绘贯通</h3><p>2026 大学生新文科实践创新大赛 · 文史哲组<br>高邮湖泊湿地多类型遗产系统性保护项目</p><p style="margin-top:6px;font-size:12px;color:#bbb">&copy; 2026 融绘贯通项目团队</p></footer></body></html>"""
+footer = """<footer class="ft"><h3>融绘贯通</h3><p>2026 大学生新文科实践创新大赛 · 文史哲组<br>高邮湖泊湿地多类型遗产系统性保护项目</p><p style="margin-top:6px;font-size:12px;color:#bbb">&copy; 2026 融绘贯通项目团队</p></footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+var m=L.map('map',{center:[32.82,119.42],zoom:11,zoomControl:true,attributionControl:false});
+L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',{subdomains:'1234',maxZoom:18,attribution:'高德地图'}).addTo(m);
+var C={gate:'#1b6b93',farm:'#2d6a4f',culture:'#b23b2c'};
+function d(c){return L.divIcon({className:'',html:'<div style="width:14px;height:14px;border-radius:50%;background:'+c+';box-shadow:0 0 10px '+c+'80;border:2px solid white;cursor:pointer"></div>',iconSize:[14,14],iconAnchor:[7,7]});}
+function p(n,t,s){return '<b>'+n+'</b><br><small style="color:#999">'+t+'</small><br><span style="font-size:14px">'+s+'</span>';}
+[{n:'平津堰',a:32.79,o:119.43,y:'唐',s:'始建于唐代的活态水利工程。'},
+ {n:'南关坝',a:32.775,o:119.452,y:'明',s:'核心调控工程，古代水利智慧典范。'},
+ {n:'车逻闸',a:32.738,o:119.468,y:'明/清',s:'灌区代表性闸口，至今仍发挥灌溉作用。'},
+ {n:'子婴闸',a:32.948,o:119.368,y:'清',s:'灌区北部关键闸口。'},
+ {n:'界首小闸',a:32.918,o:119.425,y:'清',s:'界首镇灌区闸口。'}].forEach(function(s){L.marker([s.a,s.o],{icon:d(C.gate)}).bindPopup(p(s.n,'灌区闸口·'+s.y,s.s)).addTo(m);});
+[{n:'永安村稻鸭共作区',a:32.885,o:119.418,y:'核心区',s:'稻鸭鱼蟹共作模式核心实践区。'},
+ {n:'沿湖村生态农业区',a:32.658,o:119.355,y:'缓冲区',s:'最美渔村，渔文化与农业融合示范区。'},
+ {n:'高邮鸭养殖基地',a:32.792,o:119.455,y:'企业',s:'国家地理标志物种保种基地。'}].forEach(function(s){L.marker([s.a,s.o],{icon:d(C.farm)}).bindPopup(p(s.n,'农业遗产·'+s.y,s.s)).addTo(m);});
+[{n:'高邮民歌传习所',a:32.782,o:119.445,y:'国家级',s:'高邮民歌传承基地。'},
+ {n:'芦苇荡湿地公园',a:32.835,o:119.285,y:'景区',s:'高邮湖滩郊野公园。'},
+ {n:'渔民祭祀文化区',a:32.845,o:119.35,y:'民俗',s:'开捕节、七公会等传统渔俗活动区。'}].forEach(function(s){L.marker([s.a,s.o],{icon:d(C.culture)}).bindPopup(p(s.n,'非遗文化·'+s.y,s.s)).addTo(m);});
+L.polygon([[32.95,119.25],[32.98,119.35],[32.92,119.48],[32.85,119.52],[32.72,119.48],[32.62,119.42],[32.6,119.3],[32.68,119.2],[32.78,119.18],[32.88,119.22],[32.95,119.25]],{color:'#1b6b93',weight:2,opacity:.35,fillColor:'#1b6b93',fillOpacity:.06}).addTo(m);
+[[[32.79,119.43],[32.738,119.468],[32.885,119.418]],[[32.775,119.452],[32.792,119.455],[32.782,119.445]],[[32.948,119.368],[32.918,119.425],[32.885,119.418]],[[32.885,119.418],[32.658,119.355],[32.845,119.35]]].forEach(function(c){L.polyline(c,{color:'#7eb8da',weight:1.5,opacity:.5,dashArray:'4 6'}).addTo(m);});
+})();
+</script>
+</body></html>"""
 
 full = page + hero + s1 + s2 + s3 + s4 + s5 + footer
 
