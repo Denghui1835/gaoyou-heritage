@@ -1,19 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="高邮湖泊湿地多类型遗产数字活化平台——集农业文化遗产、世界灌溉工程遗产、非物质文化遗产于一体的沉浸式文化长卷。">
-<script>
-/* 手机端自动跳转到手机版 index-m.html（竖版首屏）。
-   如需保留电脑版，请在手机浏览器访问 index.html?desktop=1；
-   彻底禁用请删除本段。 */
-if(matchMedia('(max-width:820px)').matches && !location.search.includes('desktop=1')){
-  location.replace('./index-m.html');
-}
-</script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="description" content="高邮湖泊湿地多类型遗产数字活化平台——集农业文化遗产、世界灌溉工程遗产、非物质文化遗产于一体的沉浸式文化长卷（手机版）。">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-<title>遗产融绘 · 魅力高邮 | 高邮湖泊湿地多类型遗产数字活化平台</title><link rel="preconnect" href="https://fonts.googleapis.cn"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<title>遗产融绘 · 魅力高邮 | 高邮湖泊湿地多类型遗产数字活化平台（手机版）</title><link rel="preconnect" href="https://fonts.googleapis.cn"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css"
       onerror="this.onerror=null;var l=document.createElement('link');l.rel='stylesheet';l.href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';document.head.appendChild(l);">
 <style>
@@ -30,144 +22,110 @@ if(matchMedia('(max-width:820px)').matches && !location.search.includes('desktop
   --sans:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.9;font-size:18px;overflow-x:hidden}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.85;font-size:16px;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-section{scroll-margin-top:70px}
+button{touch-action:manipulation}
+section{scroll-margin-top:64px}
 
-/* ============ 顶部导航（水墨菜单，右上） ============ */
+/* ============ 顶部导航（Logo + 汉堡菜单） ============ */
 .nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;
-  padding:14px 5vw 14px 2.5vw;background:linear-gradient(180deg,rgba(23,58,46,.55),rgba(23,58,46,.25) 70%,transparent);
+  padding:calc(8px + env(safe-area-inset-top)) 16px 8px;
+  background:linear-gradient(180deg,rgba(23,58,46,.52),rgba(23,58,46,.22) 70%,transparent);
   transition:background .3s}
-.nav.solid{background:rgba(250,246,236,.94);box-shadow:0 2px 18px rgba(0,0,0,.08)}
-.nav .logo{display:flex;align-items:center;gap:10px;font-family:var(--brush);font-size:26px;color:#fff;letter-spacing:.12em;text-shadow:0 1px 6px rgba(0,0,0,.4)}
-.nav .nav-logo-img{width:60px;height:60px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 2px 8px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.35)}
+.nav.solid{background:rgba(250,246,236,.95);box-shadow:0 2px 14px rgba(0,0,0,.08)}
+.nav .logo{display:flex;align-items:center;gap:9px;font-family:var(--brush);font-size:21px;color:#fff;letter-spacing:.1em;text-shadow:0 1px 6px rgba(0,0,0,.4);white-space:nowrap}
+.nav .nav-logo-img{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 2px 8px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.35)}
 .nav.solid .logo{color:var(--grn-d);text-shadow:none}
-.nav ul{display:flex;gap:6px;list-style:none;flex-wrap:wrap}
-.nav a{display:block;padding:7px 13px;border-radius:20px;font-size:16px;color:#fdf6e8;
-  letter-spacing:.08em;transition:.25s;position:relative}
-.nav a::after{content:'';position:absolute;left:50%;right:50%;bottom:2px;height:2px;background:var(--gold);border-radius:1px;transition:.3s}
-.nav a:hover::after{left:22%;right:22%}
-.nav a:hover{background:rgba(10,20,14,.16);color:#fff;transform:translateY(-1px)}
-.nav.solid a{color:var(--ink)}
-.nav.solid a:hover{background:rgba(176,138,62,.14);color:var(--grn-d)}
-@media(max-width:860px){.nav{flex-wrap:wrap;gap:6px;justify-content:center}.nav .logo{font-size:17px;gap:7px}.nav .nav-logo-img{width:34px;height:34px}.nav ul{gap:2px}.nav a{padding:5px 9px;font-size:13px}}
+.hamb{width:42px;height:42px;flex:none;border:none;background:transparent;position:relative;z-index:1001;
+  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:9px;border-radius:10px}
+.hamb span{display:block;height:2.6px;border-radius:2px;background:#fff;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.nav.solid .hamb span{background:var(--grn-d);box-shadow:none}
+.hamb.active span:nth-child(1){transform:translateY(8.6px) rotate(45deg)}
+.hamb.active span:nth-child(2){opacity:0}
+.hamb.active span:nth-child(3){transform:translateY(-8.6px) rotate(-45deg)}
+/* 全屏菜单 */
+.menu-overlay{position:fixed;inset:0;z-index:950;background:rgba(250,246,236,.97);backdrop-filter:blur(8px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.menu-overlay.open{opacity:1;visibility:visible}
+.menu-overlay a{font-family:var(--brush);font-size:29px;color:var(--grn-d);letter-spacing:.16em;padding:13px 24px;transition:.25s;position:relative}
+.menu-overlay a::after{content:'';position:absolute;left:50%;right:50%;bottom:4px;height:2px;background:var(--gold);transition:.3s}
+.menu-overlay a:hover{color:var(--gold);transform:translateY(-1px)}
+.menu-overlay a:hover::after{left:20%;right:20%}
+.menu-overlay .m-back{margin-top:30px;font-family:var(--serif);font-size:14px;color:var(--muted);letter-spacing:.2em}
 
-/* ============ 首屏 Hero：AI 水墨图 + 交互热点 ============ */
-.hero{position:relative;min-height:115vh;overflow:hidden;background:#0e2a20}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;z-index:0;
+/* ============ 首屏 Hero：手机端竖版水墨图 + 交互热点 ============ */
+.hero{position:relative;min-height:118vh;overflow:hidden;background:#0e2a20}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 12%;z-index:0;
   animation:kenburns 36s ease-in-out infinite alternate;will-change:transform}
-/* 首屏印章：传统镂空朱砂篆刻风（完整样式见下方 .seal 定义） */
 @keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.12)}}
 .hero-hotspots-layer{position:absolute;inset:0;z-index:2;pointer-events:none}
-.hero-hotspot-btn{position:absolute;width:64px;height:64px;border:none;border-radius:50%;background:transparent;pointer-events:auto;cursor:pointer;
+.hero-hotspot-btn{position:absolute;width:46px;height:46px;border:none;border-radius:50%;background:transparent;pointer-events:auto;cursor:pointer;
   transform:translate(-50%,-50%);outline:none;transition:transform .3s}
 .hero-hotspot-btn::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid rgba(176,138,62,.85);box-shadow:0 0 0 0 rgba(176,138,62,.4);
   animation:pulseRing 2.4s ease-out infinite}
-.hero-hotspot-btn::after{content:'';position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;background:#b08a3e;transform:translate(-50%,-50%);box-shadow:0 0 12px rgba(176,138,62,.8)}
-.hero-hotspot-btn:hover{transform:translate(-50%,-50%) scale(1.15)}
-.hero-hotspot-btn:hover::before{border-color:rgba(230,207,146,.95);box-shadow:0 0 24px rgba(230,207,146,.45)}
+.hero-hotspot-btn::after{content:'';position:absolute;left:50%;top:50%;width:9px;height:9px;border-radius:50%;background:#b08a3e;transform:translate(-50%,-50%);box-shadow:0 0 12px rgba(176,138,62,.8)}
+.hero-hotspot-btn:active{transform:translate(-50%,-50%) scale(1.2)}
 @keyframes pulseRing{0%{transform:scale(.6);opacity:.9}70%{transform:scale(1.6);opacity:0}100%{transform:scale(1.6);opacity:0}}
 .hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(248,244,233,.22) 0%,rgba(248,244,233,.06) 18%,transparent 36%,rgba(248,244,233,.35) 70%,rgba(248,244,233,.88) 100%)}
-.hero-inner{position:relative;z-index:3;min-height:115vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:150px 24px 110px}
-.hero-kicker{font-size:14px;letter-spacing:.6em;text-indent:.6em;color:#5f6b54;font-weight:700;margin-bottom:22px;text-shadow:0 1px 0 rgba(255,255,255,.85)}
-.hero-divider{width:min(320px,44vw);height:1px;margin:0 auto 10px;background:linear-gradient(90deg,transparent,rgba(176,138,62,.85) 18%,rgba(176,138,62,.85) 82%,transparent);position:relative}
-.hero-divider::before,.hero-divider::after{content:'';position:absolute;top:50%;width:5px;height:5px;border-radius:50%;background:#b08a3e;transform:translateY(-50%)}
+  background:linear-gradient(180deg,rgba(248,244,233,.20) 0%,rgba(248,244,233,.05) 20%,transparent 40%,rgba(248,244,233,.28) 74%,rgba(248,244,233,.9) 100%)}
+.hero-inner{position:relative;z-index:3;min-height:118vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;
+  padding:calc(96px + env(safe-area-inset-top)) 18px 70px}
+.hero-kicker{font-size:12px;letter-spacing:.38em;text-indent:.38em;color:#4e5943;font-weight:700;margin-bottom:16px;text-shadow:0 1px 0 rgba(255,255,255,.9)}
+.hero-divider{width:min(300px,56vw);height:1px;margin:0 auto 8px;background:linear-gradient(90deg,transparent,rgba(176,138,62,.85) 18%,rgba(176,138,62,.85) 82%,transparent);position:relative}
+.hero-divider::before,.hero-divider::after{content:'';position:absolute;top:50%;width:4px;height:4px;border-radius:50%;background:#b08a3e;transform:translateY(-50%)}
 .hero-divider::before{left:18%}.hero-divider::after{right:18%}
-.hero h1{font-family:var(--brush);font-size:clamp(68px,12.5vw,150px);line-height:1.16;letter-spacing:.12em;text-indent:.12em;margin-top:34px;margin-bottom:2px;
+.hero h1{font-family:var(--brush);font-size:clamp(46px,14vw,68px);line-height:1.12;letter-spacing:.08em;text-indent:.08em;margin-top:26px;
   background:linear-gradient(180deg,#8a6a2c 0%,#b08a3e 30%,#eed9a6 47%,#b08a3e 64%,#8a6a2c 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
-  filter:drop-shadow(0 1px 2px rgba(0,0,0,.28)) drop-shadow(0 10px 26px rgba(122,90,30,.20))}
-
-
-.hero h1 em .t{background:linear-gradient(180deg,#9a7426 0%,#c9a55c 34%,#f2dfae 50%,#c9a55c 66%,#8a6a2c 100%)}
-
-
-
-
-
-
-
-
-.hero h1 .zz{font-family:'STKaiti','KaiTi','SimSun',serif;
-  background:linear-gradient(180deg,#7a5c24 0%,#b08a3e 46%,#7a5c24 100%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.hero h1 em{font-style:normal;display:block;font-size:.8em;margin-top:16px;letter-spacing:.2em;text-indent:.2em;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.28)) drop-shadow(0 10px 26px rgba(122,90,30,.22))}
+.hero h1 em{font-style:normal;display:block;font-size:.8em;margin-top:10px;letter-spacing:.18em;text-indent:.18em;
   background:linear-gradient(180deg,#9a7426 0%,#c9a55c 34%,#f2dfae 50%,#c9a55c 66%,#8a6a2c 100%);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.hero-sub{margin-top:52px;font-family:var(--lishu);font-size:clamp(22px,2.6vw,26px);line-height:1.95;letter-spacing:.36em;text-indent:.36em;color:#123024;font-weight:700;text-shadow:1px 0 0 #fff,-1px 0 0 #fff,0 1px 0 #fff,0 -1px 0 #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
-.hero-btn{display:inline-flex;align-items:center;margin-top:44px;padding:0;border:none;background:none;cursor:pointer;position:relative;
-  filter:drop-shadow(0 10px 22px rgba(80,55,15,.28));transition:transform .45s ease,filter .45s ease}
-.hero-btn:hover{transform:translateY(-3px) scale(1.045);filter:drop-shadow(0 14px 30px rgba(80,55,15,.36)) brightness(1.07) saturate(1.06)}
-
-
-
-
-
-
-.hero-btn:hover{transform:translateY(-3px)}
-.hero-btn::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .6s}
-.hero-btn:hover::after{left:120%}
-.hero-btn .rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:translate(-50%,-50%) scale(0);animation:rip .75s ease-out}
-
-/* 卷轴横幅按钮（复刻参考图） */
-.hero-btn .btn-roll{font-family:var(--serif);font-size:17px;letter-spacing:.22em;text-indent:.22em;color:#1d3a2c;font-weight:700;
-  background:linear-gradient(180deg,#f8ead6,#f2dfc6);border:1px solid #d4bc92;border-radius:8px;padding:14px 38px;position:relative;z-index:1;
+.hero-sub{margin-top:26px;font-family:var(--lishu);font-size:15.5px;line-height:1.85;letter-spacing:.24em;text-indent:.24em;color:#123024;font-weight:700;
+  text-shadow:1px 0 0 #fff,-1px 0 0 #fff,0 1px 0 #fff,0 -1px 0 #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+.hero-btn{display:inline-flex;align-items:center;margin-top:30px;padding:0;border:none;background:none;cursor:pointer;position:relative;
+  filter:drop-shadow(0 10px 22px rgba(80,55,15,.28));transition:transform .3s}
+.hero-btn:active{transform:translateY(-2px) scale(1.03)}
+.hero-btn .btn-roll{font-family:var(--serif);font-size:15px;letter-spacing:.2em;text-indent:.2em;color:#1d3a2c;font-weight:700;
+  background:linear-gradient(180deg,#f8ead6,#f2dfc6);border:1px solid #d4bc92;border-radius:8px;padding:12px 26px;position:relative;z-index:1;
   box-shadow:0 4px 12px rgba(90,60,20,.18),inset 0 1px 0 rgba(255,255,255,.75)}
-.hero-btn .btn-roll::before{content:'';position:absolute;inset:5px 7px;border:1px solid rgba(178,150,106,.38);border-radius:5px;pointer-events:none}
-.hero-btn .btn-cap{width:36px;height:36px;border-radius:50%;position:relative;flex:none;
+.hero-btn .btn-roll::before{content:'';position:absolute;inset:4px 6px;border:1px solid rgba(178,150,106,.38);border-radius:5px;pointer-events:none}
+.hero-btn .btn-cap{width:32px;height:32px;border-radius:50%;position:relative;flex:none;
   box-shadow:inset 0 2px 4px rgba(0,0,0,.2),0 3px 8px rgba(0,0,0,.22)}
-.hero-btn .btn-cap.left{background:radial-gradient(circle at 35% 30%,#86a872,#5d7f4f 72%);margin-right:-11px;z-index:2}
-.hero-btn .btn-cap.right{background:radial-gradient(circle at 35% 30%,#86a872,#5d7f4f 72%);margin-left:-11px;z-index:2}
-.hero-btn .btn-cap::before{content:'';position:absolute;inset:6px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.8)}
-.hero-btn .btn-cap::after{content:'';position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.95);transform:translate(-50%,-50%)}
-.hero-btn:hover .btn-cap{transform:rotate(8deg)}@keyframes rip{to{transform:translate(-50%,-50%) scale(3);opacity:0}}
-.vtext{position:absolute;left:calc(2.5vw + 152px);bottom:calc(26% + 4px);z-index:3;opacity:.7;
-  display:flex;flex-direction:row;gap:26px;align-items:flex-end}
-.vtext span{writing-mode:vertical-rl;white-space:nowrap;font-family:'STXingkai','FZShuTi','STKaiti','KaiTi',serif;font-weight:700;font-size:24px;letter-spacing:.44em;line-height:1.85;color:#111111;text-shadow:1px 0 0 rgba(248,242,228,.4),-1px 0 0 rgba(248,242,228,.4)}
-.seal{position:absolute;right:18%;top:calc(53% - 45px);transform:translateY(-50%);width:43px;height:86px;z-index:3}
-.seal svg{width:100%;height:100%;display:block}
-/* 印体：暗朱砂沉稳色调 + 细微噪点 + 不规则斑驳毛边（feTurbulence 位移遮罩，边缘自然残缺） */
-
-/* 印泥洇开：印体边缘向外缓慢渗开的朦胧朱痕 */
-
-/* 文字镂空：用背景图裁剪到文字形状，让下层背景画面直接从文字内部透出（不支持时回退为米色字） */
-
-@supports ((-webkit-background-clip:text) or (background-clip:text)){
-  
-}
-.hero-tooltip{position:fixed;z-index:100;pointer-events:none;background:rgba(255,253,247,.96);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-size:13px;color:var(--grn-d);box-shadow:0 8px 24px rgba(60,40,10,.12);opacity:0;transform:translate(-50%,-100%) translateY(-10px);transition:opacity .25s;white-space:nowrap;letter-spacing:.04em}
-@media(max-width:700px){.hero-img{object-position:center 20%}.hero{min-height:100vh}.hero-inner{height:100vh;min-height:0;justify-content:center;padding-top:6vh;padding-bottom:2vh}.vtext,.seal{display:none}.hero-kicker{font-size:12px;letter-spacing:.38em;text-indent:.38em}.hero-divider{width:min(220px,52vw)}.hero h1{font-size:clamp(46px,13.5vw,64px);letter-spacing:.08em;text-indent:.08em;margin-top:0}.hero h1 em{margin-top:10px;font-size:.82em}.hero-sub{font-size:15px;letter-spacing:.24em;text-indent:.24em;margin-top:36px;line-height:2.05}.hero-btn{margin-top:42px}.hero-btn .btn-roll{font-size:14px;padding:11px 22px;letter-spacing:.16em;text-indent:.16em}.hero-btn .btn-cap{width:26px;height:26px}.hero-btn .btn-cap::before{inset:5px}.hero-btn .btn-cap::after{width:6px;height:6px}}
-@media (prefers-reduced-motion: reduce){.hero-scene animate,.hero-scene animateTransform{animation:none}}
+.hero-btn .btn-cap.left{background:radial-gradient(circle at 35% 30%,#86a872,#5d7f4f 72%);margin-right:-10px;z-index:2}
+.hero-btn .btn-cap.right{background:radial-gradient(circle at 35% 30%,#86a872,#5d7f4f 72%);margin-left:-10px;z-index:2}
+.hero-btn .btn-cap::before{content:'';position:absolute;inset:5px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.8)}
+.hero-btn .btn-cap::after{content:'';position:absolute;left:50%;top:50%;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.95);transform:translate(-50%,-50%)}
+.hero-btn .rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:translate(-50%,-50%) scale(0);animation:rip .75s ease-out}
+@keyframes rip{to{transform:translate(-50%,-50%) scale(3);opacity:0}}
+.hero-scroll{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:3;color:#3a5a48;font-size:11px;letter-spacing:.3em;text-indent:.3em;opacity:.8}
 
 /* ============ 通用区块 ============ */
-.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
-.sec{padding:96px 0}
-.lbl{font-family:var(--serif);font-size:15px;letter-spacing:.5em;color:var(--gold);font-weight:700;margin-bottom:14px;text-align:center}
-.tt{font-family:var(--brush);font-size:clamp(34px,5vw,52px);text-align:center;color:var(--grn-d);letter-spacing:.14em;margin-bottom:14px;line-height:1.3}
-.sub{text-align:center;max-width:760px;margin:0 auto 52px;color:var(--muted);font-size:18px;line-height:2}
+.wrap{padding:0 18px;max-width:560px;margin:0 auto}
+.sec{padding:56px 0}
+.lbl{font-family:var(--serif);font-size:13px;letter-spacing:.42em;color:var(--gold);font-weight:700;margin-bottom:12px;text-align:center}
+.tt{font-family:var(--brush);font-size:clamp(27px,7.5vw,36px);text-align:center;color:var(--grn-d);letter-spacing:.12em;margin-bottom:12px;line-height:1.35}
+.sub{text-align:center;max-width:640px;margin:0 auto 38px;color:var(--muted);font-size:15px;line-height:1.95}
 
 /* ============ 一湖三脉 ============ */
 .pulse{background:linear-gradient(180deg,#f6f1e4,#fbf7ee)}
-.three{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-@media(max-width:900px){.three{grid-template-columns:1fr}}
-.tc{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(120,90,30,.06);transition:transform .3s,box-shadow .3s}
-.tc:hover{transform:translateY(-6px);box-shadow:0 16px 44px rgba(120,90,30,.14)}
-.tc .pic{height:200px;overflow:hidden;position:relative}
-.tc .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.tc:hover .pic img{transform:scale(1.06)}
-.tc .badge{position:absolute;left:16px;top:16px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,253,246,.9);
-  padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;letter-spacing:.1em;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-.tc .badge .dot{width:9px;height:9px;border-radius:50%}
-.tc .bd{padding:26px 26px 30px}
-.tc h3{font-family:var(--serif);font-size:24px;margin-bottom:4px}
-.tc .tagline{font-size:15px;letter-spacing:.22em;margin-bottom:14px;font-weight:700}
-.tc p{font-size:16.5px;color:var(--muted);line-height:1.95}
-.tc .chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
-.tc .chip{font-size:14px;padding:4px 12px;border-radius:16px;letter-spacing:.05em}
-.tc .motto{font-family:var(--serif);font-weight:700;font-size:17px;margin-top:18px;color:var(--ink);border-top:1px dashed var(--line);padding-top:16px}
+.three{display:grid;grid-template-columns:1fr;gap:18px}
+.tc{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 30px rgba(120,90,30,.06)}
+.tc .pic{height:172px;overflow:hidden;position:relative}
+.tc .pic img{width:100%;height:100%;object-fit:cover}
+.tc .badge{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:7px;background:rgba(255,253,246,.92);
+  padding:5px 12px;border-radius:18px;font-size:12px;font-weight:700;letter-spacing:.08em;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.tc .badge .dot{width:8px;height:8px;border-radius:50%}
+.tc .bd{padding:20px 18px 24px}
+.tc h3{font-family:var(--serif);font-size:22px;margin-bottom:3px}
+.tc .tagline{font-size:13.5px;letter-spacing:.18em;margin-bottom:12px;font-weight:700}
+.tc p{font-size:15px;color:var(--muted);line-height:1.9}
+.tc .chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.tc .chip{font-size:13px;padding:4px 12px;border-radius:16px;letter-spacing:.05em}
+.tc .motto{font-family:var(--serif);font-weight:700;font-size:16px;margin-top:16px;color:var(--ink);border-top:1px dashed var(--line);padding-top:14px}
 .b-water .badge{color:#4a7480}.b-water .dot{background:#4a7480}.b-water h3{color:#33596a}.b-water .tagline{color:#4a7480}
 .b-water .chips .chip{background:#e7efed;color:#33596a}
 .b-field .badge{color:#2d6a4f}.b-field .dot{background:#2d6a4f}.b-field h3{color:#2d6a4f}.b-field .tagline{color:#2d6a4f}
@@ -177,181 +135,150 @@ section{scroll-margin-top:70px}
 
 /* ============ 穿越千年 ============ */
 .timeline-sec{background:var(--paper)}
-.tl{position:relative;max-width:980px;margin:0 auto;padding:20px 0}
-.tl:before{content:'';position:absolute;left:50%;top:8%;bottom:8%;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
-/* 图、文各自固定在两侧 42%，中轴穿过中间的留白区，任何桌面宽度都不压字 */
-.tl-node{position:relative;display:flex;align-items:center;justify-content:space-between;gap:40px;margin:48px 0}
-.tl-node .nimg{width:42%;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.12);flex-shrink:0}
-.tl-node .nimg img{width:100%;height:240px;object-fit:cover}
-.tl-node .ntxt{width:42%;flex:none}
-.tl-node .era{font-family:var(--brush);font-size:34px;color:var(--gold);letter-spacing:.2em;margin-bottom:10px}
-.tl-node ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.tl-node li{font-size:17px;color:var(--muted);padding-left:22px;position:relative}
-.tl-node li:before{content:'◆';position:absolute;left:0;top:0;font-size:11px;color:var(--gold)}
-.tl-node .ndot{position:absolute;left:50%;transform:translateX(-50%);width:18px;height:18px;border-radius:50%;
-  background:var(--gold-l);border:4px solid var(--gold);box-shadow:0 0 0 6px rgba(176,138,62,.18)}
-.tl-node:nth-child(odd){flex-direction:row}
-.tl-node:nth-child(even){flex-direction:row-reverse}
-@media(max-width:860px){.tl:before{left:22px}.tl-node{flex-direction:column!important;align-items:flex-start;gap:16px;padding-left:64px}
-  .tl-node .nimg{width:100%}.tl-node .ndot{left:22px;transform:translateX(-50%)}
-  .tl-node .ntxt{width:100%}}
+.tl{position:relative;max-width:640px;margin:0 auto;padding:10px 0}
+.tl:before{content:'';position:absolute;left:20px;top:6%;bottom:6%;width:2px;background:linear-gradient(180deg,transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
+.tl-node{position:relative;padding-left:56px;margin:34px 0}
+.tl-node .nimg{border-radius:14px;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.1);margin-bottom:14px}
+.tl-node .nimg img{width:100%;height:188px;object-fit:cover}
+.tl-node .era{font-family:var(--brush);font-size:24px;color:var(--gold);letter-spacing:.16em;margin-bottom:8px}
+.tl-node ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.tl-node li{font-size:15px;color:var(--muted);padding-left:20px;position:relative;line-height:1.85}
+.tl-node li:before{content:'◆';position:absolute;left:0;top:0;font-size:10px;color:var(--gold)}
+.tl-node .ndot{position:absolute;left:20px;top:6px;transform:translateX(-50%);width:15px;height:15px;border-radius:50%;
+  background:var(--gold-l);border:4px solid var(--gold);box-shadow:0 0 0 5px rgba(176,138,62,.18)}
 
 /* ============ 数字地图 ============ */
 .map-sec{background:linear-gradient(180deg,#eef3ea,#f6f1e4)}
-.mbox{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.12);background:#dfe8e0}
-.mbox #heritage-map{width:100%;height:620px}
-@media(max-width:700px){.mbox #heritage-map{height:460px}}
-.mlegend{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin:20px 0 12px}
-.mli{display:flex;align-items:center;gap:8px;font-size:16px;color:#5a564a}
-.mdot{width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 6px rgba(0,0,0,.25)}
-.m-note{text-align:center;font-size:15px;color:#9a9180;margin-top:14px}
-.m-stats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
-.m-stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 22px;text-align:center}
-.m-stat b{font-family:var(--serif);font-size:24px;color:var(--grn);display:block}
-.m-stat span{font-size:14.5px;color:var(--muted)}
-/* MapLibre GL 3D 地图：弹窗与控件贴合整体水墨配色 */
-.maplibregl-popup-content{font-family:var(--sans);border-radius:12px;box-shadow:0 10px 30px rgba(60,40,10,.18)}
+.mbox{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.12);background:#dfe8e0}
+.mbox #heritage-map{width:100%;height:430px}
+.mlegend{display:flex;flex-wrap:wrap;gap:12px 18px;justify-content:center;margin:18px 0 12px}
+.mli{display:flex;align-items:center;gap:7px;font-size:14px;color:#5a564a}
+.mdot{width:11px;height:11px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 6px rgba(0,0,0,.25)}
+.m-note{text-align:center;font-size:13.5px;color:#9a9180;margin-top:12px}
+.m-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.m-stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-align:center}
+.m-stat b{font-family:var(--serif);font-size:22px;color:var(--grn);display:block}
+.m-stat span{font-size:13px;color:var(--muted);line-height:1.5;display:block}
+.maplibregl-popup-content{font-family:var(--sans);border-radius:12px;box-shadow:0 10px 30px rgba(60,40,10,.18);font-size:13px}
 .maplibregl-popup-content b{color:var(--grn-d)}
 .maplibregl-popup-close-button{color:#9a9180;font-size:18px}
-.maplibregl-ctrl-attrib{font-size:11px}
+.maplibregl-ctrl-attrib{font-size:10px}
 
 /* ============ 研学路线 ============ */
 .routes-sec{background:var(--paper)}
-.route3{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-@media(max-width:900px){.route3{grid-template-columns:1fr}}
-.rc{border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.07);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
-.rc:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(0,0,0,.13)}
-.rc .pic{height:170px;overflow:hidden}
-.rc .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.rc:hover .pic img{transform:scale(1.07)}
-.rc .bd{padding:24px;display:flex;flex-direction:column;flex:1}
-.rc .num{font-family:var(--brush);font-size:20px;color:var(--gold);letter-spacing:.15em;margin-bottom:6px}
-.rc h3{font-family:var(--serif);font-size:21px;margin-bottom:6px}
-.rc p{font-size:16px;color:var(--muted);flex:1}
-.rc .go{margin-top:18px;font-size:16px;letter-spacing:.2em;font-weight:700}
+.route3{display:grid;grid-template-columns:1fr;gap:18px}
+.rc{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.07);display:flex;flex-direction:column}
+.rc .pic{height:150px;overflow:hidden}
+.rc .pic img{width:100%;height:100%;object-fit:cover}
+.rc .bd{padding:20px 18px 22px;display:flex;flex-direction:column;flex:1}
+.rc .num{font-family:var(--brush);font-size:19px;color:var(--gold);letter-spacing:.14em;margin-bottom:5px}
+.rc h3{font-family:var(--serif);font-size:20px;margin-bottom:5px}
+.rc p{font-size:15px;color:var(--muted);flex:1}
+.rc .go{margin-top:16px;font-size:15px;letter-spacing:.18em;font-weight:700}
 .rc.r1 .go{color:#4a7480}.rc.r2 .go{color:#2d6a4f}.rc.r3 .go{color:#a5653f}
 .rc .go span{display:inline-block;transition:transform .25s}
-.rc:hover .go span{transform:translateX(6px)}
 
 /* ============ 互动游戏中心 ============ */
 .game-sec{background:linear-gradient(180deg,#f3ecdd,#faf6ec)}
-.game3{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-@media(max-width:900px){.game3{grid-template-columns:1fr}}
-.gc{border-radius:20px;overflow:hidden;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.07);text-align:center;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
-.gc:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(0,0,0,.14)}
-.gc .cover{height:150px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}
-.gc .cover .watermark{position:absolute;right:14px;bottom:8px;font-size:11px;color:rgba(255,255,255,.85);letter-spacing:.15em}
-.gc .bd{padding:22px 20px 26px;display:flex;flex-direction:column;flex:1}
+.game3{display:grid;grid-template-columns:1fr;gap:18px}
+.gc{border-radius:18px;overflow:hidden;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.07);text-align:center;display:flex;flex-direction:column}
+.gc .cover{height:120px;display:flex;align-items:center;justify-content:center;font-size:44px;position:relative}
+.gc .cover .watermark{position:absolute;right:12px;bottom:7px;font-size:10px;color:rgba(255,255,255,.88);letter-spacing:.14em}
+.gc .bd{padding:20px 18px 24px;display:flex;flex-direction:column;flex:1}
 .gc h3{font-family:var(--serif);font-size:21px;margin-bottom:4px}
-.gc .en{font-size:14px;letter-spacing:.18em;color:var(--gold);margin-bottom:10px;font-weight:700}
-.gc p{font-size:15.5px;color:var(--muted);flex:1}
-.gc .gbtn{margin-top:18px;padding:10px 22px;border-radius:24px;font-size:16px;letter-spacing:.14em;font-weight:700;cursor:pointer;border:none;transition:.25s}
+.gc .en{font-size:13px;letter-spacing:.16em;color:var(--gold);margin-bottom:10px;font-weight:700}
+.gc p{font-size:14.5px;color:var(--muted);flex:1}
+.gc .gbtn{margin-top:16px;padding:11px 22px;border-radius:24px;font-size:15px;letter-spacing:.12em;font-weight:700;cursor:pointer;border:none;transition:.25s}
 .g1 .cover{background:linear-gradient(140deg,#1e3642,#4a7480);color:#e7efed}
-.g1 .gbtn{background:#4a7480;color:#fff}.g1 .gbtn:hover{background:#33596a}
+.g1 .gbtn{background:#4a7480;color:#fff}
 .g2 .cover{background:linear-gradient(140deg,#173a2e,#2d6a4f);color:#d9f2df}
-.g2 .gbtn{background:#2d6a4f;color:#fff}.g2 .gbtn:hover{background:#1f4a38}
+.g2 .gbtn{background:#2d6a4f;color:#fff}
 .g3 .cover{background:linear-gradient(140deg,#47271c,#a5653f);color:#fde8d8}
-.g3 .gbtn{background:#a5653f;color:#fff}.g3 .gbtn:hover{background:#7d4a2e}
+.g3 .gbtn{background:#a5653f;color:#fff}
 
 /* ============ 数字展厅 ============ */
 .gallery-sec{background:var(--cream)}
-.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media(max-width:900px){.gal{grid-template-columns:repeat(2,1fr)}}
-.gal a{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 6px 20px rgba(0,0,0,.10);cursor:zoom-in}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.gal a:hover img{transform:scale(1.08)}
-.gal a .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;color:#fff;font-size:14px;
-  background:linear-gradient(180deg,transparent,rgba(0,0,0,.65));opacity:0;transition:.3s;text-align:center;letter-spacing:.1em}
-.gal a:hover .cap{opacity:1}
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.gal a{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 6px 20px rgba(0,0,0,.10)}
+.gal img{width:100%;height:100%;object-fit:cover}
+.gal a .cap{position:absolute;left:0;right:0;bottom:0;padding:20px 8px 8px;color:#fff;font-size:12px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.62));text-align:center;letter-spacing:.06em}
 
 /* ============ 底部 CTA ============ */
-.cta{position:relative;padding:120px 24px;text-align:center;overflow:hidden;background:#0e2a20}
+.cta{position:relative;padding:80px 18px;text-align:center;overflow:hidden;background:#0e2a20}
 .cta .bg{position:absolute;inset:0;background:url('./img/cta.jpg') center/cover no-repeat}
 .cta .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,42,32,.82),rgba(14,42,32,.66))}
-.cta .inner{position:relative;z-index:2;max-width:860px;margin:0 auto}
-.cta .words{font-family:var(--brush);font-size:clamp(28px,4.5vw,44px);color:#f4ead2;letter-spacing:.12em;line-height:1.6;margin-bottom:40px}
-.cta .btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
-.cta .cbtn{padding:14px 34px;border-radius:30px;font-family:var(--serif);font-size:16px;letter-spacing:.2em;font-weight:700;cursor:pointer;border:1px solid var(--gold);transition:.25s;background:transparent;color:#f0e6c8}
-.cta .cbtn:hover{background:var(--gold);color:#2a2008;transform:translateY(-2px)}
+.cta .inner{position:relative;z-index:2;max-width:520px;margin:0 auto}
+.cta .words{font-family:var(--brush);font-size:clamp(24px,6vw,32px);color:#f4ead2;letter-spacing:.1em;line-height:1.65;margin-bottom:30px}
+.cta .btns{display:flex;flex-direction:column;gap:14px;align-items:center}
+.cta .cbtn{padding:13px 30px;border-radius:30px;font-family:var(--serif);font-size:15px;letter-spacing:.18em;font-weight:700;cursor:pointer;border:1px solid var(--gold);transition:.25s;background:transparent;color:#f0e6c8;width:100%;max-width:300px}
+.cta .cbtn:active{background:var(--gold);color:#2a2008}
 .cta .cbtn.filled{background:linear-gradient(135deg,#e6cf92,#c9a55c);border-color:transparent;color:#3a2c0e}
-.cta .cbtn.filled:hover{filter:brightness(1.06)}
-.cta .tiny{margin-top:26px;font-size:15px;color:rgba(240,230,200,.6);letter-spacing:.15em}
+.cta .tiny{margin-top:22px;font-size:14px;color:rgba(240,230,200,.6);letter-spacing:.14em}
 
 /* ============ 页脚 ============ */
-.ft{padding:64px 24px 56px;text-align:center;background:var(--grn-x);color:#d9d2bd}
-.ft h3{font-family:var(--brush);font-size:30px;letter-spacing:.16em;color:#f0e6c8;margin-bottom:12px}
-.ft .sub-en{font-size:15px;letter-spacing:.4em;color:var(--gold);margin-bottom:22px}
-.ft p{font-size:16px;line-height:2;color:#b8b19b}
-.ft .foot-src{margin-top:20px;padding-top:20px;border-top:1px solid rgba(240,230,200,.14);font-size:14.5px;color:#8f8875}
+.ft{padding:52px 18px 46px;text-align:center;background:var(--grn-x);color:#d9d2bd}
+.ft h3{font-family:var(--brush);font-size:26px;letter-spacing:.14em;color:#f0e6c8;margin-bottom:10px}
+.ft .sub-en{font-size:12px;letter-spacing:.3em;color:var(--gold);margin-bottom:18px}
+.ft p{font-size:14.5px;line-height:2;color:#b8b19b}
+.ft .foot-src{margin-top:18px;padding-top:18px;border-top:1px solid rgba(240,230,200,.14);font-size:13px;color:#8f8875}
+.ft .to-desktop{margin-top:14px}
+.ft .to-desktop a{display:inline-block;padding:9px 22px;border:1px solid rgba(240,230,200,.28);border-radius:22px;font-size:13.5px;letter-spacing:.18em;color:#d9d2bd;transition:.25s}
+.ft .to-desktop a:active{background:rgba(240,230,200,.12)}
 
 /* ============ 弹窗 ============ */
-.modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(14,30,22,.55);backdrop-filter:blur(3px)}
+.modal{position:fixed;inset:0;z-index:1100;display:none;align-items:center;justify-content:center;background:rgba(14,30,22,.55);backdrop-filter:blur(3px)}
 .modal.open{display:flex}
-.modal .box{background:var(--paper);border-radius:20px;max-width:520px;width:92%;max-height:82vh;overflow:auto;padding:34px 30px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.modal .close{position:absolute;top:14px;right:18px;font-size:26px;cursor:pointer;color:#9a9180;line-height:1;border:none;background:none}
-.modal h3{font-family:var(--serif);font-size:22px;color:var(--grn-d);margin-bottom:14px}
-.modal p{font-size:16.5px;color:var(--muted);line-height:2}
-.modal ol{margin:10px 0 0 20px;font-size:16px;color:var(--muted);line-height:2}
-.modal .hl{background:#f3ecd9;border-left:3px solid var(--gold);padding:10px 16px;border-radius:6px;font-size:15.5px;color:#6b5a2e;margin-top:14px}
+.modal .box{background:var(--paper);border-radius:18px;max-width:520px;width:92%;max-height:82vh;overflow:auto;padding:26px 22px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal .close{position:absolute;top:12px;right:16px;font-size:24px;cursor:pointer;color:#9a9180;line-height:1;border:none;background:none}
+.modal h3{font-family:var(--serif);font-size:20px;color:var(--grn-d);margin-bottom:12px;line-height:1.4}
+.modal p{font-size:15px;color:var(--muted);line-height:1.9}
+.modal ol{margin:8px 0 0 18px;font-size:15px;color:var(--muted);line-height:1.9}
+.modal .hl{background:#f3ecd9;border-left:3px solid var(--gold);padding:9px 13px;border-radius:6px;font-size:14px;color:#6b5a2e;margin-top:12px;line-height:1.8}
 
-@media(max-width:700px){
-  .hero{min-height:100vh !important}
-  .hero-inner{justify-content:center !important;min-height:100vh !important;height:100vh !important;padding-top:6vh !important;padding-bottom:2vh !important}
-}
-
-@media(max-width:860px){
-  .nav .logo{font-size:16px !important;gap:6px !important}
-  .nav .nav-logo-img{width:30px !important;height:30px !important}
-}
+/* 滚动渐现 */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-<div class="noise-layer" aria-hidden="true"></div>
-<div class="vignette-layer" aria-hidden="true"></div>
 
-
-<!-- ================= 顶部导航（水墨菜单，右上） ================= -->
+<!-- ================= 顶部导航（Logo + 汉堡菜单） ================= -->
 <nav class="nav" id="nav" aria-label="主导航">
   <div class="logo"><img class="nav-logo-img" src="./img/logo.jpg" alt="遗产融绘 · 魅力高邮"><span>遗产融绘 · 魅力高邮</span></div>
-  <ul>
-    <li><a href="#top">首页</a></li>
-    <li><a href="#explore">探索高邮</a></li>
-    <li><a href="#map">遗产地图</a></li>
-    <li><a href="#timeline">文化故事</a></li>
-    <li><a href="#routes">研学路线</a></li>
-    <li><a href="#games">互动游戏</a></li>
-    <li><a href="#gallery">数字展厅</a></li>
-  </ul>
+  <button class="hamb" id="hambBtn" type="button" aria-label="打开菜单" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- ================= 首屏：水墨 SVG 场景 + 交互热点 ================= -->
+<div class="menu-overlay" id="menuOverlay">
+  <a href="#top">首页</a>
+  <a href="#explore">探索高邮</a>
+  <a href="#map">遗产地图</a>
+  <a href="#timeline">文化故事</a>
+  <a href="#routes">研学路线</a>
+  <a href="#games">互动游戏</a>
+  <a href="#gallery">数字展厅</a>
+  <a class="m-back" href="./index.html?desktop=1">切换到电脑版 →</a>
+</div>
+
+<!-- ================= 首屏：手机端竖版水墨图 + 交互热点 ================= -->
 <section class="hero" id="top">
-  <picture><source media="(max-width:700px)" srcset="./img/hero-mobile.png"><img class="hero-img" src="./img/hero-final2.png" alt="遗产融绘 · 魅力高邮 —— 高邮湖泊湿地多类型遗产数字活化平台"></picture>
+  <img class="hero-img" src="./img/hero-mobile.png" alt="遗产融绘 · 魅力高邮 —— 高邮湖泊湿地多类型遗产数字活化平台">
   <div class="hero-hotspots-layer" aria-label="首屏遗产热点">
-    <button class="hero-hotspot-btn" data-target="#timeline" data-label="里运河—高邮灌区 · 世界灌溉工程遗产" style="left:74%;top:52%;" type="button" aria-label="里运河—高邮灌区 · 世界灌溉工程遗产"></button>
-    <button class="hero-hotspot-btn" data-target="#routes" data-label="从湖到餐桌 · 研学路线" style="left:22%;top:64%;" type="button" aria-label="从湖到餐桌 · 研学路线"></button>
-    <button class="hero-hotspot-btn" data-target="#explore" data-label="高邮湖泊湿地农业系统 · 中国重要农业文化遗产" style="left:86%;top:78%;" type="button" aria-label="高邮湖泊湿地农业系统 · 中国重要农业文化遗产"></button>
+    <button class="hero-hotspot-btn" data-target="#timeline" data-label="里运河—高邮灌区 · 世界灌溉工程遗产" style="left:40%;top:47%;" type="button" aria-label="里运河—高邮灌区 · 世界灌溉工程遗产"></button>
+    <button class="hero-hotspot-btn" data-target="#routes" data-label="从湖到餐桌 · 研学路线" style="left:68%;top:58%;" type="button" aria-label="从湖到餐桌 · 研学路线"></button>
+    <button class="hero-hotspot-btn" data-target="#explore" data-label="高邮湖泊湿地农业系统 · 中国重要农业文化遗产" style="left:26%;top:71%;" type="button" aria-label="高邮湖泊湿地农业系统 · 中国重要农业文化遗产"></button>
   </div>
-  <div class="hero-veil hero-veil--scene" aria-hidden="true"></div>
+  <div class="hero-veil" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-kicker">高邮湖泊湿地多类型遗产数字活化平台</div>
     <div class="hero-divider" aria-hidden="true"></div>
     <h1>遗产融绘<em>魅力高邮</em></h1>
     <p class="hero-sub">一湖水，润泽千年<br>一方田，孕育智慧<br>一群人，守护传承</p>
     <button class="hero-btn" id="enterBtn" type="button"><span class="btn-cap left" aria-hidden="true"></span><span class="btn-roll">开启高邮遗产之旅</span><span class="btn-cap right" aria-hidden="true"></span></button>
-    <div class="seal" aria-hidden="true">
-    <svg viewBox="0 0 60 120" width="100%" height="100%">
-      <defs>
-        <filter id="sealInk" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n2"/><feColorMatrix in="n2" type="matrix" values="0 0 0 0 0.78 0 0 0 0 0.23 0 0 0 0 0.18 0 0 0 0.30 0"/><feBlend in="SourceGraphic" in2="n2" mode="multiply"/></filter>
-        <filter id="sealSoft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.8"/></filter>
-      </defs>
-      <rect x="2" y="2" width="56" height="116" rx="15" fill="#c0392b" filter="url(#sealInk) url(#sealSoft)"/>
-      <text x="30" y="51" font-size="30" text-anchor="middle" fill="#f0d68d" font-family="FZShuTi,STXingkai,STKaiti,KaiTi,serif" font-weight="700">高</text>
-      <text x="30" y="99" font-size="30" text-anchor="middle" fill="#f0d68d" font-family="FZShuTi,STXingkai,STKaiti,KaiTi,serif" font-weight="700">邮</text>
-    </svg>
   </div>
-  </div>
-  <div class="vtext"><span>歌传田野，非遗百代焕新生，水田人文共生</span><span>闸启碧湖，灌渠千年滋沃土，稻鸭鱼蟹并作</span></div>
+  <div class="hero-scroll">下滑探索 ▼</div>
 </section>
 
 <!-- ================= 一湖三脉 · 探索高邮 ================= -->
@@ -361,8 +288,7 @@ section{scroll-margin-top:70px}
     <h2 class="tt">水之源 · 田之魂 · 人之韵</h2>
     <p class="sub">高邮湖的水，借里运河的闸，养出稻、鸭、鱼、蟹；田里长出的，又成了歌谣与鸭蛋。三类遗产在「水—田—人」的脉络中深度交织，构成一座活态的文明长卷。</p>
     <div class="three">
-      <!-- 水之源 -->
-      <div class="tc b-water">
+      <div class="tc b-water reveal">
         <div class="pic"><span class="badge"><span class="dot"></span>灌溉工程遗产</span><img src="./img/water.jpg" alt="里运河—高邮灌区"></div>
         <div class="bd">
           <h3>水之源</h3>
@@ -372,8 +298,7 @@ section{scroll-margin-top:70px}
           <div class="motto">「水，是高邮文明的起点。」</div>
         </div>
       </div>
-      <!-- 田之魂 -->
-      <div class="tc b-field">
+      <div class="tc b-field reveal">
         <div class="pic"><span class="badge"><span class="dot"></span>农业文化遗产</span><img src="./img/field.jpg" alt="高邮湖泊湿地农业系统"></div>
         <div class="bd">
           <h3>田之魂</h3>
@@ -383,8 +308,7 @@ section{scroll-margin-top:70px}
           <div class="motto">「一粒米背后，是千年的生态智慧。」</div>
         </div>
       </div>
-      <!-- 人之韵 -->
-      <div class="tc b-people">
+      <div class="tc b-people reveal">
         <div class="pic"><span class="badge"><span class="dot"></span>非物质文化遗产</span><img src="./img/people.jpg" alt="高邮非物质文化遗产"></div>
         <div class="bd">
           <h3>人之韵</h3>
@@ -405,28 +329,22 @@ section{scroll-margin-top:70px}
     <h2 class="tt">一湖一千年</h2>
     <p class="sub">从治水理田到歌谣传唱，高邮的故事沿着水脉层层铺展。</p>
     <div class="tl">
-      <div class="tl-node">
+      <div class="tl-node reveal">
         <div class="nimg"><img src="./img/tl_ancient.jpg" alt="古代·治水与农耕"></div>
-        <div class="ntxt">
-          <div class="era">古代 · 因水而生</div>
-          <ul><li>水利建设：平津堰（唐）、南关坝（明）等活态工程奠基</li><li>运河交通：里运河联通南北，舟楫往来</li><li>农业生产形成：低洼圩田里长出水乡农耕文明</li></ul>
-        </div>
+        <div class="era">古代 · 因水而生</div>
+        <ul><li>水利建设：平津堰（唐）、南关坝（明）等活态工程奠基</li><li>运河交通：里运河联通南北，舟楫往来</li><li>农业生产形成：低洼圩田里长出水乡农耕文明</li></ul>
         <span class="ndot"></span>
       </div>
-      <div class="tl-node">
+      <div class="tl-node reveal">
         <div class="nimg"><img src="./img/tl_modern.jpg" alt="近现代·渔耕生活"></div>
-        <div class="ntxt">
-          <div class="era">近现代 · 因水而兴</div>
-          <ul><li>乡村生活：沿湖渔村炊烟，人水相依</li><li>渔业发展：稻鸭鱼蟹共作模式成熟</li><li>传统技艺传承：民歌、腌制技艺代代相传</li></ul>
-        </div>
+        <div class="era">近现代 · 因水而兴</div>
+        <ul><li>乡村生活：沿湖渔村炊烟，人水相依</li><li>渔业发展：稻鸭鱼蟹共作模式成熟</li><li>传统技艺传承：民歌、腌制技艺代代相传</li></ul>
         <span class="ndot"></span>
       </div>
-      <div class="tl-node">
+      <div class="tl-node reveal">
         <div class="nimg"><img src="./img/tl_today.jpg" alt="今日·遗产保护与活化"></div>
-        <div class="ntxt">
-          <div class="era">今日 · 因水而新</div>
-          <ul><li>2017 高邮湖泊湿地农业系统入选中国重要农业文化遗产</li><li>2021 里运河—高邮灌区列入世界灌溉工程遗产</li><li>数字化活化利用：让古老智慧在指尖「活」起来</li></ul>
-        </div>
+        <div class="era">今日 · 因水而新</div>
+        <ul><li>2017 高邮湖泊湿地农业系统入选中国重要农业文化遗产</li><li>2021 里运河—高邮灌区列入世界灌溉工程遗产</li><li>数字化活化利用：让古老智慧在指尖「活」起来</li></ul>
         <span class="ndot"></span>
       </div>
     </div>
@@ -451,7 +369,7 @@ section{scroll-margin-top:70px}
       <div class="m-stat"><b>215</b><span>份有效问卷 · 回收率 90.7%</span></div>
       <div class="m-stat"><b>10</b><span>人次深度访谈</span></div>
       <div class="m-stat"><b>800+</b><span>张实地影像记录</span></div>
-      <div class="m-stat"><b>53.95%</b><span>公众从未听说灌区（调研发现）</span></div>
+      <div class="m-stat"><b>53.95%</b><span>公众从未听说灌区</span></div>
     </div>
   </div>
 </section>
@@ -463,7 +381,7 @@ section{scroll-margin-top:70px}
     <h2 class="tt">三条路线，读懂一片湖</h2>
     <p class="sub">路线如水流，把高邮湖、农业基地、古闸工程与非遗工坊串成一条完整的故事链。</p>
     <div class="route3">
-      <div class="rc r1">
+      <div class="rc r1 reveal">
         <div class="pic"><img src="./img/route1.jpg" alt="水脉寻踪"></div>
         <div class="bd">
           <div class="num">壹 · 水脉寻踪</div>
@@ -472,7 +390,7 @@ section{scroll-margin-top:70px}
           <div class="go"><span>查看路线 →</span></div>
         </div>
       </div>
-      <div class="rc r2">
+      <div class="rc r2 reveal">
         <div class="pic"><img src="./img/route2.jpg" alt="稻田密码"></div>
         <div class="bd">
           <div class="num">贰 · 稻田密码</div>
@@ -481,7 +399,7 @@ section{scroll-margin-top:70px}
           <div class="go"><span>查看路线 →</span></div>
         </div>
       </div>
-      <div class="rc r3">
+      <div class="rc r3 reveal">
         <div class="pic"><img src="./img/route3.jpg" alt="湖畔人家"></div>
         <div class="bd">
           <div class="num">叁 · 湖畔人家</div>
@@ -501,7 +419,7 @@ section{scroll-margin-top:70px}
     <h2 class="tt">在游戏中，读懂遗产</h2>
     <p class="sub">把调水、种田、传歌变成可体验的叙事，让千年智慧在指尖「活」起来。</p>
     <div class="game3">
-      <div class="gc g1">
+      <div class="gc g1 reveal">
         <div class="cover">🪵<span class="watermark">· 已上线 ·</span></div>
         <div class="bd">
           <h3>小小水利师</h3>
@@ -510,7 +428,7 @@ section{scroll-margin-top:70px}
           <button class="gbtn" onclick="openGame()">🎮 立即游玩</button>
         </div>
       </div>
-      <div class="gc g2">
+      <div class="gc g2 reveal">
         <div class="cover">🌾<span class="watermark">· 筹备中 ·</span></div>
         <div class="bd">
           <h3>稻田守护者</h3>
@@ -519,7 +437,7 @@ section{scroll-margin-top:70px}
           <button class="gbtn">敬请期待</button>
         </div>
       </div>
-      <div class="gc g3">
+      <div class="gc g3 reveal">
         <div class="cover">🎵<span class="watermark">· 筹备中 ·</span></div>
         <div class="bd">
           <h3>高邮歌谣</h3>
@@ -572,6 +490,7 @@ section{scroll-margin-top:70px}
   <div class="sub-en">GAOYOU LAKE-WETLAND MULTI-HERITAGE DIGITAL PLATFORM</div>
   <p>高邮湖泊湿地多类型遗产数字活化平台<br>集农业文化遗产 · 世界灌溉工程遗产 · 非物质文化遗产于一体<br>以青年实践响应文化强国战略，服务乡村振兴</p>
   <div class="foot-src">© 2026 遗产融绘 · 魅力高邮 &nbsp;|&nbsp; 数据来源：高邮实地调研（2025.08 / 2026.01）&nbsp;|&nbsp; 摄影：高邮实地拍摄</div>
+  <div class="to-desktop"><a href="./index.html?desktop=1">切换到电脑版</a></div>
 </footer>
 
 <!-- ================= 弹窗：小小水利师 ================= -->
@@ -600,7 +519,7 @@ section{scroll-margin-top:70px}
   <div class="box" style="text-align:center">
     <button class="close" onclick="closeModal('gzhModal')">×</button>
     <h3>📮 关注公众号</h3>
-    <img src="./img/gzh-qr.jpg" alt="关注公众号「融绘贯通」" style="width:210px;height:210px;margin:12px auto 18px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.16);display:block">
+    <img src="./img/gzh-qr.jpg" alt="关注公众号「融绘贯通」" style="width:190px;height:190px;margin:10px auto 16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.16);display:block">
     <p style="margin:0">长按识别二维码，关注「融绘贯通」<br>获取高邮遗产故事与研学活动第一手资讯</p>
   </div>
 </div>
@@ -631,13 +550,23 @@ section{scroll-margin-top:70px}
 <script>window.maplibregl||document.write('<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"><\/script>');</script>
 <script>
 (function(){
+  /* ---- 汉堡菜单 ---- */
+  var hamb=document.getElementById('hambBtn'),menu=document.getElementById('menuOverlay');
+  function toggleMenu(force){
+    var open=typeof force==='boolean'?force:!menu.classList.contains('open');
+    menu.classList.toggle('open',open);
+    hamb.classList.toggle('active',open);
+    hamb.setAttribute('aria-expanded',open?'true':'false');
+    document.body.style.overflow=open?'hidden':'';
+  }
+  hamb.addEventListener('click',function(){toggleMenu();});
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){toggleMenu(false);});
+  });
+
   /* ---- 导航滚动变实底 ---- */
-(function(){
-  function m(){ if(window.innerWidth<=700){ var h=document.querySelector('.hero-inner'); if(h){ h.style.justifyContent='center'; h.style.minHeight='100vh'; h.style.height='100vh'; h.style.paddingTop='6vh'; h.style.paddingBottom='2vh'; } } }
-  m(); window.addEventListener('resize', m);
-})();
   var nav=document.getElementById('nav');
-  window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>60);},{passive:true});
+  window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>50);},{passive:true});
 
   /* ---- 入口按钮：涟漪 → 平滑进入探索区 ---- */
   var btn=document.getElementById('enterBtn');
@@ -651,19 +580,12 @@ section{scroll-margin-top:70px}
     document.getElementById('explore').scrollIntoView({behavior:'smooth'});
   });}
 
-  /* ---- 首屏热点：悬停提示 + 点击跳转 ---- */
-  (function(){
-    var tooltip=document.createElement('div');tooltip.className='hero-tooltip';document.body.appendChild(tooltip);
-    function moveTip(e){tooltip.style.left=e.clientX+'px';tooltip.style.top=(e.clientY-12)+'px';}
-    document.querySelectorAll('.hero-hotspot-btn').forEach(function(h){
-      h.setAttribute('tabindex','0');h.setAttribute('role','button');
-      h.addEventListener('mouseenter',function(e){tooltip.textContent=h.getAttribute('data-label')||'';tooltip.style.opacity='1';moveTip(e);});
-      h.addEventListener('mousemove',function(e){moveTip(e);});
-      h.addEventListener('mouseleave',function(){tooltip.style.opacity='0';});
-      h.addEventListener('click',function(){var t=h.getAttribute('data-target');if(t){var el=document.querySelector(t);if(el)el.scrollIntoView({behavior:'smooth'});}});
-      h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();h.click();}});
-    });
-  })();
+  /* ---- 首屏热点：点击跳转 ---- */
+  document.querySelectorAll('.hero-hotspot-btn').forEach(function(h){
+    h.setAttribute('role','button');
+    h.addEventListener('click',function(){var t=h.getAttribute('data-target');if(t){var el=document.querySelector(t);if(el)el.scrollIntoView({behavior:'smooth'});}});
+    h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();h.click();}});
+  });
 
   /* ---- 弹窗 ---- */
   window.openGame=function(){document.getElementById('gameModal').classList.add('open');};
@@ -682,20 +604,17 @@ section{scroll-margin-top:70px}
   });
 
   /* ---- 滚动渐现 ---- */
-  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.style.opacity=1;en.target.style.transform='translateY(0)';io.unobserve(en.target);}});},{threshold:.08});
-  document.querySelectorAll('.three>.tc,.rc,.gc,.tl-node').forEach(function(el){
-    el.style.opacity=0;el.style.transform='translateY(26px)';el.style.transition='opacity .7s ease,transform .7s ease';io.observe(el);
-  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 
   /* ================== 高邮湖数字地图（MapLibre GL · 3D 倾斜俯瞰 + 飞入动画） ================== */
   if(!window.maplibregl){
-    document.getElementById('heritage-map').innerHTML='<div style="padding:80px 20px;text-align:center;color:#9a9180;font-size:15px">3D 地图组件加载失败，请检查网络后刷新。</div>';
+    document.getElementById('heritage-map').innerHTML='<div style="padding:70px 20px;text-align:center;color:#9a9180;font-size:14px">3D 地图组件加载失败，请检查网络后刷新。</div>';
   }else{
     var C={gate:'#4a7480',farm:'#2d6a4f',culture:'#a34d3c'};
     var CAT={gate:'灌区闸口',farm:'农业遗产',culture:'非遗文化'};
     function p(n,t,s){return '<b>'+n+'</b><br><small style="color:#999">'+t+'</small><br><span style="font-size:14px;color:#555">'+s+'</span>';}
 
-    /* 高德栅格瓦片底图（标准 XYZ，国内加载快）+ 初始省域视角（带 3D 倾斜） */
     var m=new maplibregl.Map({
       container:'heritage-map',
       style:{
@@ -721,21 +640,20 @@ section{scroll-margin-top:70px}
       maxBounds:[[117.0,30.0],[122.0,35.0]],
       attributionControl:true
     });
-    window.__gyMap=m; /* 调试句柄：便于在控制台检查地图状态（不影响页面） */
+    window.__gyMap=m;
     m.addControl(new maplibregl.NavigationControl({showCompass:true}),'top-left');
 
-    /* 同一时间只保留一个点位弹窗，避免越开越多 */
     var lastPopup=null;
     m.on('popupopen',function(e){ if(lastPopup&&lastPopup!==e.popup){lastPopup.remove();} lastPopup=e.popup; });
     m.on('popupclose',function(e){ if(lastPopup===e.popup){lastPopup=null;} });
 
-    /* ---- 底图切换按钮：卫星影像 ⇄ 高德街景（地形/蓝湖/标注共用） ---- */
-    var baseIsSat=false; /* 默认高德街景（用户要的"最一开始的颜色"），卫星在切换按钮里 */
+    /* ---- 底图切换按钮：卫星影像 ⇄ 高德街景 ---- */
+    var baseIsSat=false;
     var baseBtn=document.createElement('button');
     baseBtn.id='mapBaseToggle';
     baseBtn.textContent='🛰 卫星影像';
     baseBtn.title='切换底图';
-    baseBtn.style.cssText='position:absolute;left:12px;bottom:12px;z-index:5;padding:7px 15px;border:1px solid rgba(176,138,62,.55);border-radius:20px;font-size:14px;font-weight:700;letter-spacing:.05em;cursor:pointer;background:rgba(255,253,246,.94);color:#2d6a4f;box-shadow:0 3px 12px rgba(0,0,0,.22);transition:.2s';
+    baseBtn.style.cssText='position:absolute;left:10px;bottom:10px;z-index:5;padding:6px 13px;border:1px solid rgba(176,138,62,.55);border-radius:18px;font-size:13px;font-weight:700;letter-spacing:.05em;cursor:pointer;background:rgba(255,253,246,.94);color:#2d6a4f;box-shadow:0 3px 12px rgba(0,0,0,.22);transition:.2s';
     document.getElementById('heritage-map').appendChild(baseBtn);
     baseBtn.addEventListener('click',function(){
       baseIsSat=!baseIsSat;
@@ -744,18 +662,18 @@ section{scroll-margin-top:70px}
       baseBtn.textContent=baseIsSat?'🗺 高德街景':'🛰 卫星影像';
     });
 
-    /* ---- 回到全景：一键复位到覆盖全部 11 处遗产点位的默认视角 ---- */
+    /* ---- 回到全景 ---- */
     var resetBtn=document.createElement('button');
     resetBtn.textContent='⌂ 回到全景';
     resetBtn.title='复位到覆盖全部 11 处遗产点位的全景视角';
-    resetBtn.style.cssText='position:absolute;right:12px;bottom:12px;z-index:6;padding:7px 14px;border:1px solid rgba(176,138,62,.55);border-radius:20px;font-size:13.5px;font-weight:700;letter-spacing:.04em;cursor:pointer;background:rgba(255,253,246,.94);color:#2d6a4f;box-shadow:0 3px 12px rgba(0,0,0,.22);transition:.2s';
+    resetBtn.style.cssText='position:absolute;right:10px;bottom:10px;z-index:6;padding:6px 12px;border:1px solid rgba(176,138,62,.55);border-radius:18px;font-size:12.5px;font-weight:700;letter-spacing:.04em;cursor:pointer;background:rgba(255,253,246,.94);color:#2d6a4f;box-shadow:0 3px 12px rgba(0,0,0,.22);transition:.2s';
     resetBtn.addEventListener('click',function(){
       m.flyTo({center:[119.40,32.78],zoom:10.8,pitch:55,bearing:0,duration:1800});
       if(lastPopup){lastPopup.remove();lastPopup=null;}
     });
     document.getElementById('heritage-map').appendChild(resetBtn);
 
-    /* ---- 11 个遗产点位（GeoJSON 圆点，配色与图例一致） ---- */
+    /* ---- 11 个遗产点位 ---- */
     var pts=[{n:'平津堰',a:32.79,o:119.43,y:'唐',s:'始建于唐代的活态水利工程，大运河扬州段最古老的水利设施之一。',cat:'gate'},
       {n:'南关坝',a:32.775,o:119.452,y:'明',s:'灌区核心调控工程，位于高邮城南，古代水利智慧的典范。',cat:'gate'},
       {n:'车逻闸',a:32.738,o:119.468,y:'明/清',s:'里运河-高邮灌区代表性闸口，至今仍发挥灌溉调控作用。',cat:'gate'},
@@ -767,7 +685,6 @@ section{scroll-margin-top:70px}
       {n:'高邮民歌传习所',a:32.782,o:119.445,y:'国家级',s:'国家级非遗高邮民歌的传承基地，《数鸭蛋》入选中小学音乐教材。',cat:'culture'},
       {n:'芦苇荡湿地公园',a:32.835,o:119.285,y:'景区',s:'高邮湖滩郊野公园，集生态观光与非遗展示于一体。',cat:'culture'},
       {n:'渔民祭祀文化区',a:32.845,o:119.35,y:'民俗',s:'开捕节、七公会等传统渔俗的主要活动区域。',cat:'culture'}];
-    /* HTML 标记：彩色圆点 + 名称标签（重叠时自动避让，hover 显示，点击弹窗） */
     var mk=[];
     pts.forEach(function(s){
       var el=document.createElement('div');
@@ -777,10 +694,9 @@ section{scroll-margin-top:70px}
         .setLngLat([s.o,s.a])
         .setPopup(new maplibregl.Popup({offset:20,maxWidth:'300px'}).setHTML(p(s.n,CAT[s.cat]+' · '+s.y,s.s)))
         .addTo(m);
-      mk.push({M:M,el:el,pt:[s.o,s.a],w:el.offsetWidth+10}); /* 预存标签宽度，供碰撞计算 */
+      mk.push({M:M,el:el,pt:[s.o,s.a],w:el.offsetWidth+10});
     });
 
-    /* ---- 标签碰撞避让：按投影位置检测重叠，隐藏次要标签；hover 临时显示 ---- */
     function layoutLabels(){
       var m0=window.__gyMap,placed=[];
       mk.forEach(function(k){
@@ -799,7 +715,7 @@ section{scroll-margin-top:70px}
       k.el.addEventListener('mouseleave',layoutLabels);
     });
 
-    /* ---- 湖面范围 + 水脉关联虚线（GeoJSON） ---- */
+    /* ---- 湖面范围 + 水脉关联虚线 ---- */
     var lakeRing=[[32.95,119.25],[32.98,119.35],[32.92,119.48],[32.85,119.52],[32.72,119.48],[32.62,119.42],[32.6,119.3],[32.68,119.2],[32.78,119.18],[32.88,119.22],[32.95,119.25]].map(function(pt){return [pt[1],pt[0]];});
     var waterFeats=[[[32.79,119.43],[32.738,119.468],[32.885,119.418]],
       [[32.775,119.452],[32.792,119.455],[32.782,119.445]],
@@ -810,7 +726,6 @@ section{scroll-margin-top:70px}
     ].concat(waterFeats)};
 
     m.on('load',function(){
-      /* 真实地形高程：按 SRTM 海拔渲染起伏，垂直夸张 5 倍让平原的落差也清晰可见 */
       m.setTerrain({source:'terrain',exaggeration:5});
       m.addSource('heritage',{type:'geojson',data:heritage});
       m.addLayer({id:'lake-fill',type:'fill',source:'heritage',filter:['==',['get','kind'],'lake'],
@@ -821,8 +736,7 @@ section{scroll-margin-top:70px}
         paint:{'line-color':'#8aa9ad','line-opacity':0.7,'line-width':2,'line-dasharray':[5,8]}});
     });
 
-    /* ---- 飞入动画：滚到地图时从区域全景（倾斜）飞入高邮湖区 3D 俯瞰 ----
-       等地形瓦片就绪再飞（过早触发会被地形采样卡住） */
+    /* ---- 飞入动画 ---- */
     var ioMap=new IntersectionObserver(function(es){
       es.forEach(function(en){if(en.isIntersecting){
         ioMap.disconnect();
@@ -833,15 +747,6 @@ section{scroll-margin-top:70px}
     ioMap.observe(document.getElementById('heritage-map'));
   }
 })();
-</script>
-
-<script>
-window.addEventListener('load', function(){
-  if (window.innerWidth <= 700) {
-    var h = document.querySelector('.hero-inner');
-    if (h) { h.style.justifyContent = 'center'; h.style.minHeight = '100vh'; h.style.height = '100vh'; h.style.paddingTop = '6vh'; h.style.paddingBottom = '2vh'; }
-  }
-});
 </script>
 </body>
 </html>
