@@ -164,6 +164,15 @@ section{scroll-margin-top:64px}
 .maplibregl-popup-close-button{color:#9a9180;font-size:18px}
 .maplibregl-ctrl-attrib{font-size:10px}
 
+/* ============ 调研现状 · 数据洞察 ============ */
+.survey-sec{background:linear-gradient(180deg,#f6f1e4,#eef3ea)}
+.survey-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:4px}
+.s-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 16px 16px;box-shadow:0 8px 28px rgba(120,90,30,.07)}
+.s-card h3{font-family:var(--serif);font-size:18px;color:var(--grn-d);margin-bottom:12px;letter-spacing:.02em;line-height:1.5}
+.s-card .chart{width:100%;height:250px}
+.s-card .s-note{margin-top:10px;font-size:13.5px;color:var(--muted);line-height:1.85;border-top:1px dashed var(--line);padding-top:10px}
+.s-card .s-note b{color:var(--grn-d)}
+
 /* ============ 研学路线 ============ */
 .routes-sec{background:var(--paper)}
 .route3{display:grid;grid-template-columns:1fr;gap:18px}
@@ -203,6 +212,33 @@ section{scroll-margin-top:64px}
 .gal img{width:100%;height:100%;object-fit:cover}
 .gal a .cap{position:absolute;left:0;right:0;bottom:0;padding:20px 8px 8px;color:#fff;font-size:12px;
   background:linear-gradient(180deg,transparent,rgba(0,0,0,.62));text-align:center;letter-spacing:.06em}
+
+/* ============ 数字展厅 · 灯箱 ============ */
+.lightbox{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;background:rgba(10,20,15,.9);backdrop-filter:blur(4px)}
+.lightbox.open{display:flex}
+.lightbox .lb-close{position:absolute;top:calc(12px + env(safe-area-inset-top));right:14px;font-size:34px;color:#e6dfd0;border:none;background:none;cursor:pointer;line-height:1;z-index:5}
+.lightbox .lb-fig{max-width:94vw;max-height:88vh;display:flex;flex-direction:column;align-items:center;gap:12px}
+.lightbox img{max-width:94vw;max-height:76vh;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.lightbox figcaption{color:#e6dfd0;font-size:14px;letter-spacing:.08em;text-align:center;font-family:var(--serif)}
+.lightbox .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid rgba(230,223,208,.35);background:rgba(255,255,255,.08);color:#e6dfd0;font-size:28px;cursor:pointer;line-height:1;z-index:5;font-family:var(--sans)}
+.lightbox .lb-prev{left:6px}
+.lightbox .lb-next{right:6px}
+
+/* ============ 关于我们 · 三重困境与青年回应 ============ */
+.about-sec{background:var(--paper)}
+.dilemma-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:36px}
+.dg{background:linear-gradient(180deg,#f6f1e4,#fbf7ee);border:1px solid var(--line);border-radius:18px;padding:24px 18px;text-align:center}
+.dg-icon{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 18px rgba(120,90,30,.1)}
+.dg h3{font-family:var(--serif);font-size:20px;color:var(--grn-d);margin-bottom:10px;letter-spacing:.08em}
+.dg p{font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:14px}
+.dg-sol{display:block;font-size:13.5px;color:var(--gold);font-weight:700;letter-spacing:.03em;border-top:1px dashed var(--line);padding-top:12px;line-height:1.7}
+.about-box{background:linear-gradient(140deg,#173a2e,#2d6a4f);border-radius:18px;padding:28px 20px;color:#eaf2e6;box-shadow:0 12px 34px rgba(30,60,40,.25)}
+.about-box h3{font-family:var(--serif);font-size:19px;letter-spacing:.06em;margin-bottom:12px;color:#f4ead2;line-height:1.5}
+.about-box p{font-size:15px;line-height:1.95;color:rgba(234,242,230,.88)}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 6px}
+.as{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:13px 10px;text-align:center}
+.as b{font-family:var(--brush);font-size:24px;color:#f0d68d;display:block;letter-spacing:.04em}
+.as span{font-size:12px;color:rgba(234,242,230,.82);display:block;line-height:1.5}
 
 /* ============ 底部 CTA ============ */
 .cta{position:relative;padding:80px 18px;text-align:center;overflow:hidden;background:#0e2a20}
@@ -255,10 +291,12 @@ section{scroll-margin-top:64px}
   <a href="#top">首页</a>
   <a href="#explore">探索高邮</a>
   <a href="#map">遗产地图</a>
+  <a href="#survey">调研数据</a>
   <a href="#timeline">文化故事</a>
   <a href="#routes">研学路线</a>
   <a href="#games">互动游戏</a>
   <a href="#gallery">数字展厅</a>
+  <a href="#about">关于我们</a>
   <a class="m-back" href="./index.html?desktop=1">切换到电脑版 →</a>
 </div>
 
@@ -374,6 +412,37 @@ section{scroll-margin-top:64px}
   </div>
 </section>
 
+<!-- ================= 调研现状 · 数据洞察 ================= -->
+<section class="sec survey-sec" id="survey">
+  <div class="wrap">
+    <div class="lbl">调研现状 · 数据洞察</div>
+    <h2 class="tt">215 份问卷，看见遗产的「认知断层」</h2>
+    <p class="sub">2025 年 8 月 / 2026 年 1 月，调研团队两次实地考察：回收有效问卷 215 份、深度访谈 10 人次、拍摄影像 800+ 张。数据背后，是高邮多类型遗产「知」与「不知」的真相——也正是这座平台存在的理由。</p>
+    <div class="survey-grid">
+      <div class="s-card reveal">
+        <h3>多类型遗产 · 公众认知分化</h3>
+        <div class="chart" id="ch-cog"></div>
+        <p class="s-note">非遗认知率最高（<b>88.37%</b>）；世界灌溉工程遗产「里运河—高邮灌区」认知最薄弱，仅 <b>12.56%</b> 知晓其世界遗产身份。</p>
+      </div>
+      <div class="s-card reveal">
+        <h3>灌区认知 · 沉默的断层</h3>
+        <div class="chart" id="ch-void"></div>
+        <p class="s-note">超过半数受访者（<b>53.95%</b>）从未听说过里运河—高邮灌区，深入了解者不足 <b>1%</b>——世界灌溉工程遗产，仍是身边的「隐形宝藏」。</p>
+      </div>
+      <div class="s-card reveal">
+        <h3>传统技艺 · 本地活态 vs 外界符号</h3>
+        <div class="chart" id="ch-tech"></div>
+        <p class="s-note">当地村民对稻作、水产等基础技艺认知率<b>超 90%</b>；但外界认知集中于「稻鸭共作」「鱼鹰捕鱼」等少数符号。</p>
+      </div>
+      <div class="s-card reveal">
+        <h3>认知虽不足 · 价值认同却很高</h3>
+        <div class="chart" id="ch-value"></div>
+        <p class="s-note"><b>83.9%</b> 受访者认为农业文化遗产可促进就业与经济发展——认知与认同的落差，正是数字活化最值得发力的窗口。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= 研学路线 ================= -->
 <section class="sec routes-sec" id="routes">
   <div class="wrap">
@@ -465,6 +534,54 @@ section{scroll-margin-top:64px}
       <a href="./img/g6.jpg" data-cap="非遗鱼拓"><img src="./img/g6.jpg" alt="非遗鱼拓"><span class="cap">非遗鱼拓</span></a>
       <a href="./img/g7.jpg" data-cap="渔民生活"><img src="./img/g7.jpg" alt="渔民生活"><span class="cap">渔民生活</span></a>
       <a href="./img/g8.jpg" data-cap="里运河—高邮灌区"><img src="./img/g8.jpg" alt="高邮灌区"><span class="cap">里运河—高邮灌区</span></a>
+      <a href="./img/g9.jpg" data-cap="高邮湖 · 烟波浩渺"><img src="./img/g9.jpg" alt="高邮湖"><span class="cap">高邮湖 · 烟波浩渺</span></a>
+      <a href="./img/g10.jpg" data-cap="高邮湖 · 航拍俯瞰"><img src="./img/g10.jpg" alt="高邮湖航拍"><span class="cap">高邮湖 · 航拍俯瞰</span></a>
+      <a href="./img/g11.jpg" data-cap="龙虬庄遗址 · 七千年前的文明"><img src="./img/g11.jpg" alt="龙虬庄遗址"><span class="cap">龙虬庄遗址 · 七千年前的文明</span></a>
+      <a href="./img/g12.jpg" data-cap="盂城驿 · 明代驿递 · 国家级文保"><img src="./img/g12.jpg" alt="盂城驿"><span class="cap">盂城驿 · 明代驿递</span></a>
+      <a href="./img/g13.jpg" data-cap="车逻闸 · 仍在服役的古闸"><img src="./img/g13.jpg" alt="车逻闸"><span class="cap">车逻闸 · 仍在服役的古闸</span></a>
+      <a href="./img/g14.jpg" data-cap="渔具 · 湖上人家的生计"><img src="./img/g14.jpg" alt="渔具"><span class="cap">渔具 · 湖上人家的生计</span></a>
+      <a href="./img/g15.jpg" data-cap="渔文化展览 · 打鱼经"><img src="./img/g15.jpg" alt="渔文化展览"><span class="cap">渔文化展览 · 打鱼经</span></a>
+      <a href="./img/g16.jpg" data-cap="水乡风光 · 高邮"><img src="./img/g16.jpg" alt="高邮水乡风光"><span class="cap">水乡风光 · 高邮</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 关于我们 · 三重困境与青年回应 ================= -->
+<section class="sec about-sec" id="about">
+  <div class="wrap">
+    <div class="lbl">关于我们 · 青年实践</div>
+    <h2 class="tt">三重困境，一份青年答卷</h2>
+    <p class="sub">一次从书斋走向湖田的调研，让我们看清了高邮多类型遗产的「三重困境」——这座网站，正是我们对困境的回应。</p>
+    <div class="dilemma-grid">
+      <div class="dg reveal">
+        <div class="dg-icon">🪢</div>
+        <h3>文化疏离</h3>
+        <p>农民、渔民、非遗传承人各自守护着一类遗产，却缺乏共同的文化认同——他们甚至互不认识对方手中的「宝贝」。</p>
+        <span class="dg-sol">→ 数字地图：让三类遗产的空间关联被看见</span>
+      </div>
+      <div class="dg reveal">
+        <div class="dg-icon">🧩</div>
+        <h3>阐释断裂</h3>
+        <p>水利、农业、非遗各讲各的故事，缺乏统一的历史脉络，「水—田—人」的共生关系难以被公众真正理解。</p>
+        <span class="dg-sol">→ 研学路线：以「从闸口到餐桌」串起完整叙事</span>
+      </div>
+      <div class="dg reveal">
+        <div class="dg-icon">📵</div>
+        <h3>代际断层</h3>
+        <p>青年群体对本地遗产认知与参与度偏低，传统技艺与民俗在年轻人中渐渐失声。</p>
+        <span class="dg-sol">→ 互动游戏：让千年智慧成为可体验的叙事</span>
+      </div>
+    </div>
+    <div class="about-box reveal">
+      <h3>青年实践 · 来自扬州大学的调研团队</h3>
+      <p>我们是一群来自扬州大学的青年调研者，以高邮湖泊湿地多类型遗产为研究对象。带着书斋里的疑问，我们两次深入高邮湖区——2025 年 8 月与 2026 年 1 月，走遍芦苇荡湿地公园、高宝邵伯湖渔管办、界首镇永安村、方巷镇沿湖村与江苏高邮鸭集团：发问卷、做访谈、拍影像、看闸坝、听民歌。</p>
+      <div class="about-stats">
+        <div class="as"><b>2</b><span>次实地调研</span></div>
+        <div class="as"><b>215</b><span>份有效问卷 · 回收率 90.7%</span></div>
+        <div class="as"><b>10</b><span>人次深度访谈</span></div>
+        <div class="as"><b>800+</b><span>张实地影像记录</span></div>
+      </div>
+      <p>从问卷数据、深度访谈与镜头记录出发，我们建成了这座「遗产融绘 · 魅力高邮」数字平台——希望以青年实践，让高邮「水—田—人」共生的文明，被更多人看见、理解，并一起守护。</p>
     </div>
   </div>
 </section>
@@ -492,6 +609,17 @@ section{scroll-margin-top:64px}
   <div class="foot-src">© 2026 遗产融绘 · 魅力高邮 &nbsp;|&nbsp; 数据来源：高邮实地调研（2025.08 / 2026.01）&nbsp;|&nbsp; 摄影：高邮实地拍摄</div>
   <div class="to-desktop"><a href="./index.html?desktop=1">切换到电脑版</a></div>
 </footer>
+
+<!-- ================= 数字展厅 · 灯箱 ================= -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="关闭">×</button>
+  <figure class="lb-fig">
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="上一张">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="下一张">›</button>
+</div>
 
 <!-- ================= 弹窗：小小水利师 ================= -->
 <div class="modal" id="gameModal">
@@ -546,6 +674,8 @@ section{scroll-margin-top:64px}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>window.echarts||document.write('<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"><\/script>');</script>
 <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script>window.maplibregl||document.write('<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"><\/script>');</script>
 <script>
@@ -598,10 +728,28 @@ section{scroll-margin-top:64px}
   });
   document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(function(m){m.classList.remove('open');});});
 
-  /* ---- 数字展厅：点击放大（新标签页）---- */
-  document.querySelectorAll('.gal a').forEach(function(a){
-    a.addEventListener('click',function(ev){ev.preventDefault();window.open(a.getAttribute('href'),'_blank');});
+  /* ---- 数字展厅：灯箱浏览（点击放大 + 左右切换）---- */
+  var lbList=[];
+  document.querySelectorAll('.gal a').forEach(function(a,idx){
+    lbList.push({href:a.getAttribute('href'),cap:a.getAttribute('data-cap')||''});
+    a.addEventListener('click',function(ev){ev.preventDefault();lbOpen(idx);});
   });
+  var lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),lbCur=0;
+  function lbOpen(i){lbCur=i;lbImg.src=lbList[i].href;lbCap.textContent=lbList[i].cap;lb.classList.add('open');document.body.style.overflow='hidden';}
+  function lbGo(d){lbCur=(lbCur+d+lbList.length)%lbList.length;lbImg.src=lbList[lbCur].href;lbCap.textContent=lbList[lbCur].cap;}
+  function lbClose(){lb.classList.remove('open');document.body.style.overflow='';}
+  if(lb){
+    document.getElementById('lbClose').addEventListener('click',lbClose);
+    document.getElementById('lbPrev').addEventListener('click',function(){lbGo(-1);});
+    document.getElementById('lbNext').addEventListener('click',function(){lbGo(1);});
+    lb.addEventListener('click',function(e){if(e.target===lb)lbClose();});
+    document.addEventListener('keydown',function(e){
+      if(!lb.classList.contains('open'))return;
+      if(e.key==='Escape')lbClose();
+      if(e.key==='ArrowLeft')lbGo(-1);
+      if(e.key==='ArrowRight')lbGo(1);
+    });
+  }
 
   /* ---- 滚动渐现 ---- */
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.08});
@@ -745,6 +893,70 @@ section{scroll-margin-top:64px}
       }});
     },{threshold:.35});
     ioMap.observe(document.getElementById('heritage-map'));
+  }
+})();
+
+/* ================== 调研现状 · ECharts 图表（手机版） ================== */
+(function(){
+  var CG='#2d6a4f', CGOLD='#b08a3e', CBLUE='#4a7480', CRED='#a34d3c', CMUT='#d8cfbc';
+  function axisL(){return {color:'#4a453b',fontSize:11};}
+  if(!window.echarts){
+    document.querySelectorAll('.chart').forEach(function(el){
+      el.innerHTML='<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#9a9180;font-size:13px">图表组件加载失败，请检查网络后刷新。</div>';
+    });
+  }else{
+    function mk(id,opt){
+      var el=document.getElementById(id); if(!el) return;
+      var c=echarts.init(el); c.setOption(opt);
+      window.addEventListener('resize',function(){c.resize();});
+    }
+    mk('ch-cog',{
+      grid:{left:6,right:40,top:12,bottom:6,containLabel:true},
+      tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){return p[0].name+'：<b>'+p[0].value+'%</b>';}},
+      xAxis:{type:'value',max:100,axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:'#efe8d9'}}},
+      yAxis:{type:'category',data:['灌区 · 知晓世界遗产身份','运河 · 实地到访了解','农遗 · 了解湖泊湿地农业系统','非遗 · 了解或参与民俗'],
+        axisLabel:axisL(),axisLine:{lineStyle:{color:'#d8cfbc'}}},
+      series:[{type:'bar',barWidth:'50%',data:[
+        {value:12.56,itemStyle:{color:CRED}},{value:21.4,itemStyle:{color:CBLUE}},
+        {value:23.25,itemStyle:{color:CGOLD}},{value:88.37,itemStyle:{color:CG}}
+      ],label:{show:true,position:'right',formatter:'{c}%',color:'#4a453b',fontWeight:700,fontSize:11}}]
+    });
+    mk('ch-void',{
+      tooltip:{trigger:'item',formatter:'{b}：{c}%'},
+      legend:{bottom:0,textStyle:{color:'#5a564a',fontSize:11}},
+      series:[{type:'pie',radius:['40%','64%'],center:['50%','44%'],
+        data:[
+          {name:'从未听说过',value:53.95,itemStyle:{color:CRED}},
+          {name:'听说过但不了解',value:32.49,itemStyle:{color:CMUT}},
+          {name:'仅知世界遗产标签',value:12.56,itemStyle:{color:CGOLD}},
+          {name:'有深入了解',value:1,itemStyle:{color:CG}}
+        ],
+        label:{show:true,formatter:'{b}\n{c}%',fontSize:10,color:'#4a453b'},
+        labelLine:{length:10,length2:6},
+        emphasis:{scaleSize:6}
+      }]
+    });
+    mk('ch-tech',{
+      tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){return p[0].name+'：<b>'+p[0].value+'%</b>';}},
+      legend:{top:0,textStyle:{color:'#5a564a',fontSize:11}},
+      grid:{left:6,right:16,top:36,bottom:6,containLabel:true},
+      xAxis:{type:'category',data:['稻鸭共作','鱼鹰捕鱼','鱼类混养','鱼虾蟹混养'],axisLabel:axisL(),axisLine:{lineStyle:{color:'#d8cfbc'}}},
+      yAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:'#efe8d9'}}},
+      series:[
+        {name:'当地村民',type:'bar',barWidth:'30%',data:[72,70,70,70],itemStyle:{color:CG},label:{show:true,position:'top',formatter:'{c}%',color:'#2d6a4f',fontSize:10,fontWeight:700}},
+        {name:'外界公众',type:'bar',barWidth:'30%',data:[43.5,29,11.3,6.5],itemStyle:{color:CGOLD},label:{show:true,position:'top',formatter:'{c}%',color:'#8a6a2c',fontSize:10,fontWeight:700}}
+      ]
+    });
+    mk('ch-value',{
+      grid:{left:6,right:40,top:12,bottom:6,containLabel:true},
+      tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){return p[0].name+'：<b>'+p[0].value+'%</b>';}},
+      xAxis:{type:'value',max:100,axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:'#efe8d9'}}},
+      yAxis:{type:'category',data:['调节气候、涵养水源','观光休闲与科普教育','促进就业与经济发展'],
+        axisLabel:axisL(),axisLine:{lineStyle:{color:'#d8cfbc'}}},
+      series:[{type:'bar',barWidth:'46%',data:[
+        {value:61.0,itemStyle:{color:CG}},{value:72.9,itemStyle:{color:CG}},{value:83.9,itemStyle:{color:CG}}
+      ],label:{show:true,position:'right',formatter:'{c}%',color:'#4a453b',fontWeight:700,fontSize:11}}]
+    });
   }
 })();
 </script>
