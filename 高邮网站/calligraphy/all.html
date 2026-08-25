@@ -1,0 +1,163 @@
+<!doctype html><html><head><meta charset="utf-8"><style>body{margin:0;background:#fff} svg{display:block;margin:0;padding:0}</style></head><body><div id="v1"><svg viewBox="0 0 2800 460" width="2800" height="460" xmlns="http://www.w3.org/2000/svg">
+  <rect width="2800" height="460" fill="#ffffff"/>
+  <defs>
+    <filter id="br1" x="-12%" y="-25%" width="124%" height="160%">
+      <!-- 粗湍流：笔触毛边 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.12" numOctaves="4" seed="11" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="18" xChannelSelector="R" yChannelSelector="G" result="d1"/>
+      <!-- 细湍流：墨色浓淡 / 飞白枯笔 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.16 0.5" numOctaves="3" seed="14" result="n2"/>
+      <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.45 0 0 0.7 0.15 0 0 0 0.35" result="m2"/>
+      <feComposite in="d1" in2="m2" operator="in" result="d2"/>
+      <!-- 墨晕：轻微羽化 + 压深 -->
+      <feGaussianBlur in="d2" stdDeviation="1.1" result="b1"/>
+      <feComponentTransfer in="b1" result="b2">
+        <feFuncA type="table" tableValues="0 0.28 0.75 1 1"/>
+      </feComponentTransfer>
+      <!-- 边沿二次毛化：枯笔飞白小缺口 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.22" numOctaves="2" seed="18" result="n3"/>
+      <feDisplacementMap in="b2" in2="n3" scale="9.9" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <text x="1400.0" y="276.0" font-family="FZShuTi,STXingkai,KaiTi,serif" font-weight="700"
+        font-size="300" text-anchor="middle" fill="#000000" filter="url(#br1)" letter-spacing="0.02em">
+    <tspan>遗产融绘</tspan>
+    <tspan dx="70" font-size="120" dy="-120">·</tspan>
+    <tspan dx="120" dy="120">魅力高邮</tspan>
+  </text>
+</svg></div><div id="v2"><svg viewBox="0 0 2800 460" width="2800" height="460" xmlns="http://www.w3.org/2000/svg">
+  <rect width="2800" height="460" fill="#ffffff"/>
+  <defs>
+    <filter id="br2" x="-12%" y="-25%" width="124%" height="160%">
+      <!-- 粗湍流：笔触毛边 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.12" numOctaves="4" seed="23" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="13" xChannelSelector="R" yChannelSelector="G" result="d1"/>
+      <!-- 细湍流：墨色浓淡 / 飞白枯笔 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.16 0.5" numOctaves="3" seed="26" result="n2"/>
+      <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.60 0 0 0.7 0.05 0 0 0 0.25" result="m2"/>
+      <feComposite in="d1" in2="m2" operator="in" result="d2"/>
+      <!-- 墨晕：轻微羽化 + 压深 -->
+      <feGaussianBlur in="d2" stdDeviation="1.1" result="b1"/>
+      <feComponentTransfer in="b1" result="b2">
+        <feFuncA type="table" tableValues="0 0.28 0.75 1 1"/>
+      </feComponentTransfer>
+      <!-- 边沿二次毛化：枯笔飞白小缺口 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.22" numOctaves="2" seed="30" result="n3"/>
+      <feDisplacementMap in="b2" in2="n3" scale="7.15" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <text x="1400.0" y="276.0" font-family="FZShuTi,STXingkai,KaiTi,serif" font-weight="700"
+        font-size="300" text-anchor="middle" fill="#000000" filter="url(#br2)" letter-spacing="0.02em">
+    <tspan>遗产融绘</tspan>
+    <tspan dx="70" font-size="120" dy="-120">·</tspan>
+    <tspan dx="120" dy="120">魅力高邮</tspan>
+  </text>
+</svg></div><div id="v3"><svg viewBox="0 0 2800 460" width="2800" height="460" xmlns="http://www.w3.org/2000/svg">
+  <rect width="2800" height="460" fill="#ffffff"/>
+  <defs>
+    <filter id="br3" x="-12%" y="-25%" width="124%" height="160%">
+      <!-- 粗湍流：笔触毛边 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.12" numOctaves="4" seed="17" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="16" xChannelSelector="R" yChannelSelector="G" result="d1"/>
+      <!-- 细湍流：墨色浓淡 / 飞白枯笔 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.16 0.5" numOctaves="3" seed="20" result="n2"/>
+      <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.50 0 0 0.7 0.10 0 0 0 0.30" result="m2"/>
+      <feComposite in="d1" in2="m2" operator="in" result="d2"/>
+      <!-- 墨晕：轻微羽化 + 压深 -->
+      <feGaussianBlur in="d2" stdDeviation="1.1" result="b1"/>
+      <feComponentTransfer in="b1" result="b2">
+        <feFuncA type="table" tableValues="0 0.28 0.75 1 1"/>
+      </feComponentTransfer>
+      <!-- 边沿二次毛化：枯笔飞白小缺口 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.22" numOctaves="2" seed="24" result="n3"/>
+      <feDisplacementMap in="b2" in2="n3" scale="8.8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <text x="1400.0" y="276.0" font-family="STXingkai,STXingkai,KaiTi,serif" font-weight="700"
+        font-size="300" text-anchor="middle" fill="#000000" filter="url(#br3)" letter-spacing="0.02em">
+    <tspan>遗产融绘</tspan>
+    <tspan dx="70" font-size="120" dy="-120">·</tspan>
+    <tspan dx="120" dy="120">魅力高邮</tspan>
+  </text>
+</svg></div><div id="v4"><svg viewBox="0 0 2800 460" width="2800" height="460" xmlns="http://www.w3.org/2000/svg">
+  <rect width="2800" height="460" fill="#ffffff"/>
+  <defs>
+    <filter id="br4" x="-12%" y="-25%" width="124%" height="160%">
+      <!-- 粗湍流：笔触毛边 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.12" numOctaves="4" seed="41" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="22" xChannelSelector="R" yChannelSelector="G" result="d1"/>
+      <!-- 细湍流：墨色浓淡 / 飞白枯笔 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.16 0.5" numOctaves="3" seed="44" result="n2"/>
+      <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.55 0 0 0.7 0.00 0 0 0 0.20" result="m2"/>
+      <feComposite in="d1" in2="m2" operator="in" result="d2"/>
+      <!-- 墨晕：轻微羽化 + 压深 -->
+      <feGaussianBlur in="d2" stdDeviation="1.1" result="b1"/>
+      <feComponentTransfer in="b1" result="b2">
+        <feFuncA type="table" tableValues="0 0.28 0.75 1 1"/>
+      </feComponentTransfer>
+      <!-- 边沿二次毛化：枯笔飞白小缺口 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.22" numOctaves="2" seed="48" result="n3"/>
+      <feDisplacementMap in="b2" in2="n3" scale="12.100000000000001" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <text x="1400.0" y="276.0" font-family="STXingkai,STXingkai,KaiTi,serif" font-weight="700"
+        font-size="300" text-anchor="middle" fill="#000000" filter="url(#br4)" letter-spacing="0.02em">
+    <tspan>遗产融绘</tspan>
+    <tspan dx="70" font-size="120" dy="-120">·</tspan>
+    <tspan dx="120" dy="120">魅力高邮</tspan>
+  </text>
+</svg></div><div id="v5"><svg viewBox="0 0 2800 460" width="2800" height="460" xmlns="http://www.w3.org/2000/svg">
+  <rect width="2800" height="460" fill="#ffffff"/>
+  <defs>
+    <filter id="br5" x="-12%" y="-25%" width="124%" height="160%">
+      <!-- 粗湍流：笔触毛边 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.12" numOctaves="4" seed="53" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="24" xChannelSelector="R" yChannelSelector="G" result="d1"/>
+      <!-- 细湍流：墨色浓淡 / 飞白枯笔 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.16 0.5" numOctaves="3" seed="56" result="n2"/>
+      <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.65 0 0 0.7 0.00 0 0 0 0.18" result="m2"/>
+      <feComposite in="d1" in2="m2" operator="in" result="d2"/>
+      <!-- 墨晕：轻微羽化 + 压深 -->
+      <feGaussianBlur in="d2" stdDeviation="1.1" result="b1"/>
+      <feComponentTransfer in="b1" result="b2">
+        <feFuncA type="table" tableValues="0 0.28 0.75 1 1"/>
+      </feComponentTransfer>
+      <!-- 边沿二次毛化：枯笔飞白小缺口 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.22" numOctaves="2" seed="60" result="n3"/>
+      <feDisplacementMap in="b2" in2="n3" scale="13.200000000000001" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <text x="1400.0" y="276.0" font-family="FZShuTi,STXingkai,KaiTi,serif" font-weight="700"
+        font-size="300" text-anchor="middle" fill="#000000" filter="url(#br5)" letter-spacing="0.02em">
+    <tspan>遗产融绘</tspan>
+    <tspan dx="70" font-size="120" dy="-120">·</tspan>
+    <tspan dx="120" dy="120">魅力高邮</tspan>
+  </text>
+</svg></div><div id="v6"><svg viewBox="0 0 2800 460" width="2800" height="460" xmlns="http://www.w3.org/2000/svg">
+  <rect width="2800" height="460" fill="#ffffff"/>
+  <defs>
+    <filter id="br6" x="-12%" y="-25%" width="124%" height="160%">
+      <!-- 粗湍流：笔触毛边 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.12" numOctaves="4" seed="29" result="n1"/>
+      <feDisplacementMap in="SourceGraphic" in2="n1" scale="20" xChannelSelector="R" yChannelSelector="G" result="d1"/>
+      <!-- 细湍流：墨色浓淡 / 飞白枯笔 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.16 0.5" numOctaves="3" seed="32" result="n2"/>
+      <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.40 0 0 0.7 0.20 0 0 0 0.38" result="m2"/>
+      <feComposite in="d1" in2="m2" operator="in" result="d2"/>
+      <!-- 墨晕：轻微羽化 + 压深 -->
+      <feGaussianBlur in="d2" stdDeviation="1.1" result="b1"/>
+      <feComponentTransfer in="b1" result="b2">
+        <feFuncA type="table" tableValues="0 0.28 0.75 1 1"/>
+      </feComponentTransfer>
+      <!-- 边沿二次毛化：枯笔飞白小缺口 -->
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.22" numOctaves="2" seed="36" result="n3"/>
+      <feDisplacementMap in="b2" in2="n3" scale="11.0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <text x="1400.0" y="276.0" font-family="STXingkai,STXingkai,KaiTi,serif" font-weight="700"
+        font-size="300" text-anchor="middle" fill="#000000" filter="url(#br6)" letter-spacing="0.02em">
+    <tspan>遗产融绘</tspan>
+    <tspan dx="70" font-size="120" dy="-120">·</tspan>
+    <tspan dx="120" dy="120">魅力高邮</tspan>
+  </text>
+</svg></div></body></html>

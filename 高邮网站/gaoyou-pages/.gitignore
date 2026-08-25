@@ -1,0 +1,18 @@
+# 依赖与构建产物
+node_modules/
+vendor/*.map
+
+# 截图与调试产物（不入库）
+screenshots/
+*.bak
+index.html.bak*
+
+# 旧版拼接流程的残留文件（2026-08 起单文件自包含，不再需要）
+body.html
+css-only.txt
+js.html
+make_hero_*.py
+
+# 系统文件
+.DS_Store
+Thumbs.db

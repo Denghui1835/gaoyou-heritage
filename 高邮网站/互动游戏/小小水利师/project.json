@@ -1,0 +1,16 @@
+{
+  "display_name": "小小水利师 · 高邮灌区",
+  "android_build": "Release",
+  "add_from": true,
+  "renamed_all": true,
+  "renamed_steam": true,
+  "force_recompile": true,
+  "build_update": true,
+  "packages": ["mac", "pc", "linux", "market"],
+  "source": "",
+  "uuid": "xiaoxiao-shuili-shi-gaoyou-2026",
+  "description": "《小小水利师》基础版：以里运河—高邮灌区为舞台的调水决策叙事游戏，带你读懂「水—田—人」共生的世界灌溉工程遗产。",
+  "authors": ["融绘贯通项目组"],
+  "template": false,
+  "type": ""
+}

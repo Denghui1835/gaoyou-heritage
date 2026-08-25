@@ -1,0 +1,25 @@
+﻿import puppeteer from "puppeteer-core";
+const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
+const browser = await puppeteer.launch({ executablePath: EDGE, headless: "new", args: ["--no-sandbox"] });
+const page = await browser.newPage();
+await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1.5 });
+await page.goto("http://localhost:8000/index.html?desktop=1", { waitUntil: "networkidle0", timeout: 45000 });
+await page.evaluate(() => document.fonts.ready.then(() => new Promise(r => setTimeout(r, 800))));
+const dims = await page.evaluate(() => {
+  const hero = document.querySelector(".hero");
+  const portal = document.querySelector(".hero-portal");
+  const banner = document.querySelector(".hero-banner");
+  const hr = hero.getBoundingClientRect();
+  const pr = portal.getBoundingClientRect();
+  return { heroH: Math.round(hr.height), portalTop: Math.round(pr.top + window.scrollY), portalH: Math.round(pr.height), bannerH: banner ? Math.round(banner.getBoundingClientRect().height) : 0, cards: document.querySelectorAll(".pc-card,.pm-card").length };
+});
+console.log("dims:", JSON.stringify(dims));
+await page.screenshot({ path: "D:/新文科比赛/高邮网站/gaoyou-pages/screenshots/portal-desktop.png", fullPage: false, clip: { x: 0, y: 0, width: 1440, height: Math.min(2600, dims.heroH) } });
+const m = await browser.newPage();
+await m.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 });
+await m.goto("http://localhost:8000/index-m.html", { waitUntil: "networkidle0", timeout: 45000 });
+await m.evaluate(() => document.fonts.ready.then(() => new Promise(r => setTimeout(r, 800))));
+const mdims = await m.evaluate(() => { const hero = document.querySelector(".hero"); const r = hero.getBoundingClientRect(); return { heroH: Math.round(r.height), cards: document.querySelectorAll(".pc-card,.pm-card").length }; });
+console.log("mobile dims:", JSON.stringify(mdims));
+await m.screenshot({ path: "D:/新文科比赛/高邮网站/gaoyou-pages/screenshots/portal-mobile.png", fullPage: false, clip: { x: 0, y: 0, width: 390, height: Math.min(2400, mdims.heroH) } });
+await browser.close();
