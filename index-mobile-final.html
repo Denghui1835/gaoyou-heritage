@@ -35,7 +35,7 @@ button{font-family:inherit;touch-action:manipulation}
   position:relative;
   width:100%;
   min-height:100vh;
-  background:var(--cream);
+  background:transparent;
   overflow-x:hidden;
 }
 @media(min-width:520px){
@@ -57,7 +57,7 @@ button{font-family:inherit;touch-action:manipulation}
   .phone-shell{width:auto;height:94vh;aspect-ratio:390/844}
 }
 
-/* 可滚动容器 */
+/* 可滚动容器（整页用首屏插画做背景） */
 .scroll-wrap{
   width:100%;
   height:100%;
@@ -65,6 +65,7 @@ button{font-family:inherit;touch-action:manipulation}
   overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
+  background:url('./img/hero-mobile-v2.png') center top/cover no-repeat;
 }
 .scroll-wrap::-webkit-scrollbar{display:none}
 
@@ -166,13 +167,13 @@ button{font-family:inherit;touch-action:manipulation}
 .menu-overlay a:hover{color:var(--gold);transform:translateY(-1px)}
 .menu-overlay a:hover::after{left:20%;right:20%}
 
-/* ========== 首屏 Hero（紧凑：一页内放全部内容） ========== */
+/* ========== 首屏 Hero（紧凑：整页背景用首屏插画） ========== */
 .hero{
   position:relative;
   height:34svh;
   min-height:250px;
   display:flex;flex-direction:column;
-  background:#c8d8d2;
+  background:transparent;
   overflow:hidden;
 }
 .hero-bg{
@@ -282,7 +283,7 @@ button{font-family:inherit;touch-action:manipulation}
 /* ========== 门户卡片区 ========== */
 .portal-sec{
   position:relative;z-index:4;
-  background:linear-gradient(180deg,#e4d6c0,var(--cream));
+  background:transparent;
 }
 .portal{
   position:relative;z-index:4;
@@ -306,14 +307,9 @@ button{font-family:inherit;touch-action:manipulation}
 
 /* ========== 功能入口区 ========== */
 .features{
-  background:var(--cream);
+  background:transparent;
   padding:12px 10px 12px;
   position:relative;z-index:4;
-}
-.features::before{
-  content:'';position:absolute;top:-30px;left:0;right:0;height:30px;
-  background:linear-gradient(180deg,transparent,var(--cream));
-  pointer-events:none;
 }
 .feat-strip{
   display:grid;grid-template-columns:repeat(4,1fr);gap:8px;
@@ -332,7 +328,7 @@ button{font-family:inherit;touch-action:manipulation}
 
 /* ========== 语录与 CTA ========== */
 .quote-sec{
-  background:linear-gradient(180deg,var(--cream),#f0e8d8);
+  background:transparent;
   padding:12px 16px 14px;
   text-align:center;
   position:relative;
@@ -423,7 +419,6 @@ button{font-family:inherit;touch-action:manipulation}
 
 <!-- 首屏 -->
 <section class="hero" id="home">
-  <img class="hero-bg" src="./img/hero-mobile-v2.png" alt="高邮湖泊湿地水墨画卷">
   <div class="hero-veil" aria-hidden="true"></div>
 
   <div class="hero-poem" aria-hidden="true">
