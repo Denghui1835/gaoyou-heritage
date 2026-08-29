@@ -57,7 +57,10 @@ button{font-family:inherit;touch-action:manipulation}
   .phone-shell{width:auto;height:94vh;aspect-ratio:390/844}
 }
 
-/* 可滚动容器（整页用首屏插画做背景） */
+/* 可滚动容器（整页用首屏插画做背景）
+   background-size:105.7% auto —— 原图四周有约21px白边、框线在21px处；
+   cover 在竖屏会横向裁切把左右框线切掉。105.7% = 780/(780-42) 正好裁掉
+   两侧白边，让插画装饰框线贴合屏幕左右边缘，不再被裁切。 */
 .scroll-wrap{
   width:100%;
   height:100%;
@@ -65,7 +68,8 @@ button{font-family:inherit;touch-action:manipulation}
   overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
-  background:url('./img/hero-mobile-v2.png') center top/cover no-repeat;
+  background:url('./img/hero-mobile-v2.png') center top/105.7% auto no-repeat;
+  background-color:#f2ead9;
 }
 .scroll-wrap::-webkit-scrollbar{display:none}
 
