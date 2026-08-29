@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="description" content="高邮湖泊湿地多类型遗产数字活化平台——集农业文化遗产、世界灌溉工程遗产、非物质文化遗产于一体的沉浸式文化长卷（手机版）。">
+<meta name="theme-color" content="#173a2e">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>遗产融绘 · 魅力高邮 | 高邮湖泊湿地多类型遗产数字活化平台（手机版）</title>
+<link rel="preconnect" href="https://fonts.googleapis.cn">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grn:#2d6a4f; --grn-d:#173a2e; --grn-x:#0e2a20;
+  --gold:#b08a3e; --gold-l:#d4b978; --gold-xl:#f4ead2;
+  --cream:#faf6ec; --paper:#fffdf6;
+  --ink:#2b2b2b; --muted:#7a7264;
+  --blue:#4a7480; --orange:#a5653f; --red:#a34d3c;
+  --line:#e6dfd0;
+  --brush:'Ma Shan Zheng','STKaiti','KaiTi','KaiTi_GB2312',cursive;
+  --lishu:'ZCOOL XiaoWei','Ma Shan Zheng','LiSu','STKaiti','KaiTi',serif;
+  --serif:'Noto Serif SC','Source Han Serif SC','Songti SC','SimSun',serif;
+  --sans:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:#1a2e25;color:var(--ink);line-height:1.7;font-size:16px;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;touch-action:manipulation}
+
+/* 手机壳：桌面端固定手机比例，移动端撑满 */
+.phone-shell{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  background:var(--cream);
+  overflow-x:hidden;
+}
+@media(min-width:520px){
+  body{background:#223b30;display:flex;align-items:center;justify-content:center;min-height:100vh}
+  .phone-shell{
+    width:390px;
+    max-width:none;
+    min-height:844px;
+    height:844px;
+    margin:0;
+    overflow:hidden;
+    border-radius:42px;
+    border:12px solid #1c1c1e;
+    box-shadow:0 40px 100px rgba(0,0,0,.55);
+    transform:translateZ(0);
+  }
+}
+@media(min-width:520px) and (max-height:940px){
+  .phone-shell{width:auto;height:94vh;aspect-ratio:390/844}
+}
+
+/* 可滚动容器 */
+.scroll-wrap{
+  width:100%;
+  height:100%;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.scroll-wrap::-webkit-scrollbar{display:none}
+
+/* ========== 顶部导航 ========== */
+.topbar{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:900;
+  background:linear-gradient(180deg,rgba(20,48,38,.84),rgba(23,58,46,.6) 55%,rgba(23,58,46,.42) 100%);
+  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  transition:background .35s,padding .35s;
+}
+.topbar.scrolled{
+  background:rgba(250,246,236,.96);
+  box-shadow:0 4px 20px rgba(0,0,0,.12);
+  padding:calc(8px + env(safe-area-inset-top)) 16px 8px;
+}
+.logo-row{
+  display:flex;align-items:center;gap:10px;
+  color:#fff;
+  font-family:var(--brush);
+  font-size:20px;
+  letter-spacing:.08em;
+  text-shadow:0 2px 8px rgba(0,0,0,.45);
+  transition:color .35s;
+}
+.topbar.scrolled .logo-row{color:var(--grn-d)}
+.logo-img{
+  width:42px;height:42px;border-radius:50%;object-fit:cover;
+  border:2px solid rgba(255,255,255,.45);
+  box-shadow:0 4px 12px rgba(0,0,0,.35);
+  flex:none;
+}
+.topbar.scrolled .logo-img{border-color:rgba(176,138,62,.35);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.logo-tag{
+  font-family:var(--sans);
+  font-size:9.5px;
+  letter-spacing:.22em;
+  opacity:.85;
+  margin-top:2px;
+  color:#e6dfd0;
+  transition:color .35s;
+}
+.topbar.scrolled .logo-tag{color:var(--muted)}
+
+.nav-scroll{
+  margin-top:8px;
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:4px;
+}
+.nav-scroll::-webkit-scrollbar{display:none}
+.nav-scroll a{
+  flex:none;
+  font-family:var(--serif);
+  font-size:12px;
+  letter-spacing:.1em;
+  color:#fff;
+  opacity:.92;
+  padding:4px 0;
+  position:relative;
+  text-shadow:0 1px 4px rgba(0,0,0,.45);
+  transition:color .35s;
+}
+.topbar.scrolled .nav-scroll a{color:var(--grn-d);text-shadow:none;opacity:.85}
+.nav-scroll a.active{opacity:1;color:var(--gold-l)}
+.topbar.scrolled .nav-scroll a.active{color:var(--gold)}
+.nav-scroll a::after{
+  content:'';position:absolute;left:50%;right:50%;bottom:0;height:1.5px;background:var(--gold-l);
+  transition:left .25s,right .25s;
+}
+.nav-scroll a:hover::after,.nav-scroll a.active::after{left:0;right:0}
+
+.hamb{
+  position:fixed;top:calc(10px + env(safe-area-inset-top));right:14px;z-index:1001;
+  width:40px;height:40px;border:none;background:rgba(255,255,255,.12);border-radius:10px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5.5px;
+  backdrop-filter:blur(4px);
+}
+.hamb span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+.topbar.scrolled .hamb{background:rgba(23,58,46,.08)}
+.topbar.scrolled .hamb span{background:var(--grn-d)}
+.hamb.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.hamb.active span:nth-child(2){opacity:0}
+.hamb.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+
+.menu-overlay{
+  position:fixed;inset:0;z-index:950;
+  background:rgba(250,246,236,.97);backdrop-filter:blur(8px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;
+}
+.menu-overlay.open{opacity:1;visibility:visible}
+.menu-overlay a{font-family:var(--brush);font-size:26px;color:var(--grn-d);letter-spacing:.16em;padding:12px 24px;transition:.25s;position:relative}
+.menu-overlay a::after{content:'';position:absolute;left:50%;right:50%;bottom:4px;height:2px;background:var(--gold);transition:.3s}
+.menu-overlay a:hover{color:var(--gold);transform:translateY(-1px)}
+.menu-overlay a:hover::after{left:20%;right:20%}
+
+/* ========== 首屏 Hero ========== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  min-height:100svh; /* 移动端地址栏收起时首屏不被裁 */
+  display:flex;flex-direction:column;
+  background:#c8d8d2;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:50% 22%;
+}
+.hero-veil{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,transparent 40%,rgba(250,246,236,.18) 62%,rgba(250,246,236,.5) 100%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:3;
+  min-height:100vh;
+  min-height:100svh; /* 移动端地址栏收起时首屏不被裁 */
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  text-align:center;
+  padding:0 8px calc(26px + env(safe-area-inset-bottom));
+  width:100%;
+}
+
+/* 左侧竖排诗句 */
+.hero-poem{
+  display:none; /* 新首屏图为完整插画，隐藏旧装饰 */
+  position:absolute;left:12px;top:34%;z-index:3;
+  writing-mode:vertical-rl;text-orientation:upright;
+  font-family:var(--lishu);font-size:11.5px;letter-spacing:.32em;
+  color:#1f3a2e;line-height:2.2;
+  text-shadow:0 1px 3px rgba(255,255,255,.85),0 0 10px rgba(255,255,255,.55);
+  opacity:.9;
+}
+.hero-poem span{display:block;margin-left:8px}
+
+/* 右侧竖排卷轴 */
+.hero-scroll-deco{
+  display:none; /* 新首屏图为完整插画，隐藏旧装饰 */
+  position:absolute;right:8px;top:30%;z-index:3;
+  width:36px;height:180px;
+  background:linear-gradient(180deg,rgba(235,224,200,.92),rgba(245,237,218,.92));
+  border:1px solid rgba(176,138,62,.45);
+  border-radius:6px;
+  box-shadow:0 4px 14px rgba(60,40,10,.18);
+  display:flex;align-items:center;justify-content:center;
+  writing-mode:vertical-rl;text-orientation:upright;
+  font-family:var(--brush);font-size:13px;letter-spacing:.24em;
+  color:#5a3a1a;
+  padding:14px 0;
+}
+.hero-scroll-deco::before,.hero-scroll-deco::after{
+  content:'';position:absolute;left:50%;transform:translateX(-50%);
+  width:46px;height:8px;border-radius:4px;
+  background:linear-gradient(90deg,#8a6a44,#a5845a,#8a6a44);
+  box-shadow:0 2px 6px rgba(60,40,10,.25);
+}
+.hero-scroll-deco::before{top:-4px}
+.hero-scroll-deco::after{bottom:-4px}
+
+/* 标题区 */
+.hero-kicker{
+  font-family:var(--serif);font-size:10px;letter-spacing:.36em;text-indent:.36em;
+  color:#f4ead2;font-weight:700;
+  text-shadow:0 1px 5px rgba(0,0,0,.45);
+  margin-bottom:10px;
+}
+.hero-title{
+  font-family:var(--brush);
+  font-size:clamp(40px,13vw,56px);
+  line-height:1.08;
+  letter-spacing:.04em;
+  color:transparent;
+  background:linear-gradient(180deg,#7a5a1a 0%,#a68630 26%,#f2e5aa 48%,#f5eda8 54%,#b08a35 72%,#6a4a0a 100%);
+  -webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 2px 3px rgba(70,55,40,.4)) drop-shadow(0 4px 10px rgba(70,50,25,.22));
+  position:relative;
+  max-width:100%;
+  padding:0 4px;
+}
+.hero-title small{
+  display:block;font-size:.5em;letter-spacing:.16em;margin-top:8px;
+  background:linear-gradient(180deg,#8a6a1a 0%,#c9a540 32%,#f5e5b0 52%,#c9a540 72%,#7a5a0a 100%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.hero-seal{
+  display:inline-flex;vertical-align:middle;margin-left:6px;
+  width:18px;height:38px;
+}
+.hero-seal svg{display:block;width:100%;height:100%}
+
+.hero-subtitle{
+  margin-top:18px;
+  font-family:var(--lishu);font-size:15px;letter-spacing:.28em;text-indent:.28em;
+  color:#1a2e25;font-weight:700;
+  text-shadow:0 1px 3px rgba(255,255,255,.9),0 0 12px rgba(255,255,255,.7);
+}
+.hero-subtitle2{
+  margin-top:6px;
+  font-family:var(--serif);font-size:13px;letter-spacing:.24em;text-indent:.24em;
+  color:#3a5a48;font-weight:600;
+  text-shadow:0 1px 3px rgba(255,255,255,.85);
+}
+
+.hero-btn{
+  margin-top:24px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:none;cursor:pointer;background:none;padding:0;
+  filter:drop-shadow(0 8px 18px rgba(60,40,10,.28));
+  transition:transform .3s,filter .3s;
+}
+.hero-btn-img{display:block;width:min(80vw,360px);height:auto}
+.hero-btn:hover{transform:translateY(-2px);filter:drop-shadow(0 12px 26px rgba(60,40,10,.38))}
+.hero-btn:active{transform:translateY(-1px) scale(1.02)}
+
+.hero-scroll-hint{
+  display:none; /* 文字块已下移到米色区，底部无空间放滚动提示 */
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:3;
+  width:24px;height:36px;border:1.5px solid rgba(23,58,46,.5);border-radius:12px;
+  display:flex;justify-content:center;padding-top:6px;
+}
+.hero-scroll-hint span{
+  width:2px;height:8px;background:rgba(23,58,46,.65);border-radius:1px;
+  animation:scrollDown 1.6s ease-in-out infinite;
+}
+@keyframes scrollDown{0%{transform:translateY(0);opacity:1}80%{transform:translateY(10px);opacity:0}100%{opacity:0}}
+
+/* ========== 门户卡片区 ========== */
+.portal-sec{
+  position:relative;z-index:4;
+  background:linear-gradient(180deg,#e4d6c0,var(--cream));
+}
+.portal{
+  position:relative;z-index:4;
+  padding:18px 16px 22px;
+}
+.portal-grid{
+  display:grid;grid-template-columns:1fr;gap:16px;
+}
+.pc-card{
+  display:block;
+  text-decoration:none;color:inherit;
+  transition:transform .25s,box-shadow .25s;
+}
+.pc-card-img{
+  display:block;width:100%;height:auto;
+  border-radius:16px;
+  box-shadow:0 10px 26px rgba(60,40,10,.14);
+}
+.pc-card:active{transform:translateY(-2px)}
+.pc-card:active .pc-card-img{box-shadow:0 14px 34px rgba(60,40,10,.22)}
+
+/* ========== 功能入口区 ========== */
+.features{
+  background:var(--cream);
+  padding:28px 16px 36px;
+  position:relative;z-index:4;
+}
+.features::before{
+  content:'';position:absolute;top:-30px;left:0;right:0;height:30px;
+  background:linear-gradient(180deg,transparent,var(--cream));
+  pointer-events:none;
+}
+.fm-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.fm-card{
+  display:flex;align-items:center;gap:10px;
+  background:var(--paper);
+  border:1.5px solid rgba(214,196,162,.8);
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 8px 22px rgba(60,40,10,.1);
+  text-decoration:none;color:inherit;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.fm-card:active{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 12px 28px rgba(60,40,10,.16)}
+.fm-card .fm-img{
+  width:56px;height:56px;border-radius:10px;overflow:hidden;flex:none;
+}
+.fm-card .fm-img img{width:100%;height:100%;object-fit:cover}
+.fm-card .fm-bd{flex:1;min-width:0}
+.fm-card h3{font-family:var(--brush);font-size:14.5px;letter-spacing:.05em;margin-bottom:2px;line-height:1.15;color:var(--grn-d)}
+.fm-card .fm-sub{font-size:10px;line-height:1.4;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fm-timeline{background:linear-gradient(135deg,#f5e9d0,#f0e0c8)}
+.fm-map{background:linear-gradient(135deg,#e6f2e8,#dceee8)}
+.fm-routes{background:linear-gradient(135deg,#faf7ea,#f2ecd8)}
+.fm-games{background:linear-gradient(135deg,#f5e9d0,#f0e8d4)}
+
+/* ========== 语录与 CTA ========== */
+.quote-sec{
+  background:linear-gradient(180deg,var(--cream),#f0e8d8);
+  padding:28px 20px 42px;
+  text-align:center;
+  position:relative;
+}
+.quote-sec::before{
+  content:'“';position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  font-family:var(--serif);font-size:56px;color:var(--gold);opacity:.25;line-height:1;
+}
+.quote-text{
+  font-family:var(--lishu);font-size:16px;letter-spacing:.16em;line-height:2;
+  color:var(--grn-d);font-weight:700;
+  position:relative;z-index:2;
+  margin-bottom:22px;
+}
+.cta-btns{
+  display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+}
+.cta-btns button{
+  background:transparent;border:1px solid var(--gold);color:var(--grn-d);
+  padding:9px 18px;border-radius:24px;font-family:var(--serif);font-size:12px;
+  letter-spacing:.12em;font-weight:700;cursor:pointer;
+  display:inline-flex;align-items:center;gap:5px;
+  transition:background .25s,color .25s;
+}
+.cta-btns button:active{background:var(--gold);color:#fff}
+.cta-btns button.filled{background:linear-gradient(135deg,#e6cf92,#c9a55c);border-color:transparent;color:#3a2c0e}
+
+/* ========== 页脚 ========== */
+.footer{
+  background:var(--grn-x);color:#d9d2bd;text-align:center;padding:28px 20px 34px;
+}
+.footer h3{font-family:var(--brush);font-size:22px;letter-spacing:.14em;color:var(--gold-xl);margin-bottom:8px}
+.footer p{font-size:12px;line-height:2;color:#a8a08a;letter-spacing:.04em}
+.footer .divider{width:40px;height:1px;background:rgba(176,138,62,.4);margin:14px auto}
+
+/* 弹窗 */
+.modal{position:fixed;inset:0;z-index:1100;display:none;align-items:center;justify-content:center;background:rgba(14,30,22,.55);backdrop-filter:blur(3px);padding:16px}
+.modal.open{display:flex}
+.modal-box{background:var(--paper);border-radius:18px;max-width:340px;width:100%;padding:24px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal-box h3{font-family:var(--serif);font-size:18px;color:var(--grn-d);margin-bottom:10px}
+.modal-box p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:16px}
+.modal-box img{max-width:180px;margin:0 auto 12px;border-radius:8px}
+.modal-close{margin-top:8px;padding:9px 26px;border-radius:24px;border:none;background:var(--grn);color:#fff;font-size:13px;letter-spacing:.12em;cursor:pointer}
+
+/* 滚动渐现 */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<div class="phone-shell">
+<div class="scroll-wrap" id="scrollWrap">
+
+<!-- 顶部导航 -->
+<header class="topbar" id="topbar">
+  <div class="logo-row">
+    <img class="logo-img" src="./img/logo.jpg" alt="">
+    <div>
+      <div>遗产融绘 · 魅力高邮</div>
+      <div class="logo-tag">高邮湖泊湿地多类型遗产数字活化平台</div>
+    </div>
+  </div>
+  <nav class="nav-scroll" aria-label="主导航">
+    <a class="active" href="#home">首页</a>
+    <a href="./index-m.html#page-explore">探索高邮</a>
+    <a href="./index-m.html#page-map">遗产地图</a>
+    <a href="./index-m.html#page-timeline">文化故事</a>
+    <a href="./index-m.html#page-routes">研学路线</a>
+    <a href="./index-m.html#page-games">互动猜谜</a>
+    <a href="./index-m.html#page-games">互动游戏</a>
+    <a href="./index-m.html#page-gallery">数字展厅</a>
+    <a href="./index-m.html#page-about">关于我们</a>
+  </nav>
+</header>
+
+<button class="hamb" id="hambBtn" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+
+<div class="menu-overlay" id="menuOverlay">
+  <a href="#home" class="menu-link">首页</a>
+  <a href="./index-m.html#page-explore" class="menu-link">探索高邮</a>
+  <a href="./index-m.html#page-map" class="menu-link">遗产地图</a>
+  <a href="./index-m.html#page-timeline" class="menu-link">文化故事</a>
+  <a href="./index-m.html#page-routes" class="menu-link">研学路线</a>
+  <a href="./index-m.html#page-games" class="menu-link">互动游戏</a>
+  <a href="./index-m.html#page-gallery" class="menu-link">数字展厅</a>
+  <a href="./index-m.html#page-about" class="menu-link">关于我们</a>
+</div>
+
+<!-- 首屏 -->
+<section class="hero" id="home">
+  <img class="hero-bg" src="./img/hero-mobile-20260828.png" alt="高邮湖泊湿地水墨画卷">
+  <div class="hero-veil" aria-hidden="true"></div>
+
+  <div class="hero-poem" aria-hidden="true">
+    <span>水脉千年润泽一方</span>
+    <span>湖畔人家诗意依存</span>
+  </div>
+
+  <div class="hero-scroll-deco" aria-hidden="true">高邮遗韵</div>
+
+  <div class="hero-content">
+    <div class="hero-kicker">高邮湖泊湿地多类型遗产数字活化平台</div>
+    <h1 class="hero-title">
+      遗产融绘
+      <small>魅力高邮
+        <span class="hero-seal">
+          <svg viewBox="0 0 40 84" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="sealInk" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n2"/>
+                <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0.78 0 0 0 0 0.23 0 0 0 0 0.18 0 0 0 0.30 0"/>
+                <feBlend in="SourceGraphic" in2="n2" mode="multiply"/>
+              </filter>
+              <filter id="sealSoft" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="0.8"/>
+              </filter>
+            </defs>
+            <rect x="2" y="2" width="36" height="80" rx="8" fill="#c0392b" filter="url(#sealInk) url(#sealSoft)"/>
+            <text x="20" y="30" font-size="20" text-anchor="middle" fill="#f0d68d" font-family="STKaiti,KaiTi,serif" font-weight="700">高</text>
+            <text x="20" y="68" font-size="20" text-anchor="middle" fill="#f0d68d" font-family="STKaiti,KaiTi,serif" font-weight="700">邮</text>
+          </svg>
+        </span>
+      </small>
+    </h1>
+    <p class="hero-subtitle">一湖水 · 一片田 · 一方人</p>
+    <p class="hero-subtitle2">探索千年湿地文明</p>
+
+    <button class="hero-btn" id="startBtn" type="button"><img class="hero-btn-img" src="./img/hero-btn.png" alt="开启高邮遗产之旅"></button>
+  </div>
+
+  <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- 三脉门户 -->
+<section class="portal-sec">
+  <div class="portal">
+    <div class="portal-grid">
+      <a class="pc-card pc-water reveal" href="./index-m.html#page-water">
+        <img class="pc-card-img" src="./img/card-water.png" alt="水之源">
+      </a>
+      <a class="pc-card pc-field reveal" href="./index-m.html#page-field">
+        <img class="pc-card-img" src="./img/card-field.png" alt="田之魂">
+      </a>
+      <a class="pc-card pc-people reveal" href="./index-m.html#page-people">
+        <img class="pc-card-img" src="./img/card-people.png" alt="人之韵">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 四宫格功能入口 -->
+<section class="features">
+  <div class="fm-grid">
+    <a class="fm-card fm-timeline reveal" href="./index-m.html#page-timeline">
+      <div class="fm-img"><img src="./img/tl_ancient.jpg" alt="穿越千年"></div>
+      <div class="fm-bd">
+        <h3>穿越千年</h3>
+        <div class="fm-sub">高邮故事时间轴</div>
+      </div>
+    </a>
+    <a class="fm-card fm-map reveal" href="./index-m.html#page-map">
+      <div class="fm-img"><img src="./img/map-thumb.png" alt="高邮湖数字地图"></div>
+      <div class="fm-bd">
+        <h3>高邮湖数字地图</h3>
+        <div class="fm-sub">多类型遗产分布与探索</div>
+      </div>
+    </a>
+    <a class="fm-card fm-routes reveal" href="./index-m.html#page-routes">
+      <div class="fm-img"><img src="./img/route1.jpg" alt="研学路线"></div>
+      <div class="fm-bd">
+        <h3>研学路线</h3>
+        <div class="fm-sub">从湖到餐桌的文化之旅</div>
+      </div>
+    </a>
+    <a class="fm-card fm-games reveal" href="./index-m.html#page-games">
+      <div class="fm-img"><img src="./img/gate.jpg" alt="互动游戏中心"></div>
+      <div class="fm-bd">
+        <h3>互动游戏中心</h3>
+        <div class="fm-sub">寓教于乐 · 传承文化</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- 语录与 CTA -->
+<section class="quote-sec">
+  <p class="quote-text">遗产并非停留在过去，<br>而是在今天继续生长。</p>
+  <div class="cta-btns">
+    <button class="filled" onclick="openModal('join')">🌱 加入守护计划</button>
+    <button onclick="openModal('gzh')">📮 关注公众号</button>
+    <button onclick="openModal('share')">📣 分享高邮故事</button>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <h3>遗产融绘 · 魅力高邮</h3>
+  <div class="divider" aria-hidden="true"></div>
+  <p>高邮湖泊湿地多类型遗产数字活化平台</p>
+  <p>2026 大学生新文科实践创新大赛 · 文史哲组</p>
+  <p style="margin-top:8px;font-size:11px;color:#8f8875">© 2026 融绘贯通项目团队</p>
+</footer>
+
+</div><!-- /scroll-wrap -->
+</div><!-- /phone-shell -->
+
+<!-- 弹窗 -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3 id="modalTitle">标题</h3>
+    <div id="modalBody"></div>
+    <button class="modal-close" onclick="closeModal()">知道了</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const topbar=document.getElementById('topbar');
+  const hamb=document.getElementById('hambBtn');
+  const menu=document.getElementById('menuOverlay');
+  const scrollWrap=document.getElementById('scrollWrap');
+
+  // 滚动时导航背景变化
+  function onScroll(){
+    const st=scrollWrap?scrollWrap.scrollTop:window.scrollY;
+    topbar.classList.toggle('scrolled',st>60);
+  }
+  (scrollWrap||window).addEventListener('scroll',onScroll,{passive:true});
+
+  // 汉堡菜单
+  function toggleMenu(show){
+    const open=show!==undefined?show:!menu.classList.contains('open');
+    menu.classList.toggle('open',open);
+    hamb.classList.toggle('active',open);
+    hamb.setAttribute('aria-expanded',String(open));
+    document.body.style.overflow=open?'hidden':'';
+  }
+  hamb.addEventListener('click',()=>toggleMenu());
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+
+  // 滚动渐现
+  const reveals=document.querySelectorAll('.reveal');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.15,rootMargin:'0px 0px -30px 0px'});
+  reveals.forEach(el=>io.observe(el));
+
+  // 开启旅程：平滑滚动到门户区
+  document.getElementById('startBtn').addEventListener('click',()=>{
+    const portal=document.querySelector('.portal');
+    if(portal){
+      portal.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+
+  // 弹窗
+  window.openModal=function(type){
+    const title=document.getElementById('modalTitle');
+    const body=document.getElementById('modalBody');
+    const modal=document.getElementById('modal');
+    if(type==='join'){
+      title.textContent='加入守护计划';
+      body.innerHTML='<p>感谢您的关注！后续我们将开放高邮遗产守护志愿者报名通道，一起用青年行动守护「水—田—人」共生的文明长卷。</p>';
+    }else if(type==='gzh'){
+      title.textContent='关注公众号';
+      body.innerHTML='<img src="./img/gzh-qr.jpg" alt="公众号二维码"><p>扫码关注「遗产融绘 · 魅力高邮」官方公众号，获取最新调研手记与研学资讯。</p>';
+    }else{
+      title.textContent='分享高邮故事';
+      body.innerHTML='<p>复制下方链接分享给朋友，让更多人看见高邮的千年湿地文明：</p><p style="word-break:break-all;color:var(--grn);font-size:13px;margin-top:8px">'+location.href+'</p>';
+    }
+    modal.classList.add('open');
+  };
+  window.closeModal=function(){document.getElementById('modal').classList.remove('open');};
+
+  // 点击弹窗背景关闭
+  document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+})();
+</script>
+</body>
+</html>
