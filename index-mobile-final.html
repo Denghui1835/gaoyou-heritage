@@ -208,29 +208,6 @@ button{font-family:inherit;touch-action:manipulation}
 .hero-poem span{display:block;margin-left:8px}
 
 /* 右侧竖排卷轴 */
-.hero-scroll-deco{
-  display:none; /* 新首屏图为完整插画，隐藏旧装饰 */
-  position:absolute;right:8px;top:30%;z-index:3;
-  width:36px;height:180px;
-  background:linear-gradient(180deg,rgba(235,224,200,.92),rgba(245,237,218,.92));
-  border:1px solid rgba(176,138,62,.45);
-  border-radius:6px;
-  box-shadow:0 4px 14px rgba(60,40,10,.18);
-  display:flex;align-items:center;justify-content:center;
-  writing-mode:vertical-rl;text-orientation:upright;
-  font-family:var(--brush);font-size:13px;letter-spacing:.24em;
-  color:#5a3a1a;
-  padding:14px 0;
-}
-.hero-scroll-deco::before,.hero-scroll-deco::after{
-  content:'';position:absolute;left:50%;transform:translateX(-50%);
-  width:46px;height:8px;border-radius:4px;
-  background:linear-gradient(90deg,#8a6a44,#a5845a,#8a6a44);
-  box-shadow:0 2px 6px rgba(60,40,10,.25);
-}
-.hero-scroll-deco::before{top:-4px}
-.hero-scroll-deco::after{bottom:-4px}
-
 /* 标题区 */
 .hero-kicker{
   font-family:var(--serif);font-size:10px;letter-spacing:.36em;text-indent:.36em;
@@ -454,7 +431,6 @@ button{font-family:inherit;touch-action:manipulation}
     <span>湖畔人家诗意依存</span>
   </div>
 
-  <div class="hero-scroll-deco" aria-hidden="true">高邮遗韵</div>
 
   <div class="hero-content">
     <img class="hero-title-img" src="./img/hero-title.png" alt="遗产融绘 · 魅力高邮">
