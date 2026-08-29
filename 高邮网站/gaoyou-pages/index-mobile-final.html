@@ -261,6 +261,10 @@ button{font-family:inherit;touch-action:manipulation}
   width:18px;height:38px;
 }
 .hero-seal svg{display:block;width:100%;height:100%}
+.hero-title-img{
+  display:block;width:min(84vw,360px);height:auto;margin:0 auto;
+  filter:drop-shadow(0 3px 8px rgba(60,40,10,.25));
+}
 
 .hero-subtitle{
   margin-top:18px;
@@ -334,32 +338,23 @@ button{font-family:inherit;touch-action:manipulation}
   background:linear-gradient(180deg,transparent,var(--cream));
   pointer-events:none;
 }
-.fm-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+.feat-strip{
+  display:flex;gap:14px;overflow-x:auto;padding-bottom:10px;
+  -webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;
+  scrollbar-width:none;
 }
-.fm-card{
-  display:flex;align-items:center;gap:10px;
-  background:var(--paper);
-  border:1.5px solid rgba(214,196,162,.8);
-  border-radius:14px;
-  padding:10px;
-  box-shadow:0 8px 22px rgba(60,40,10,.1);
+.feat-strip::-webkit-scrollbar{display:none}
+.feat-item{
+  flex:0 0 78%;scroll-snap-align:center;display:block;
   text-decoration:none;color:inherit;
-  transition:transform .25s,box-shadow .25s,border-color .25s;
+  transition:transform .25s,box-shadow .25s;
 }
-.fm-card:active{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 12px 28px rgba(60,40,10,.16)}
-.fm-card .fm-img{
-  width:56px;height:56px;border-radius:10px;overflow:hidden;flex:none;
+.feat-item img{
+  display:block;width:100%;height:auto;border-radius:16px;
+  box-shadow:0 10px 26px rgba(60,40,10,.14);
 }
-.fm-card .fm-img img{width:100%;height:100%;object-fit:cover}
-.fm-card .fm-bd{flex:1;min-width:0}
-.fm-card h3{font-family:var(--brush);font-size:14.5px;letter-spacing:.05em;margin-bottom:2px;line-height:1.15;color:var(--grn-d)}
-.fm-card .fm-sub{font-size:10px;line-height:1.4;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.fm-btn{display:inline-block;margin-top:7px;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(176,138,62,.5);border-radius:12px;padding:2px 9px}
-.fm-timeline{background:linear-gradient(135deg,#f5e9d0,#f0e0c8)}
-.fm-map{background:linear-gradient(135deg,#e6f2e8,#dceee8)}
-.fm-routes{background:linear-gradient(135deg,#faf7ea,#f2ecd8)}
-.fm-games{background:linear-gradient(135deg,#f5e9d0,#f0e8d4)}
+.feat-item:active{transform:translateY(-2px)}
+.feat-item:active img{box-shadow:0 14px 34px rgba(60,40,10,.22)}
 
 /* ========== 语录与 CTA ========== */
 .quote-sec{
@@ -466,28 +461,7 @@ button{font-family:inherit;touch-action:manipulation}
 
   <div class="hero-content">
     <div class="hero-kicker">高邮湖泊湿地多类型遗产数字活化平台</div>
-    <h1 class="hero-title">
-      遗产融绘
-      <small>魅力高邮
-        <span class="hero-seal">
-          <svg viewBox="0 0 40 84" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="sealInk" x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n2"/>
-                <feColorMatrix in="n2" type="matrix" values="0 0 0 0 0.78 0 0 0 0 0.23 0 0 0 0 0.18 0 0 0 0.30 0"/>
-                <feBlend in="SourceGraphic" in2="n2" mode="multiply"/>
-              </filter>
-              <filter id="sealSoft" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="0.8"/>
-              </filter>
-            </defs>
-            <rect x="2" y="2" width="36" height="80" rx="8" fill="#c0392b" filter="url(#sealInk) url(#sealSoft)"/>
-            <text x="20" y="30" font-size="20" text-anchor="middle" fill="#f0d68d" font-family="STKaiti,KaiTi,serif" font-weight="700">高</text>
-            <text x="20" y="68" font-size="20" text-anchor="middle" fill="#f0d68d" font-family="STKaiti,KaiTi,serif" font-weight="700">邮</text>
-          </svg>
-        </span>
-      </small>
-    </h1>
+    <img class="hero-title-img" src="./img/hero-title.png" alt="遗产融绘 · 魅力高邮">
     <p class="hero-subtitle">一湖水 · 一片田 · 一方人</p>
     <p class="hero-subtitle2">探索千年湿地文明</p>
 
@@ -516,39 +490,11 @@ button{font-family:inherit;touch-action:manipulation}
 
 <!-- 四宫格功能入口 -->
 <section class="features">
-  <div class="fm-grid">
-    <a class="fm-card fm-timeline reveal" href="./index-m.html#page-timeline">
-      <div class="fm-img"><img src="./img/tl_ancient.jpg" alt="穿越千年"></div>
-      <div class="fm-bd">
-        <h3>穿越千年</h3>
-        <div class="fm-sub">高邮故事时间轴</div>
-        <span class="fm-btn">了解更多</span>
-      </div>
-    </a>
-    <a class="fm-card fm-map reveal" href="./index-m.html#page-map">
-      <div class="fm-img"><img src="./img/map-thumb.png" alt="高邮湖数字地图"></div>
-      <div class="fm-bd">
-        <h3>高邮湖数字地图</h3>
-        <div class="fm-sub">多类型遗产分布与探索</div>
-        <span class="fm-btn">进入地图</span>
-      </div>
-    </a>
-    <a class="fm-card fm-routes reveal" href="./index-m.html#page-routes">
-      <div class="fm-img"><img src="./img/route1.jpg" alt="研学路线"></div>
-      <div class="fm-bd">
-        <h3>研学路线</h3>
-        <div class="fm-sub">从湖到餐桌的文化之旅</div>
-        <span class="fm-btn">查看全部路线</span>
-      </div>
-    </a>
-    <a class="fm-card fm-games reveal" href="./index-m.html#page-games">
-      <div class="fm-img"><img src="./img/gate.jpg" alt="互动游戏中心"></div>
-      <div class="fm-bd">
-        <h3>互动游戏中心</h3>
-        <div class="fm-sub">寓教于乐 · 传承文化</div>
-        <span class="fm-btn">进入游戏世界</span>
-      </div>
-    </a>
+  <div class="feat-strip">
+    <a class="feat-item reveal" href="./index-m.html#page-timeline"><img src="./img/feat-timeline.png" alt="穿越千年"></a>
+    <a class="feat-item reveal" href="./index-m.html#page-map"><img src="./img/feat-map.png" alt="高邮湖数字地图"></a>
+    <a class="feat-item reveal" href="./index-m.html#page-routes"><img src="./img/feat-routes.png" alt="研学路线"></a>
+    <a class="feat-item reveal" href="./index-m.html#page-games"><img src="./img/feat-games.png" alt="互动游戏中心"></a>
   </div>
 </section>
 
