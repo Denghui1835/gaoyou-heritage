@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="高邮湖泊湿地多类型遗产数字活化平台——集农业文化遗产、世界灌溉工程遗产、非物质文化遗产于一体的沉浸式文化长卷。">
 <script>
-/* 智能设备检测：根据屏幕宽度选择桌面版或手机版 */
-if(window.innerWidth<=768&&!location.hash.includes('desktop')){
+/* 站点为手机版：统一跳转到手机版（桌面浏览器显示手机框；加 #desktop 可看桌面版） */
+if(!location.hash.includes('desktop')){
   location.replace('./index-mobile-final.html');
 }
 </script>
