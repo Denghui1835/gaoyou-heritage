@@ -1,0 +1,29 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/options.rpy", line 12, in script
+    define config.about = _("《小小水利师》基础版\n里运河—高邮灌区调水决策叙事游戏\n\n—— 让「世界灌溉工程遗产」被更多人读懂 ——\n\n融绘贯通 · 多类型遗产系统性保护 项目组")
+Exception: config.about is not a known configuration variable.
+
+-- Full Traceback ------------------------------------------------------------
+
+Traceback (most recent call last):
+  File "game/options.rpy", line 12, in script
+    define config.about = _("《小小水利师》基础版\n里运河—高邮灌区调水决策叙事游戏\n\n—— 让「世界灌溉工程遗产」被更多人读懂 ——\n\n融绘贯通 · 多类型遗产系统性保护 项目组")
+  File "renpy/ast.py", line 2473, in execute
+    self.set()
+    ~~~~~~~~^^
+  File "renpy/ast.py", line 2489, in set
+    ns.set(self.varname, value)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/common/000namespaces.rpy", line 34, in set
+    setattr(self.nso, name, value)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "renpy/defaultstore.py", line 100, in __setattr__
+    raise Exception("config.%s is not a known configuration variable." % (name))
+Exception: config.about is not a known configuration variable.
+
+Windows-11-10.0.26200-SP0 AMD64
+Ren'Py 8.5.3.26051504
+小小水利师 · 高邮灌区 0.1 基础版
+Sat Aug  8 23:44:59 2026

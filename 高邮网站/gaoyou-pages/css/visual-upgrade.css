@@ -1,0 +1,171 @@
+/* ============================================
+   视觉升级层 · Visual Enhancement Layer
+   遗产融绘 · 魅力高邮
+   ============================================ */
+
+/* ---- 导航栏增强 ---- */
+.nav{transition:background .45s cubic-bezier(.2,.3,.4,1),padding .45s cubic-bezier(.2,.3,.4,1),box-shadow .45s ease}
+.nav.solid{backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);background:rgba(250,246,236,.88)!important;box-shadow:0 4px 32px rgba(0,0,0,.1),0 1px 0 rgba(176,138,62,.15) inset}
+.nav::after{content:'';position:absolute;bottom:0;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,rgba(176,138,62,.22) 30%,rgba(176,138,62,.22) 70%,transparent);pointer-events:none}
+.nav a{transition:all .35s cubic-bezier(.2,.3,.4,1),background .25s ease}
+.nav a:hover{background:rgba(10,20,14,.2);color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.nav.solid a:hover{background:rgba(176,138,62,.15);color:var(--grn-d);transform:translateY(-1px);box-shadow:none}
+
+/* ---- Hero 增强 ---- */
+.hero-img{filter:brightness(.95) contrast(1.05) saturate(1.1)!important}
+.hero-veil{background:linear-gradient(180deg,rgba(14,42,32,.52) 0%,rgba(14,42,32,.18) 12%,transparent 36%,rgba(248,244,233,.18) 72%,rgba(248,244,233,.48) 100%)!important}
+.hero-veil::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 45%,transparent 30%,rgba(14,42,32,.12) 100%);pointer-events:none}
+.hero h1{animation:heroTitleIn 1.8s cubic-bezier(.2,.3,.3,1) both}
+@keyframes heroTitleIn{from{opacity:0;transform:translateY(28px) scale(.96);filter:blur(6px) drop-shadow(0 0 12px rgba(255,252,244,.65))}to{opacity:1;transform:translateY(0) scale(1);filter:drop-shadow(0 0 12px rgba(255,252,244,.65)) drop-shadow(0 3px 6px rgba(40,25,5,.42)) drop-shadow(0 18px 42px rgba(122,90,30,.32))}}
+.hero-sub{animation:fadeSlideUp 1.4s .4s cubic-bezier(.2,.3,.3,1) both}
+.hero-btn{animation:fadeSlideUp 1.2s .7s cubic-bezier(.2,.3,.4,1) both}
+.hero-btn .btn-roll{transition:all .35s ease}
+.hero-btn:hover .btn-roll{box-shadow:0 8px 22px rgba(25,14,3,.52),inset 0 1px 1px rgba(255,255,255,.18),0 0 30px rgba(176,138,62,.2)}
+
+/* Hero 粒子容器 */
+.hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.hero-particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,.05));pointer-events:none}
+
+/* Hero 滚动提示箭头 */
+.hero-scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:6px;animation:scrollHintBounce 2.2s ease-in-out infinite}
+.hero-scroll-hint span{font-size:12px;letter-spacing:.3em;color:rgba(45,106,79,.55);font-family:var(--serif)}
+.hero-scroll-hint .arrow{width:20px;height:20px;border-right:2px solid rgba(45,106,79,.45);border-bottom:2px solid rgba(45,106,79,.45);transform:rotate(45deg)}
+@keyframes scrollHintBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ---- 通用动画关键帧 ---- */
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeSlideLeft{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeSlideRight{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+
+/* ---- 滚动渐现系统 ---- */
+.v-up{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.2,.3,.4,1),transform .85s cubic-bezier(.2,.3,.4,1)}
+.v-up.vis{opacity:1;transform:translateY(0)}
+.v-left{opacity:0;transform:translateX(-36px);transition:opacity .85s cubic-bezier(.2,.3,.4,1),transform .85s cubic-bezier(.2,.3,.4,1)}
+.v-left.vis{opacity:1;transform:translateX(0)}
+.v-right{opacity:0;transform:translateX(36px);transition:opacity .85s cubic-bezier(.2,.3,.4,1),transform .85s cubic-bezier(.2,.3,.4,1)}
+.v-right.vis{opacity:1;transform:translateX(0)}
+.v-scale{opacity:0;transform:scale(.9);transition:opacity .85s cubic-bezier(.2,.3,.4,1),transform .85s cubic-bezier(.2,.3,.4,1)}
+.v-scale.vis{opacity:1;transform:scale(1)}
+/* 阶梯延迟 */
+.v-d1{transition-delay:.08s}.v-d2{transition-delay:.16s}.v-d3{transition-delay:.24s}.v-d4{transition-delay:.32s}.v-d5{transition-delay:.4s}
+
+/* ---- 区块分隔线（金色细线） ---- */
+.sec-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(176,138,62,.3) 30%,rgba(176,138,62,.3) 70%,transparent 95%);margin:0 auto}
+
+/* ---- 装饰水纹 SVG 背景 ---- */
+.water-bg{position:relative}
+.water-bg::before{content:'';position:absolute;inset:0;opacity:.03;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M0 80 Q50 60 100 80 T200 80' fill='none' stroke='%232d6a4f' stroke-width='1.5'/%3E%3Cpath d='M0 120 Q50 100 100 120 T200 120' fill='none' stroke='%232d6a4f' stroke-width='1'/%3E%3Cpath d='M0 160 Q50 140 100 160 T200 160' fill='none' stroke='%232d6a4f' stroke-width='.8'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+
+/* ---- 首页门户卡片增强 ---- */
+.pc-card{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease,border-color .35s ease;backdrop-filter:blur(2px)}
+.pc-card::after{content:'';position:absolute;inset:-1.5px;border-radius:18px;background:linear-gradient(135deg,rgba(176,138,62,0),rgba(176,138,62,.35),rgba(176,138,62,0));opacity:0;transition:opacity .4s ease;pointer-events:none;z-index:0}
+.pc-card:hover{transform:translateY(-10px)!important;box-shadow:0 24px 56px rgba(40,25,5,.22),0 0 0 1px rgba(176,138,62,.15)!important;border-color:rgba(176,138,62,.9)!important}
+.pc-card:hover::after{opacity:1}
+.pc-card .pc-img img{transition:transform .65s cubic-bezier(.2,.3,.4,1),filter .45s ease}
+.pc-card:hover .pc-img img{transform:scale(1.1)!important;filter:brightness(1.05) saturate(1.1)}
+
+/* ---- 四卡增强 ---- */
+.pm-card{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease,border-color .35s ease}
+.pm-card:hover{transform:translateY(-8px)!important;box-shadow:0 18px 44px rgba(40,25,5,.22),0 0 0 1px rgba(176,138,62,.12)!important}
+.pm-card .pm-img img{transition:transform .65s cubic-bezier(.2,.3,.4,1),filter .45s ease}
+.pm-card:hover .pm-img img{transform:scale(1.1)!important;filter:brightness(1.05) saturate(1.1)}
+
+/* ---- 三脉卡片增强 ---- */
+.tc{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease,border-color .35s ease;border-color:rgba(214,196,162,.7)!important;position:relative}
+.tc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(176,138,62,0));transition:background .4s ease;pointer-events:none;z-index:5;border-radius:20px 20px 0 0}
+.tc:hover{transform:translateY(-8px)!important;box-shadow:0 20px 50px rgba(120,90,30,.14),0 0 0 1px rgba(176,138,62,.12)!important}
+.tc:hover::after{background:linear-gradient(90deg,transparent,var(--gold-l),transparent)}
+.tc .pic img{transition:transform .6s cubic-bezier(.2,.3,.4,1),filter .4s ease}
+.tc:hover .pic img{transform:scale(1.08)!important;filter:brightness(1.04) saturate(1.08)}
+
+/* ---- 数据图表卡片增强 ---- */
+.s-card{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease}
+.s-card:hover{transform:translateY(-6px)!important;box-shadow:0 18px 44px rgba(120,90,30,.12),0 0 0 1px rgba(176,138,62,.1)!important}
+
+/* ---- 地图容器增强 ---- */
+.mbox{box-shadow:0 12px 40px rgba(0,0,0,.12),0 0 0 1px rgba(176,138,62,.08)!important;transition:box-shadow .4s ease}
+.mbox:hover{box-shadow:0 16px 50px rgba(0,0,0,.15),0 0 0 1px rgba(176,138,62,.15)!important}
+
+/* ---- 研学路线卡片增强 ---- */
+.flow-lane{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease;border-color:rgba(214,196,162,.7)!important}
+.flow-lane:hover{transform:translateY(-5px)!important;box-shadow:0 16px 42px rgba(120,90,30,.12),0 0 0 1px rgba(176,138,62,.1)!important}
+
+/* ---- 游戏卡片增强 ---- */
+.gc{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease;position:relative}
+.gc::before{content:'';position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,rgba(176,138,62,.06),transparent 60%);pointer-events:none;z-index:1}
+.gc:hover{transform:translateY(-8px)!important;box-shadow:0 18px 48px rgba(0,0,0,.14),0 0 0 1px rgba(176,138,62,.12)!important}
+.gc .cover{transition:filter .4s ease}
+.gc:hover .cover{filter:brightness(1.08) saturate(1.12)}
+
+/* ---- 关于我们困境卡片增强 ---- */
+.dg{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease;position:relative}
+.dg::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:3px;background:linear-gradient(90deg,transparent,var(--gold-l),transparent);border-radius:0 0 20px 20px;opacity:0;transition:opacity .4s ease}
+.dg:hover{transform:translateY(-7px)!important;box-shadow:0 20px 48px rgba(120,90,30,.14),0 0 0 1px rgba(176,138,62,.1)!important}
+.dg:hover::after{opacity:1}
+.dg .dg-icon{transition:transform .45s cubic-bezier(.2,.3,.4,1),box-shadow .45s ease}
+.dg:hover .dg-icon{transform:scale(1.1) rotate(3deg);box-shadow:0 8px 24px rgba(120,90,30,.15)}
+
+/* ---- 关于我们数据统计增强 ---- */
+.as{transition:transform .35s ease,background .35s ease;position:relative;overflow:hidden}
+.as::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(240,214,141,.08),transparent 60%);opacity:0;transition:opacity .4s;pointer-events:none}
+.as:hover{transform:translateY(-3px)!important;background:rgba(255,255,255,.13)!important}
+.as:hover::before{opacity:1}
+
+/* ---- 底部 CTA 增强 ---- */
+.cta .bg{transition:transform 8s ease}
+.cta:hover .bg{transform:scale(1.03)}
+.cta .veil::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 60%,rgba(176,138,62,.06),transparent);pointer-events:none}
+.cta .cbtn{transition:all .35s cubic-bezier(.2,.3,.4,1);position:relative;overflow:hidden}
+.cta .cbtn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.15);border-radius:50%;transform:translate(-50%,-50%);transition:width .5s,height .5s;pointer-events:none}
+.cta .cbtn:hover::before{width:300px;height:300px}
+.cta .cbtn:hover{background:var(--gold)!important;color:#2a2008!important;transform:translateY(-3px)!important;box-shadow:0 8px 24px rgba(176,138,62,.35)}
+
+/* ---- 页脚增强 ---- */
+.ft::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(176,138,62,.2),transparent)}
+
+/* ---- 灯箱增强 ---- */
+.lightbox{transition:opacity .35s ease}
+.lightbox .lb-fig img{transition:transform .4s cubic-bezier(.2,.3,.4,1),filter .3s ease}
+.lightbox .lb-fig img:hover{transform:scale(1.02);filter:brightness(1.05)}
+.lightbox .lb-nav{transition:all .25s ease;backdrop-filter:blur(4px)}
+.lightbox .lb-nav:hover{background:rgba(255,255,255,.25)!important;transform:translateY(-50%) scale(1.1)}
+
+/* ---- 弹窗增强 ---- */
+.modal{transition:opacity .3s ease}
+.modal .box{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease}
+.modal.open .box{animation:modalIn .4s cubic-bezier(.2,.3,.4,1) both}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* ---- 时间轴节点增强 ---- */
+.tl-node{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease}
+.tl-node:hover{transform:translateY(-4px)}
+.tl-node .nimg{transition:box-shadow .4s ease}
+.tl-node:hover .nimg{box-shadow:0 14px 38px rgba(0,0,0,.16)!important}
+.tl-node .nimg img{transition:transform .6s cubic-bezier(.2,.3,.4,1),filter .4s ease}
+.tl-node:hover .nimg img{transform:scale(1.04);filter:brightness(1.04) saturate(1.06)}
+.tl-node .ndot{transition:transform .35s ease,box-shadow .35s ease}
+.tl-node:hover .ndot{transform:translateX(-50%) scale(1.3);box-shadow:0 0 0 10px rgba(176,138,62,.15)}
+
+/* ---- 展厅图片增强 ---- */
+.gal a{transition:transform .4s cubic-bezier(.2,.3,.4,1),box-shadow .4s ease}
+.gal a:hover{transform:translateY(-4px) scale(1.02)!important;box-shadow:0 12px 32px rgba(0,0,0,.18)!important}
+.gal a img{transition:transform .6s cubic-bezier(.2,.3,.4,1),filter .4s ease}
+.gal a:hover img{transform:scale(1.1)!important;filter:brightness(1.06) saturate(1.1)}
+.gal a .cap{transition:opacity .35s ease,transform .35s ease}
+.gal a:hover .cap{opacity:1!important;transform:translateY(-4px)}
+
+/* ---- 印章微动画 ---- */
+.seal{transition:transform .6s cubic-bezier(.2,.3,.4,1)}
+.seal:hover{transform:rotate(3deg) scale(1.08)}
+
+/* ---- 响应式优化 ---- */
+@media(max-width:860px){
+  .hero-particles{display:none}
+  .hero-scroll-hint{bottom:20px}
+}
+@media(max-width:700px){
+  .hero h1{animation:none}
+  .hero-sub{animation:none}
+  .hero-btn{animation:none}
+}

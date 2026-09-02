@@ -1,0 +1,24 @@
+﻿import puppeteer from "puppeteer-core";
+const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
+const browser = await puppeteer.launch({ executablePath: EDGE, headless: "new", args: ["--no-sandbox"] });
+const page = await browser.newPage();
+await page.setViewport({ width: 1440, height: 900 });
+await page.goto("http://localhost:8000/index.html?desktop=1", { waitUntil: "networkidle0", timeout: 45000 });
+await page.evaluate(() => document.fonts.ready.then(() => new Promise(r => setTimeout(r, 800))));
+const r = await page.evaluate(() => {
+  const loaded = [...document.fonts].filter(f => f.family.includes("Zhi Mang Xing")).map(f => f.family + " " + f.status);
+  const h1 = document.querySelector(".hero h1");
+  const h1Rect = h1.getBoundingClientRect();
+  const span = document.createElement("span");
+  span.textContent = "遗产融绘魅力高邮";
+  span.style.cssText = "position:fixed;left:-9999px;top:0;font-size:150px;white-space:nowrap;visibility:hidden;";
+  document.body.appendChild(span);
+  span.style.fontFamily = "'Zhi Mang Xing', serif";
+  const wZM = span.getBoundingClientRect().width;
+  span.style.fontFamily = "'Ma Shan Zheng', serif";
+  const wMS = span.getBoundingClientRect().width;
+  const check = document.fonts.check('150px "Zhi Mang Xing"', "遗产融绘魅力高邮");
+  return { loaded, check, wZM: Math.round(wZM), wMS: Math.round(wMS), h1W: Math.round(h1Rect.width), h1H: Math.round(h1Rect.height), glyphDiffers: wZM !== wMS };
+});
+console.log(JSON.stringify(r, null, 2));
+await browser.close();
