@@ -1,0 +1,20 @@
+﻿import puppeteer from "puppeteer-core";
+const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
+const browser = await puppeteer.launch({ executablePath: EDGE, headless: "new", args: ["--no-sandbox"] });
+const page = await browser.newPage();
+await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1.5 });
+await page.goto("http://localhost:8000/index.html?desktop=1", { waitUntil: "networkidle0", timeout: 60000 });
+await new Promise(r => setTimeout(r, 800));
+const info = await page.evaluate(() => {
+  const b = document.querySelector(".hero-btn");
+  const r = b.getBoundingClientRect();
+  const roll = document.querySelector(".btn-roll");
+  const cs = getComputedStyle(roll);
+  return { exists: !!b, w: Math.round(r.width), h: Math.round(r.height), btnFont: cs.fontSize, dataPage: b.getAttribute("data-page"), heroH: Math.round(document.querySelector(".hero").getBoundingClientRect().height) };
+});
+console.log("BUTTON:", JSON.stringify(info));
+await page.evaluate(() => document.querySelector(".hero-btn").click());
+await new Promise(r => setTimeout(r, 600));
+const after = await page.evaluate(() => ({ active: [...document.querySelectorAll(".page.active")].map(p => p.id) }));
+console.log("AFTER CLICK:", JSON.stringify(after));
+await browser.close();

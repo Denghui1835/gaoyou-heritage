@@ -1,0 +1,13 @@
+﻿import puppeteer from "puppeteer-core";
+const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
+const browser = await puppeteer.launch({ executablePath: EDGE, headless: "new", args: ["--no-sandbox"] });
+const page = await browser.newPage();
+await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+await page.goto("http://localhost:8000/index-m.html", { waitUntil: "networkidle0", timeout: 60000 });
+await new Promise(r => setTimeout(r, 900));
+await page.evaluate(() => window.showPage("water"));
+await new Promise(r => setTimeout(r, 3200));
+await page.screenshot({ path: "D:/新文科比赛/高邮网站/gaoyou-pages/screenshots/water-sluice.png", fullPage: false });
+const info = await page.evaluate(() => { const s = document.querySelector(".w-sluice svg"); const b = s.getBoundingClientRect(); return { w: Math.round(b.width), h: Math.round(b.height), gateTransform: getComputedStyle(document.querySelector(".ws-gate")).transform }; });
+console.log(JSON.stringify(info));
+await browser.close();

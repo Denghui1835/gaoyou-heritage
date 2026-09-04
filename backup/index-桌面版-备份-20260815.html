@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="高邮湖泊湿地多类型遗产数字活化平台——集农业文化遗产、世界灌溉工程遗产、非物质文化遗产于一体的沉浸式文化长卷。">
+<script>
+/* 手机端自动跳转到手机版 index-m.html（竖版首屏）。
+   如需保留电脑版，请在手机浏览器访问 index.html?desktop=1；
+   彻底禁用请删除本段。 */
+if(matchMedia('(max-width:820px)').matches && !location.search.includes('desktop=1')){
+  location.replace('./index-m.html');
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<title>遗产融绘 · 魅力高邮 | 高邮湖泊湿地多类型遗产数字活化平台</title><link rel="preconnect" href="https://fonts.googleapis.cn"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+      onerror="this.onerror=null;var l=document.createElement('link');l.rel='stylesheet';l.href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';document.head.appendChild(l);">
+<style>
+@font-face{font-family:'STXingkai';font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/stxingkai.woff2) format('woff2');}
+:root{
+  --grn:#2d6a4f; --grn-d:#173a2e; --grn-x:#0e2a20;
+  --gold:#b08a3e; --gold-l:#d4b978;
+  --cream:#faf6ec; --paper:#fffdf6;
+  --ink:#2b2b2b; --muted:#7a7264;
+  --blue:#4a7480; --orange:#a5653f; --red:#a34d3c;
+  --line:#e6dfd0;
+  --brush:'Ma Shan Zheng','STKaiti','KaiTi','KaiTi_GB2312',cursive;
+  --lishu:'ZCOOL XiaoWei','Ma Shan Zheng','LiSu','LiSu Pro','STKaiti','KaiTi',serif;
+  --serif:'Noto Serif SC','Source Han Serif SC','Songti SC','SimSun',serif;
+  --sans:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.9;font-size:18px;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+section{scroll-margin-top:70px}
+
+/* ============ 顶部导航（水墨菜单，右上） ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;
+  padding:12px 5vw 12px 2.5vw;background:linear-gradient(180deg,rgba(23,58,46,.55),rgba(23,58,46,.25) 70%,transparent);
+  transition:background .3s}
+.nav.solid{background:rgba(250,246,236,.94);box-shadow:0 2px 18px rgba(0,0,0,.08)}
+.nav .logo{display:flex;align-items:center;gap:8px;font-family:var(--brush);font-size:24px;color:#fff;letter-spacing:.12em;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+.nav .nav-logo-img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 2px 8px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.35)}
+.nav.solid .logo{color:var(--grn-d);text-shadow:none}
+.nav ul{display:flex;gap:5px;list-style:none;flex-wrap:wrap}
+.nav a{display:block;padding:6px 11px;border-radius:20px;font-size:14px;color:#fdf6e8;
+  letter-spacing:.08em;transition:.25s;position:relative}
+.nav a::after{content:'';position:absolute;left:50%;right:50%;bottom:2px;height:2px;background:var(--gold);border-radius:1px;transition:.3s}
+.nav a:hover::after{left:22%;right:22%}
+.nav a:hover{background:rgba(10,20,14,.16);color:#fff;transform:translateY(-1px)}
+.nav.solid a{color:var(--ink)}
+.nav.solid a:hover{background:rgba(176,138,62,.14);color:var(--grn-d)}
+@media(max-width:860px){.nav{flex-wrap:wrap;gap:6px;justify-content:center}.nav .logo{font-size:17px;gap:7px}.nav .nav-logo-img{width:34px;height:34px}.nav ul{gap:2px}.nav a{padding:5px 9px;font-size:13px}}
+
+/* ============ 首屏 Hero：AI 水墨图 + 门户入口 ============ */
+.hero{position:relative;background:transparent}
+.hero-banner{position:relative;min-height:60vh;overflow:hidden;background:transparent}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;z-index:0;
+  animation:kenburns 36s ease-in-out infinite alternate;will-change:transform}
+/* 首屏印章：传统镂空朱砂篆刻风（完整样式见下方 .seal 定义） */
+@keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+.hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(14,42,32,.45) 0%,rgba(248,244,233,.12) 12%,transparent 36%,rgba(248,244,233,.22) 72%,rgba(248,244,233,.42) 100%)}
+.hero-inner{position:relative;z-index:3;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:150px 24px 110px}
+.hero-kicker{font-size:14px;letter-spacing:.6em;text-indent:.6em;color:#5f6b54;font-weight:700;margin-bottom:22px;text-shadow:0 1px 0 rgba(255,255,255,.85)}
+.hero-divider{width:min(320px,44vw);height:1px;margin:0 auto 10px;background:linear-gradient(90deg,transparent,rgba(176,138,62,.85) 18%,rgba(176,138,62,.85) 82%,transparent);position:relative}
+.hero-divider::before,.hero-divider::after{content:'';position:absolute;top:50%;width:5px;height:5px;border-radius:50%;background:#b08a3e;transform:translateY(-50%)}
+.hero-divider::before{left:18%}.hero-divider::after{right:18%}
+.hero h1{font-family:'STXingkai','KaiTi','STKaiti',cursive;font-size:clamp(68px,12.5vw,150px);line-height:1.16;letter-spacing:.12em;text-indent:.12em;margin-top:34px;margin-bottom:2px;
+  background:linear-gradient(180deg,#8a6a2c 0%,#b08a3e 30%,#eed9a6 47%,#b08a3e 64%,#8a6a2c 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 0 8px rgba(255,252,244,.55)) drop-shadow(0 2px 4px rgba(40,25,5,.38)) drop-shadow(0 14px 34px rgba(122,90,30,.25))}
+
+
+.hero h1 em .t{background:linear-gradient(180deg,#9a7426 0%,#c9a55c 34%,#f2dfae 50%,#c9a55c 66%,#8a6a2c 100%)}
+
+
+
+
+
+
+
+
+.hero h1 .zz{font-family:'STKaiti','KaiTi','SimSun',serif;
+  background:linear-gradient(180deg,#7a5c24 0%,#b08a3e 46%,#7a5c24 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero h1 em{font-style:normal;display:block;font-size:.8em;margin-top:16px;letter-spacing:.2em;text-indent:.2em;
+  background:linear-gradient(180deg,#9a7426 0%,#c9a55c 34%,#f2dfae 50%,#c9a55c 66%,#8a6a2c 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero-sub{margin-top:52px;font-family:var(--lishu);font-size:clamp(22px,2.6vw,26px);line-height:1.95;letter-spacing:.36em;text-indent:.36em;color:#123024;font-weight:700;text-shadow:1px 0 0 #fff,-1px 0 0 #fff,0 1px 0 #fff,0 -1px 0 #fff,1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff}
+.hero-btn{display:inline-flex;align-items:center;margin-top:44px;padding:0;border:none;background:none;cursor:pointer;position:relative;
+  filter:drop-shadow(0 10px 22px rgba(80,55,15,.28));transition:transform .45s ease,filter .45s ease}
+.hero-btn:hover{transform:translateY(-3px) scale(1.045);filter:drop-shadow(0 14px 30px rgba(80,55,15,.36)) brightness(1.07) saturate(1.06)}
+
+
+
+
+
+
+.hero-btn:hover{transform:translateY(-3px)}
+.hero-btn::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(105deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .6s}
+.hero-btn:hover::after{left:120%}
+.hero-btn .rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:translate(-50%,-50%) scale(0);animation:rip .75s ease-out}
+
+/* 卷轴横幅按钮（复刻参考图） */
+.hero-btn .btn-roll{font-family:var(--serif);font-size:17px;letter-spacing:.22em;text-indent:.22em;color:#f4ead2;font-weight:700;
+  background:linear-gradient(180deg,#4f3d2a,#2e2113);border:1px solid #191005;border-radius:8px;padding:14px 38px;position:relative;z-index:1;
+  box-shadow:0 6px 18px rgba(25,14,3,.45),inset 0 1px 0 rgba(255,255,255,.16)}
+.hero-btn .btn-roll::before{content:'';position:absolute;inset:5px 7px;border:1px solid rgba(244,234,210,.32);border-radius:5px;pointer-events:none}
+.hero-btn .btn-cap{width:36px;height:36px;border-radius:50%;position:relative;flex:none;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.2),0 3px 8px rgba(0,0,0,.22)}
+.hero-btn .btn-cap.left{background:radial-gradient(circle at 35% 30%,#86a872,#5d7f4f 72%);margin-right:-11px;z-index:2}
+.hero-btn .btn-cap.right{background:radial-gradient(circle at 35% 30%,#86a872,#5d7f4f 72%);margin-left:-11px;z-index:2}
+.hero-btn .btn-cap::before{content:'';position:absolute;inset:6px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.8)}
+.hero-btn .btn-cap::after{content:'';position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.95);transform:translate(-50%,-50%)}
+.hero-btn:hover .btn-cap{transform:rotate(8deg)}@keyframes rip{to{transform:translate(-50%,-50%) scale(3);opacity:0}}
+
+/* ============ 首屏门户：三卡 + 四卡 + 语录（复刻参考图） ============ */
+.hero-portal{position:relative;z-index:4;padding:64px 0 60px;background:linear-gradient(180deg,#f4eee0,#fbf7ee)}
+.pc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.pc-card{display:flex;flex-direction:column;background:rgba(255,253,246,.96);border:1px solid rgba(214,196,162,.7);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 10px 26px rgba(40,25,5,.14);transition:transform .3s ease,box-shadow .3s ease}
+.pc-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(40,25,5,.22)}
+.pc-card .pc-img{height:150px;overflow:hidden}
+.pc-card .pc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pc-card:hover .pc-img img{transform:scale(1.06)}
+.pc-card .pc-bd{padding:18px 20px 20px}
+.pc-card h3{font-family:var(--brush);font-size:26px;color:var(--grn-d);letter-spacing:.1em;margin:0 0 4px}
+.pc-card .pc-tag{font-family:var(--serif);font-size:13px;letter-spacing:.2em;color:var(--gold);font-weight:700;margin-bottom:8px}
+.pc-card p{font-size:14px;line-height:1.75;color:var(--muted);margin:0 0 14px}
+.pc-card .pc-go{font-family:var(--serif);font-size:13px;letter-spacing:.14em;color:#1d3a2c;font-weight:700}
+.pc-card .pc-go::after{content:' →'}
+.pm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
+.pm-card{position:relative;display:block;background:rgba(255,253,246,.96);border:1px solid rgba(214,196,162,.7);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:0 10px 26px rgba(40,25,5,.14);transition:transform .3s ease,box-shadow .3s ease}
+.pm-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(40,25,5,.22)}
+.pm-card .pm-img{height:96px;overflow:hidden}
+.pm-card .pm-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.pm-card:hover .pm-img img{transform:scale(1.06)}
+.pm-card .pm-bd{padding:16px 18px 18px}
+.pm-card h3{font-family:var(--brush);font-size:21px;color:var(--grn-d);letter-spacing:.08em;margin:0 0 5px}
+.pm-card .pm-sub{font-family:var(--serif);font-size:13px;line-height:1.6;color:var(--muted);letter-spacing:.05em;margin:0 0 12px}
+.pm-card .pm-go{font-family:var(--serif);font-size:13px;letter-spacing:.14em;color:var(--gold);font-weight:700}
+.pm-card .pm-go::after{content:' →'}
+.portal-quote{margin:54px auto 0;max-width:700px;text-align:center;font-family:var(--lishu);font-size:clamp(17px,2vw,20px);letter-spacing:.24em;text-indent:.24em;color:#173a2e;font-weight:700;text-shadow:0 1px 2px rgba(255,252,244,.85),0 0 14px rgba(255,252,244,.6)}
+@media(max-width:900px){.pc-grid{grid-template-columns:1fr;gap:18px}.pm-grid{grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}}
+@media(max-width:520px){.pm-grid{grid-template-columns:1fr}.hero-portal{padding:44px 0 40px}}
+/* ============ 单页切换：首页门户 + 各板块隐藏页 ============ */
+.page{display:none}
+.page.active{display:block}
+.page-back{max-width:1100px;margin:14px auto 0;padding:0 24px}
+.page-back a{font-family:var(--serif);font-size:14px;letter-spacing:.14em;color:var(--grn-d);text-decoration:none;font-weight:700}
+.page-back a::before{content:'← '}
+/* 首页门户单屏紧凑化（复刻参考图：全部入口收在一屏内） */
+.hero-banner{min-height:60vh}
+.hero-inner{min-height:auto;padding:64px 24px 30px}
+.hero-img{object-position:center 42%}
+.hero-kicker{font-size:10px;letter-spacing:.4em;text-indent:.4em;margin-bottom:7px}
+.hero-divider{margin-bottom:4px}
+.hero h1{font-size:clamp(30px,5.2vw,64px);margin-top:8px;margin-bottom:0;line-height:1.12}
+.hero h1 em{margin-top:4px}
+.hero-sub{margin-top:9px;font-size:13px;letter-spacing:.16em;text-indent:.16em;line-height:1.55}
+.hero-btn{margin-top:7px}
+.hero-btn .btn-roll{font-size:12.5px;padding:7px 20px;letter-spacing:.12em;text-indent:.12em}
+.hero-btn .btn-cap{width:22px;height:22px}
+.hero-btn .btn-cap::before{inset:4px}
+.hero-portal{padding:44px 0 40px}
+.pc-grid{gap:9px;grid-template-columns:repeat(3,1fr)}
+.pc-card{flex-direction:row;align-items:center}
+.pc-card .pc-img{width:76px;height:76px;min-height:76px;flex:none;position:relative;border-radius:10px;overflow:hidden}
+.pc-card .pc-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pc-card .pc-bd{padding:7px 11px;display:flex;flex-direction:column;justify-content:center}
+.pc-card h3{font-size:14px}
+.pc-card .pc-tag{font-size:9px;margin-bottom:3px}
+.pc-card p{font-size:10.5px;line-height:1.4;margin-bottom:4px}
+.pc-card .pc-go{font-size:10px}
+.pm-grid{margin-top:8px;gap:9px}
+.pm-card{display:flex;flex-direction:row;align-items:center}
+.pm-card .pm-img{width:52px;height:52px;min-height:52px;flex:none;position:relative;border-radius:8px;overflow:hidden}
+.pm-card .pm-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pm-card .pm-bd{padding:5px 9px;display:flex;flex-direction:column;justify-content:center}
+.pm-card h3{font-size:12.5px}
+.pm-card .pm-sub{font-size:9.5px;margin-bottom:2px}
+.pm-card .pm-go{font-size:10px}
+.portal-quote{margin:7px auto 0;font-size:12.5px;letter-spacing:.12em;text-indent:.12em}
+.vtext{position:absolute;right:calc(2.5vw + 152px);bottom:calc(26% + 4px);z-index:3;opacity:.7;
+  display:flex;flex-direction:row;gap:26px;align-items:flex-end}
+.vtext span{writing-mode:vertical-rl;white-space:nowrap;font-family:'STXingkai','FZShuTi','STKaiti','KaiTi',serif;font-weight:700;font-size:24px;letter-spacing:.44em;line-height:1.85;color:#111111;text-shadow:1px 0 0 rgba(248,242,228,.4),-1px 0 0 rgba(248,242,228,.4)}
+.seal{position:absolute;right:-18px;bottom:-14px;width:43px;height:86px;z-index:3;opacity:1}
+.seal svg{width:100%;height:100%;display:block}
+/* 印体：暗朱砂沉稳色调 + 细微噪点 + 不规则斑驳毛边（feTurbulence 位移遮罩，边缘自然残缺） */
+
+/* 印泥洇开：印体边缘向外缓慢渗开的朦胧朱痕 */
+
+/* 文字镂空：用背景图裁剪到文字形状，让下层背景画面直接从文字内部透出（不支持时回退为米色字） */
+
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  
+}
+.hero-tooltip{position:fixed;z-index:100;pointer-events:none;background:rgba(255,253,247,.96);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-size:13px;color:var(--grn-d);box-shadow:0 8px 24px rgba(60,40,10,.12);opacity:0;transform:translate(-50%,-100%) translateY(-10px);transition:opacity .25s;white-space:nowrap;letter-spacing:.04em}
+@media(max-width:700px){.hero-img{object-position:center 20%}.hero-banner{min-height:56vh}.hero-inner{height:auto;min-height:0;justify-content:center;padding-top:6vh;padding-bottom:2vh}.vtext,.seal{display:none}.hero-kicker{font-size:12px;letter-spacing:.38em;text-indent:.38em}.hero-divider{width:min(220px,52vw)}.hero h1{font-size:clamp(46px,13.5vw,64px);letter-spacing:.08em;text-indent:.08em;margin-top:0}.hero h1 em{margin-top:10px;font-size:.82em}.hero-sub{font-size:15px;letter-spacing:.24em;text-indent:.24em;margin-top:36px;line-height:2.05}.hero-btn{margin-top:42px}.hero-btn .btn-roll{font-size:14px;padding:11px 22px;letter-spacing:.16em;text-indent:.16em}.hero-btn .btn-cap{width:26px;height:26px}.hero-btn .btn-cap::before{inset:5px}.hero-btn .btn-cap::after{width:6px;height:6px}}
+@media (prefers-reduced-motion: reduce){.hero-scene animate,.hero-scene animateTransform{animation:none}}
+
+/* ============ 通用区块 ============ */
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.sec{padding:96px 0}
+.lbl{font-family:var(--serif);font-size:15px;letter-spacing:.5em;color:var(--gold);font-weight:700;margin-bottom:14px;text-align:center}
+.tt{font-family:var(--brush);font-size:clamp(34px,5vw,52px);text-align:center;color:var(--grn-d);letter-spacing:.14em;margin-bottom:14px;line-height:1.3}
+.sub{text-align:center;max-width:760px;margin:0 auto 52px;color:var(--muted);font-size:18px;line-height:2}
+
+/* ============ 一湖三脉 ============ */
+.pulse{background:linear-gradient(180deg,#f6f1e4,#fbf7ee)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+@media(max-width:900px){.three{grid-template-columns:1fr}}
+.tc{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(120,90,30,.06);transition:transform .3s,box-shadow .3s}
+.tc:hover{transform:translateY(-6px);box-shadow:0 16px 44px rgba(120,90,30,.14)}
+.tc .pic{height:200px;overflow:hidden;position:relative}
+.tc .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.tc:hover .pic img{transform:scale(1.06)}
+.tc .badge{position:absolute;left:16px;top:16px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,253,246,.9);
+  padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700;letter-spacing:.1em;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.tc .badge .dot{width:9px;height:9px;border-radius:50%}
+.tc .bd{padding:26px 26px 30px}
+.tc h3{font-family:var(--serif);font-size:24px;margin-bottom:4px}
+.tc .tagline{font-size:15px;letter-spacing:.22em;margin-bottom:14px;font-weight:700}
+.tc p{font-size:16.5px;color:var(--muted);line-height:1.95}
+.tc .chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.tc .chip{font-size:14px;padding:4px 12px;border-radius:16px;letter-spacing:.05em}
+.tc .motto{font-family:var(--serif);font-weight:700;font-size:17px;margin-top:18px;color:var(--ink);border-top:1px dashed var(--line);padding-top:16px}
+.b-water .badge{color:#4a7480}.b-water .dot{background:#4a7480}.b-water h3{color:#33596a}.b-water .tagline{color:#4a7480}
+.b-water .chips .chip{background:#e7efed;color:#33596a}
+.b-field .badge{color:#2d6a4f}.b-field .dot{background:#2d6a4f}.b-field h3{color:#2d6a4f}.b-field .tagline{color:#2d6a4f}
+.b-field .chips .chip{background:#e9f2e9;color:#2d6a4f}
+.b-people .badge{color:#a5653f}.b-people .dot{background:#a5653f}.b-people h3{color:#7d4a2e}.b-people .tagline{color:#a5653f}
+.b-people .chips .chip{background:#f4e7dd;color:#7d4a2e}
+/* ---- 三脉点击交互动画 ---- */
+.tc .pic{position:relative}
+.tc-anim{position:absolute;inset:0;z-index:4;display:none;align-items:center;justify-content:center;flex-direction:column;color:#fff}
+.tc-anim.show{display:flex}
+.ta-txt{font-family:var(--serif);font-size:16px;font-weight:700;letter-spacing:.14em;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.tc-explore{margin-top:18px;padding:8px 18px;border-radius:20px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-size:14px;letter-spacing:.08em;cursor:pointer;transition:.25s;font-family:var(--serif)}
+.tc-explore:hover{background:var(--gold);color:#fff;transform:translateY(-1px)}
+/* 水流动画 */
+.water-anim{background:linear-gradient(180deg,rgba(74,116,128,.2),rgba(31,72,90,.6));overflow:hidden}
+.water-anim::before{content:'';position:absolute;inset:-40% 0;background:repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 46px,rgba(214,235,241,.55) 46px 78px);animation:flowX 1.5s linear infinite;transform:rotate(-2deg)}
+@keyframes flowX{from{transform:translateX(-25%) rotate(-2deg)}to{transform:translateX(25%) rotate(-2deg)}}
+.water-anim .ta-txt{position:relative;z-index:2;background:rgba(20,50,62,.5);padding:6px 16px;border-radius:16px;letter-spacing:.2em}
+/* 四季轮转 */
+.season-anim{background:linear-gradient(180deg,rgba(23,58,46,.45),rgba(45,106,79,.6))}
+.se-emoji{font-size:52px;line-height:1;animation:sePop .9s ease infinite}
+@keyframes sePop{0%{transform:scale(.8);opacity:.6}50%{transform:scale(1.1);opacity:1}100%{transform:scale(.8);opacity:.6}}
+.se-name{font-family:var(--brush);font-size:22px;letter-spacing:.14em;margin-top:8px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.se-note{font-size:12px;letter-spacing:.2em;opacity:.9;margin-top:4px;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+/* 灯火歌声 */
+.people-anim{background:radial-gradient(circle at 50% 65%,rgba(165,101,63,.72),rgba(70,35,18,.78))}
+.people-anim .p-note{position:absolute;font-size:28px;opacity:0;animation:noteUp 1.8s ease-out infinite}
+@keyframes noteUp{0%{opacity:0;transform:translateY(14px) scale(.8)}28%{opacity:1}100%{opacity:0;transform:translateY(-46px) scale(1.1)}}
+
+/* ============ 穿越千年 ============ */
+.timeline-sec{background:var(--paper)}
+.tl{position:relative;max-width:980px;margin:0 auto;padding:20px 0}
+.tl:before{content:'';position:absolute;left:50%;top:8%;bottom:8%;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,transparent,var(--gold) 20%,var(--gold) 80%,transparent)}
+/* 图、文各自固定在两侧 42%，中轴穿过中间的留白区，任何桌面宽度都不压字 */
+.tl-node{position:relative;display:flex;align-items:center;justify-content:space-between;gap:40px;margin:48px 0}
+.tl-node .nimg{width:42%;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.12);flex-shrink:0}
+.tl-node .nimg img{width:100%;height:240px;object-fit:cover}
+.tl-node .ntxt{width:42%;flex:none}
+.tl-node .era{font-family:var(--brush);font-size:34px;color:var(--gold);letter-spacing:.2em;margin-bottom:10px}
+.tl-node ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.tl-node li{font-size:17px;color:var(--muted);padding-left:22px;position:relative}
+.tl-node li:before{content:'◆';position:absolute;left:0;top:0;font-size:11px;color:var(--gold)}
+.tl-node .ndot{position:absolute;left:50%;transform:translateX(-50%);width:18px;height:18px;border-radius:50%;
+  background:var(--gold-l);border:4px solid var(--gold);box-shadow:0 0 0 6px rgba(176,138,62,.18)}
+.tl-node:nth-child(odd){flex-direction:row}
+.tl-node:nth-child(even){flex-direction:row-reverse}
+@media(max-width:860px){.tl:before{left:22px}.tl-node{flex-direction:column!important;align-items:flex-start;gap:16px;padding-left:64px}
+  .tl-node .nimg{width:100%}.tl-node .ndot{left:22px;transform:translateX(-50%)}
+  .tl-node .ntxt{width:100%}}
+
+/* ============ 数字地图 ============ */
+.map-sec{background:linear-gradient(180deg,#eef3ea,#f6f1e4)}
+.mbox{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 12px 40px rgba(0,0,0,.12);background:#dfe8e0}
+.mbox #heritage-map{width:100%;height:620px}
+@media(max-width:700px){.mbox #heritage-map{height:460px}}
+.mlegend{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;margin:20px 0 12px}
+.mli{display:flex;align-items:center;gap:8px;font-size:16px;color:#5a564a}
+.mdot{width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 6px rgba(0,0,0,.25)}
+.m-note{text-align:center;font-size:15px;color:#9a9180;margin-top:14px}
+.m-stats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+.m-stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 22px;text-align:center}
+.m-stat b{font-family:var(--serif);font-size:24px;color:var(--grn);display:block}
+.m-stat span{font-size:14.5px;color:var(--muted)}
+/* MapLibre GL 3D 地图：弹窗与控件贴合整体水墨配色 */
+.maplibregl-popup-content{font-family:var(--sans);border-radius:12px;box-shadow:0 10px 30px rgba(60,40,10,.18)}
+.maplibregl-popup-content b{color:var(--grn-d)}
+.maplibregl-popup-close-button{color:#9a9180;font-size:18px}
+.maplibregl-ctrl-attrib{font-size:11px}
+
+/* ============ 现状 · 数据洞察 ============ */
+.survey-sec{background:linear-gradient(180deg,#f6f1e4,#eef3ea)}
+.survey-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px}
+@media(max-width:900px){.survey-grid{grid-template-columns:1fr}}
+.s-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:26px 24px 22px;box-shadow:0 8px 28px rgba(120,90,30,.07);transition:transform .3s,box-shadow .3s}
+.s-card:hover{transform:translateY(-4px);box-shadow:0 14px 38px rgba(120,90,30,.13)}
+.s-card h3{font-family:var(--serif);font-size:20px;color:var(--grn-d);margin-bottom:16px;letter-spacing:.04em}
+.s-card .chart{width:100%;height:300px}
+.s-card .s-note{margin-top:12px;font-size:14.5px;color:var(--muted);line-height:1.85;border-top:1px dashed var(--line);padding-top:12px}
+.s-card .s-note b{color:var(--grn-d)}
+@media(max-width:520px){.s-card{padding:22px 18px 18px}.s-card .chart{height:260px}.s-card h3{font-size:18px}}
+
+/* ============ 研学路线 · 水流路线图 ============ */
+.routes-sec{background:var(--paper)}
+.flowmap{display:grid;grid-template-columns:128px 1fr;gap:0 22px;align-items:stretch}
+.flow-src{width:118px;height:118px;border-radius:50%;margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:radial-gradient(circle at 35% 30%,#5b8aa0,#2c5f72 70%);border:2px solid rgba(255,255,255,.3);color:#eef6f8;
+  box-shadow:0 14px 34px rgba(30,70,90,.35),inset 0 -6px 14px rgba(0,0,0,.12)}
+.flow-src .fs-i{font-size:34px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
+.flow-src .fs-t{font-family:var(--brush);font-size:17px;letter-spacing:.12em;text-shadow:0 1px 3px rgba(0,0,0,.35)}
+.flow-src .fs-s{font-size:10.5px;letter-spacing:.2em;color:rgba(238,246,248,.75)}
+.flow-lanes{display:flex;flex-direction:column;gap:28px}
+.flow-lane{display:grid;grid-template-columns:1fr 236px;gap:20px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:14px 22px 14px 8px;box-shadow:0 8px 26px rgba(120,90,30,.06);transition:transform .3s,box-shadow .3s}
+.flow-lane:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(120,90,30,.13)}
+.flow-lane .fl-svg{width:100%;height:auto;display:block}
+.fl-dot{fill:#fff;stroke-width:3}
+.fl-dot-label{font-size:12px;fill:#5a564a;font-family:var(--serif);font-weight:700;letter-spacing:.05em}
+.fl-card .num{font-family:var(--brush);font-size:18px;color:var(--gold);letter-spacing:.14em;margin-bottom:4px}
+.fl-card h3{font-family:var(--serif);font-size:19px;margin-bottom:6px}
+.fl-card p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:10px}
+.fl-card .go{font-size:14.5px;letter-spacing:.16em;font-weight:700}
+.fl-card .go span{display:inline-block;transition:transform .25s}
+.flow-lane:hover .go span{transform:translateX(6px)}
+.lane1 .fl-card .go{color:#4a7480}.lane2 .fl-card .go{color:#2d6a4f}.lane3 .fl-card .go{color:#a5653f}
+@media(max-width:900px){
+  .flowmap{grid-template-columns:1fr;gap:16px}
+  .flow-src{width:96px;height:96px}
+  .flow-src .fs-i{font-size:28px}.flow-src .fs-t{font-size:15px}
+  .flow-lane{grid-template-columns:1fr;padding:16px;gap:14px}
+  .fl-card{text-align:center}
+  .fl-card .go{display:inline-block}
+}
+
+/* ============ 互动游戏中心 ============ */
+.game-sec{background:linear-gradient(180deg,#f3ecdd,#faf6ec)}
+.game3{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+@media(max-width:900px){.game3{grid-template-columns:1fr}}
+.gc{border-radius:20px;overflow:hidden;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.07);text-align:center;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.gc:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(0,0,0,.14)}
+.gc .cover{height:150px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}
+.gc .cover .watermark{position:absolute;right:14px;bottom:8px;font-size:11px;color:rgba(255,255,255,.85);letter-spacing:.15em}
+.gc .bd{padding:22px 20px 26px;display:flex;flex-direction:column;flex:1}
+.gc h3{font-family:var(--serif);font-size:21px;margin-bottom:4px}
+.gc .en{font-size:14px;letter-spacing:.18em;color:var(--gold);margin-bottom:10px;font-weight:700}
+.gc p{font-size:15.5px;color:var(--muted);flex:1}
+.gc .gbtn{margin-top:18px;padding:10px 22px;border-radius:24px;font-size:16px;letter-spacing:.14em;font-weight:700;cursor:pointer;border:none;transition:.25s}
+.g1 .cover{background:linear-gradient(140deg,#1e3642,#4a7480);color:#e7efed}
+.g1 .gbtn{background:#4a7480;color:#fff}.g1 .gbtn:hover{background:#33596a}
+.g2 .cover{background:linear-gradient(140deg,#173a2e,#2d6a4f);color:#d9f2df}
+.g2 .gbtn{background:#2d6a4f;color:#fff}.g2 .gbtn:hover{background:#1f4a38}
+.g3 .cover{background:linear-gradient(140deg,#47271c,#a5653f);color:#fde8d8}
+.g3 .gbtn{background:#a5653f;color:#fff}.g3 .gbtn:hover{background:#7d4a2e}
+
+/* ============ 数字展厅 ============ */
+.gallery-sec{background:var(--cream)}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.gal{grid-template-columns:repeat(2,1fr)}}
+.gal a{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 6px 20px rgba(0,0,0,.10);cursor:zoom-in}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gal a:hover img{transform:scale(1.08)}
+.gal a .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;color:#fff;font-size:14px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.65));opacity:0;transition:.3s;text-align:center;letter-spacing:.1em}
+.gal a:hover .cap{opacity:1}
+
+/* ============ 数字展厅 · 灯箱 ============ */
+.lightbox{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;background:rgba(10,20,15,.9);backdrop-filter:blur(4px)}
+.lightbox.open{display:flex}
+.lightbox .lb-close{position:absolute;top:16px;right:22px;font-size:42px;color:#e6dfd0;border:none;background:none;cursor:pointer;line-height:1;z-index:5;transition:.2s}
+.lightbox .lb-close:hover{color:#fff;transform:rotate(90deg)}
+.lightbox .lb-fig{max-width:min(92vw,1100px);max-height:88vh;display:flex;flex-direction:column;align-items:center;gap:14px}
+.lightbox img{max-width:92vw;max-height:78vh;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+.lightbox figcaption{color:#e6dfd0;font-size:16px;letter-spacing:.12em;text-align:center;font-family:var(--serif)}
+.lightbox .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;border-radius:50%;border:1px solid rgba(230,223,208,.35);background:rgba(255,255,255,.08);color:#e6dfd0;font-size:34px;cursor:pointer;line-height:1;z-index:5;transition:.2s;font-family:var(--sans)}
+.lightbox .lb-nav:hover{background:rgba(255,255,255,.22);color:#fff}
+.lightbox .lb-prev{left:20px}
+.lightbox .lb-next{right:20px}
+@media(max-width:700px){.lightbox .lb-close{font-size:32px;top:12px;right:14px}.lightbox .lb-nav{width:44px;height:44px;font-size:26px}.lightbox .lb-prev{left:8px}.lightbox .lb-next{right:8px}}
+
+/* ============ 关于我们 · 三重困境与青年回应 ============ */
+.about-sec{background:var(--paper)}
+.dilemma-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:52px}
+@media(max-width:900px){.dilemma-grid{grid-template-columns:1fr}}
+.dg{background:linear-gradient(180deg,#f6f1e4,#fbf7ee);border:1px solid var(--line);border-radius:20px;padding:32px 26px 28px;text-align:center;transition:transform .3s,box-shadow .3s}
+.dg:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(120,90,30,.12)}
+.dg-icon{width:76px;height:76px;margin:0 auto 18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 18px rgba(120,90,30,.1)}
+.dg h3{font-family:var(--serif);font-size:23px;color:var(--grn-d);margin-bottom:12px;letter-spacing:.1em}
+.dg p{font-size:15.5px;color:var(--muted);line-height:1.95;margin-bottom:16px}
+.dg-sol{display:block;font-size:14px;color:var(--gold);font-weight:700;letter-spacing:.04em;border-top:1px dashed var(--line);padding-top:14px;line-height:1.7}
+.about-box{background:linear-gradient(140deg,#173a2e,#2d6a4f);border-radius:22px;padding:44px 40px;color:#eaf2e6;box-shadow:0 16px 44px rgba(30,60,40,.25)}
+.about-box h3{font-family:var(--serif);font-size:23px;letter-spacing:.08em;margin-bottom:14px;color:#f4ead2}
+.about-box p{font-size:16px;line-height:2;color:rgba(234,242,230,.88)}
+.about-stats{display:flex;flex-wrap:wrap;gap:14px;margin:26px 0 10px}
+.as{flex:1;min-width:140px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px 12px;text-align:center}
+.as b{font-family:var(--brush);font-size:30px;color:#f0d68d;display:block;letter-spacing:.05em}
+.as span{font-size:13.5px;color:rgba(234,242,230,.82)}
+@media(max-width:700px){.about-box{padding:32px 22px}.about-box h3{font-size:20px}.about-box p{font-size:15px}.as{min-width:calc(50% - 14px)}.as b{font-size:26px}.as span{font-size:12.5px}.dg{padding:24px 18px}}
+
+/* ============ 底部 CTA ============ */
+.cta{position:relative;padding:120px 24px;text-align:center;overflow:hidden;background:#0e2a20}
+.cta .bg{position:absolute;inset:0;background:url('./img/cta.jpg') center/cover no-repeat}
+.cta .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,42,32,.82),rgba(14,42,32,.66))}
+.cta .inner{position:relative;z-index:2;max-width:860px;margin:0 auto}
+.cta .words{font-family:var(--brush);font-size:clamp(28px,4.5vw,44px);color:#f4ead2;letter-spacing:.12em;line-height:1.6;margin-bottom:40px}
+.cta .btns{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.cta .cbtn{padding:14px 34px;border-radius:30px;font-family:var(--serif);font-size:16px;letter-spacing:.2em;font-weight:700;cursor:pointer;border:1px solid var(--gold);transition:.25s;background:transparent;color:#f0e6c8}
+.cta .cbtn:hover{background:var(--gold);color:#2a2008;transform:translateY(-2px)}
+.cta .cbtn.filled{background:linear-gradient(135deg,#e6cf92,#c9a55c);border-color:transparent;color:#3a2c0e}
+.cta .cbtn.filled:hover{filter:brightness(1.06)}
+.cta .tiny{margin-top:26px;font-size:15px;color:rgba(240,230,200,.6);letter-spacing:.15em}
+
+/* ============ 页脚 ============ */
+.ft{padding:64px 24px 56px;text-align:center;background:var(--grn-x);color:#d9d2bd}
+.ft h3{font-family:var(--brush);font-size:30px;letter-spacing:.16em;color:#f0e6c8;margin-bottom:12px}
+.ft .sub-en{font-size:15px;letter-spacing:.4em;color:var(--gold);margin-bottom:22px}
+.ft p{font-size:16px;line-height:2;color:#b8b19b}
+.ft .foot-src{margin-top:20px;padding-top:20px;border-top:1px solid rgba(240,230,200,.14);font-size:14.5px;color:#8f8875}
+
+/* ============ 弹窗 ============ */
+.modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(14,30,22,.55);backdrop-filter:blur(3px)}
+.modal.open{display:flex}
+.modal .box{background:var(--paper);border-radius:20px;max-width:520px;width:92%;max-height:82vh;overflow:auto;padding:34px 30px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.modal .close{position:absolute;top:14px;right:18px;font-size:26px;cursor:pointer;color:#9a9180;line-height:1;border:none;background:none}
+.modal h3{font-family:var(--serif);font-size:22px;color:var(--grn-d);margin-bottom:14px}
+.modal p{font-size:16.5px;color:var(--muted);line-height:2}
+.modal ol{margin:10px 0 0 20px;font-size:16px;color:var(--muted);line-height:2}
+.modal .hl{background:#f3ecd9;border-left:3px solid var(--gold);padding:10px 16px;border-radius:6px;font-size:15.5px;color:#6b5a2e;margin-top:14px}
+
+@media(max-width:700px){
+  .hero-banner{min-height:56vh !important}
+  .hero-inner{justify-content:center !important;min-height:auto !important;height:auto !important;padding-top:6vh !important;padding-bottom:2vh !important}
+}
+
+@media(max-width:860px){
+  .nav .logo{font-size:16px !important;gap:6px !important}
+  .nav .nav-logo-img{width:30px !important;height:30px !important}
+}
+</style>
+</head>
+<body>
+<div class="noise-layer" aria-hidden="true"></div>
+<div class="vignette-layer" aria-hidden="true"></div>
+
+
+<!-- ================= 顶部导航（水墨菜单，右上） ================= -->
+<nav class="nav" id="nav" aria-label="主导航">
+  <div class="logo"><img class="nav-logo-img" src="./img/logo.jpg" alt="遗产融绘 · 魅力高邮"><span>遗产融绘 · 魅力高邮</span></div>
+  <ul>
+    <li><a href="#" data-page="home">首页</a></li>
+    <li><a href="#" data-page="explore">探索高邮</a></li>
+    <li><a href="#" data-page="map">遗产地图</a></li>
+    <li><a href="#" data-page="survey">现状</a></li>
+    <li><a href="#" data-page="timeline">文化故事</a></li>
+    <li><a href="#" data-page="routes">研学路线</a></li>
+    <li><a href="#" data-page="games">互动游戏</a></li>
+    <li><a href="#" data-page="gallery">数字展厅</a></li>
+    <li><a href="#" data-page="about">关于我们</a></li>
+  </ul>
+</nav>
+
+<!-- ================= 首屏：水墨 SVG 场景 + 交互热点 ================= -->
+<div class="page" id="page-home">
+<section class="hero" id="top">
+  <div class="hero-banner">
+    <picture><source media="(max-width:700px)" srcset="./img/hero-dinggao.png"><img class="hero-img" src="./img/hero-dinggao.png" alt="遗产融绘 · 魅力高邮 —— 高邮湖泊湿地多类型遗产数字活化平台"></picture>
+    <div class="hero-veil hero-veil--scene" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-kicker">高邮湖泊湿地多类型遗产数字活化平台</div>
+      <div class="hero-divider" aria-hidden="true"></div>
+      <h1>遗产融绘<em>魅力高邮</em></h1>
+      <p class="hero-sub">一湖水，润泽千年<br>一方田，孕育智慧<br>一群人，守护传承</p>
+      <button class="hero-btn" data-page="explore" type="button"><span class="btn-cap left" aria-hidden="true"></span><span class="btn-roll">开启高邮遗产之旅</span><span class="btn-cap right" aria-hidden="true"></span></button>
+    </div>
+    <div class="vtext">
+      <span>闸启碧湖，灌渠千年滋沃土，稻鸭鱼蟹并作</span>
+      <span>歌传田野，非遗百代焕新生，水田人文共生</span>
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 60 120" width="100%" height="100%">
+          <defs>
+            <filter id="sealInk" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n2"/><feColorMatrix in="n2" type="matrix" values="0 0 0 0 0.78 0 0 0 0 0.23 0 0 0 0 0.18 0 0 0 0.30 0"/><feBlend in="SourceGraphic" in2="n2" mode="multiply"/></filter>
+            <filter id="sealSoft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.8"/></filter>
+          </defs>
+          <rect x="2" y="2" width="56" height="116" rx="15" fill="#c0392b" filter="url(#sealInk) url(#sealSoft)"/>
+          <text x="30" y="51" font-size="30" text-anchor="middle" fill="#f0d68d" font-family="FZShuTi,STXingkai,STKaiti,KaiTi,serif" font-weight="700">高</text>
+          <text x="30" y="99" font-size="30" text-anchor="middle" fill="#f0d68d" font-family="FZShuTi,STXingkai,STKaiti,KaiTi,serif" font-weight="700">邮</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="hero-portal">
+    <div class="wrap">
+      <div class="pc-grid">
+        <a class="pc-card" href="#" data-page="explore">
+          <div class="pc-img"><img src="./img/water.jpg" alt="水之源 · 灌溉工程遗产"></div>
+          <div class="pc-bd">
+            <h3>水之源</h3>
+            <div class="pc-tag">灌溉工程遗产</div>
+            <p>世界灌溉工程遗产 · 里运河—高邮灌区</p>
+            <span class="pc-go">探索水利智慧</span>
+          </div>
+        </a>
+        <a class="pc-card" href="#" data-page="explore">
+          <div class="pc-img"><img src="./img/field.jpg" alt="田之魂 · 农业文化遗产"></div>
+          <div class="pc-bd">
+            <h3>田之魂</h3>
+            <div class="pc-tag">农业文化遗产</div>
+            <p>中国重要农业文化遗产 · 高邮湖泊湿地农业系统</p>
+            <span class="pc-go">探索生态智慧</span>
+          </div>
+        </a>
+        <a class="pc-card" href="#" data-page="explore">
+          <div class="pc-img"><img src="./img/people.jpg" alt="人之韵 · 非物质文化遗产"></div>
+          <div class="pc-bd">
+            <h3>人之韵</h3>
+            <div class="pc-tag">非物质文化遗产</div>
+            <p>多项非物质文化遗产 · 湖畔人文代代相传</p>
+            <span class="pc-go">探索文化声音</span>
+          </div>
+        </a>
+      </div>
+      <div class="pm-grid">
+        <a class="pm-card" href="#" data-page="timeline">
+          <div class="pm-img"><img src="./img/tl_ancient.jpg" alt="穿越千年"></div>
+          <div class="pm-bd">
+            <h3>穿越千年</h3>
+            <div class="pm-sub">高邮故事时间轴</div>
+            <span class="pm-go">进入</span>
+          </div>
+        </a>
+        <a class="pm-card" href="#" data-page="map">
+          <div class="pm-img"><img src="./img/map-thumb.png" alt="高邮湖数字地图"></div>
+          <div class="pm-bd">
+            <h3>高邮湖数字地图</h3>
+            <div class="pm-sub">多类型遗产分布与探索</div>
+            <span class="pm-go">进入地图</span>
+          </div>
+        </a>
+        <a class="pm-card" href="#" data-page="routes">
+          <div class="pm-img"><img src="./img/route1.jpg" alt="研学路线"></div>
+          <div class="pm-bd">
+            <h3>研学路线</h3>
+            <div class="pm-sub">从湖到餐桌的文化之旅</div>
+            <span class="pm-go">查看全部路线</span>
+          </div>
+        </a>
+        <a class="pm-card" href="#" data-page="games">
+          <div class="pm-img"><img src="./img/gate.jpg" alt="互动游戏中心"></div>
+          <div class="pm-bd">
+            <h3>互动游戏中心</h3>
+            <div class="pm-sub">寓教于乐 · 传承文化</div>
+            <span class="pm-go">进入游戏世界</span>
+          </div>
+        </a>
+      </div>
+      <p class="portal-quote">遗产并非停留在过去，而是在今天继续生长。</p>
+    </div>
+  </div>
+</section>
+</div><!-- /page-home -->
+
+<!-- ================= 一湖三脉 · 探索高邮 ================= -->
+<div class="page" id="page-explore">
+<section class="sec pulse" id="explore">
+  <div class="wrap">
+    <div class="lbl">探索高邮 · 一湖三脉</div>
+    <h2 class="tt">水之源 · 田之魂 · 人之韵</h2>
+    <p class="sub">高邮湖的水，借里运河的闸，养出稻、鸭、鱼、蟹；田里长出的，又成了歌谣与鸭蛋。三类遗产在「水—田—人」的脉络中深度交织，构成一座活态的文明长卷。</p>
+    <div class="three">
+      <!-- 水之源 -->
+      <div class="tc b-water">
+        <div class="pic"><span class="badge"><span class="dot"></span>灌溉工程遗产</span><img src="./img/water.jpg" alt="里运河—高邮灌区">
+          <div class="tc-anim water-anim"><div class="ta-txt">🌊 水 · 流向万亩田</div></div>
+        </div>
+        <div class="bd">
+          <h3>水之源</h3>
+          <div class="tagline">里运河—高邮灌区 · 世界灌溉工程遗产</div>
+          <p>我国古代利用河湖水位、合理调控灌溉的工程典范。以「蓄水、调水、配水」三大功能，通过西堤三闸与运堤闸洞，把高邮湖的水送进万亩农田——2021 年入选世界灌溉工程遗产，也是全国首个依托运河的世界灌溉工程遗产。</p>
+          <div class="chips"><span class="chip">平津堰（唐）</span><span class="chip">南关坝（明）</span><span class="chip">车逻闸</span><span class="chip">子婴闸</span></div>
+          <div class="motto">「水，是高邮文明的起点。」</div>
+          <button class="tc-explore" data-anim="water">▶ 点击 · 看水流动画</button>
+        </div>
+      </div>
+      <!-- 田之魂 -->
+      <div class="tc b-field">
+        <div class="pic"><span class="badge"><span class="dot"></span>农业文化遗产</span><img src="./img/field.jpg" alt="高邮湖泊湿地农业系统">
+          <div class="tc-anim season-anim">
+            <span class="se-emoji">🌱</span>
+            <span class="se-name">春 · 播种</span>
+            <span class="se-note">水田四季，循环不息</span>
+          </div>
+        </div>
+        <div class="bd">
+          <h3>田之魂</h3>
+          <div class="tagline">高邮湖泊湿地农业系统 · 中国重要农业文化遗产</div>
+          <p>以「稻鸭鱼蟹」立体共作为核心：鸭吃虫、鱼松土、蟹翻泥，粪便成肥料，稻禾供遮阴——一亩田里水里天上全是活计。2017 年入选中国重要农业文化遗产，是传统农耕文明的活态见证。</p>
+          <div class="chips"><span class="chip">稻鸭鱼蟹共作</span><span class="chip">生态循环</span><span class="chip">四季轮转</span><span class="chip">种质资源</span></div>
+          <div class="motto">「一粒米背后，是千年的生态智慧。」</div>
+          <button class="tc-explore" data-anim="season">▶ 点击 · 看四季轮转</button>
+        </div>
+      </div>
+      <!-- 人之韵 -->
+      <div class="tc b-people">
+        <div class="pic"><span class="badge"><span class="dot"></span>非物质文化遗产</span><img src="./img/people.jpg" alt="高邮非物质文化遗产">
+          <div class="tc-anim people-anim">
+            <span class="p-note" style="left:22%">🎵</span>
+            <span class="p-note" style="left:50%;animation-delay:.5s">🎶</span>
+            <span class="p-note" style="left:74%;animation-delay:1s">🎵</span>
+            <div class="ta-txt" style="position:relative;z-index:2;background:rgba(60,30,15,.5);padding:6px 16px;border-radius:16px">🏮 灯火亮起 · 民歌回响</div>
+          </div>
+        </div>
+        <div class="bd">
+          <h3>人之韵</h3>
+          <div class="tagline">多类型非物质文化遗产 · 渔人文代代相传</div>
+          <p>水与田滋养出高邮民歌（国家级非遗）、咸鸭蛋制作技艺（省级非遗）与渔文化习俗。端午节吃「十二红」、开捕节、七公会——歌声与手艺里，藏着高邮人对水田最深的记忆。</p>
+          <div class="chips"><span class="chip">高邮民歌</span><span class="chip">咸鸭蛋制作</span><span class="chip">渔文化</span><span class="chip">十二红</span></div>
+          <div class="motto">「人，是遗产真正的守护者。」</div>
+          <button class="tc-explore" data-anim="people">▶ 点击 · 看灯火歌声</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /page-explore -->
+
+<!-- ================= 穿越千年 · 文化故事 ================= -->
+<div class="page" id="page-timeline">
+<section class="sec timeline-sec" id="timeline">
+  <div class="wrap">
+    <div class="lbl">文化故事 · 穿越千年</div>
+    <h2 class="tt">一湖一千年</h2>
+    <p class="sub">从治水理田到歌谣传唱，高邮的故事沿着水脉层层铺展。</p>
+    <div class="tl">
+      <div class="tl-node">
+        <div class="nimg"><img src="./img/tl_ancient.jpg" alt="古代·治水与农耕"></div>
+        <div class="ntxt">
+          <div class="era">古代 · 因水而生</div>
+          <ul><li>水利建设：平津堰（唐）、南关坝（明）等活态工程奠基</li><li>运河交通：里运河联通南北，舟楫往来</li><li>农业生产形成：低洼圩田里长出水乡农耕文明</li></ul>
+        </div>
+        <span class="ndot"></span>
+      </div>
+      <div class="tl-node">
+        <div class="nimg"><img src="./img/tl_modern.jpg" alt="近现代·渔耕生活"></div>
+        <div class="ntxt">
+          <div class="era">近现代 · 因水而兴</div>
+          <ul><li>乡村生活：沿湖渔村炊烟，人水相依</li><li>渔业发展：稻鸭鱼蟹共作模式成熟</li><li>传统技艺传承：民歌、腌制技艺代代相传</li></ul>
+        </div>
+        <span class="ndot"></span>
+      </div>
+      <div class="tl-node">
+        <div class="nimg"><img src="./img/tl_today.jpg" alt="今日·遗产保护与活化"></div>
+        <div class="ntxt">
+          <div class="era">今日 · 因水而新</div>
+          <ul><li>2017 高邮湖泊湿地农业系统入选中国重要农业文化遗产</li><li>2021 里运河—高邮灌区列入世界灌溉工程遗产</li><li>数字化活化利用：让古老智慧在指尖「活」起来</li></ul>
+        </div>
+        <span class="ndot"></span>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /page-timeline -->
+
+<!-- ================= 高邮湖数字地图 · 遗产地图 ================= -->
+<div class="page" id="page-map">
+<section class="sec map-sec" id="map">
+  <div class="wrap">
+    <div class="lbl">遗产地图 · 高邮湖数字地图</div>
+    <h2 class="tt">多类型遗产分布与空间交互</h2>
+    <p class="sub">灌区闸口调节水位 → 灌溉湿地农田 → 孕育稻鸭鱼蟹 → 滋养非遗文化。点击彩色标记，探索遗产点位的故事。</p>
+    <div class="mlegend">
+      <div class="mli"><span class="mdot" style="background:#4a7480"></span>灌区闸口（5 处）</div>
+      <div class="mli"><span class="mdot" style="background:#2d6a4f"></span>农业遗产（3 处）</div>
+      <div class="mli"><span class="mdot" style="background:#a34d3c"></span>非遗文化（3 处）</div>
+      <div class="mli"><span style="display:inline-block;width:16px;height:10px;border-radius:2px;background:#6aa84f;opacity:.65"></span>农田区域</div>
+      <div class="mli"><span style="display:inline-block;width:16px;height:10px;border-radius:2px;background:#d9a441;opacity:.7"></span>村落区域</div>
+      <div class="mli"><span style="display:inline-block;width:16px;border-top:1.5px dashed #8aa9ad"></span>水脉关联</div>
+    </div>
+    <div class="mbox"><div id="heritage-map"></div></div>
+    <div class="m-note">数据来源：高邮实地调研 · 2025 年 8 月 / 2026 年 1 月</div>
+    <div class="m-stats">
+      <div class="m-stat"><b>215</b><span>份有效问卷 · 回收率 90.7%</span></div>
+      <div class="m-stat"><b>10</b><span>人次深度访谈</span></div>
+      <div class="m-stat"><b>800+</b><span>张实地影像记录</span></div>
+      <div class="m-stat"><b>53.95%</b><span>公众从未听说灌区（调研发现）</span></div>
+    </div>
+  </div>
+</section>
+</div><!-- /page-map -->
+
+<!-- ================= 现状 · 数据洞察 ================= -->
+<div class="page" id="page-survey">
+<section class="sec survey-sec" id="survey">
+  <div class="wrap">
+    <div class="lbl">现状 · 数据洞察</div>
+    <h2 class="tt">215 份问卷，看见遗产的「认知断层」</h2>
+    <p class="sub">2025 年 8 月 / 2026 年 1 月，调研团队两次实地考察：回收有效问卷 215 份、深度访谈 10 人次、拍摄影像 800+ 张。数据背后，是高邮多类型遗产「知」与「不知」的真相——也正是这座平台存在的理由。</p>
+    <div class="survey-grid">
+      <div class="s-card">
+        <h3>多类型遗产 · 公众认知分化</h3>
+        <div class="chart" id="ch-cog"></div>
+        <p class="s-note">非物质文化遗产认知率最高（<b>88.37%</b>）；世界灌溉工程遗产「里运河—高邮灌区」认知最薄弱，仅 <b>12.56%</b> 知晓其世界遗产身份。</p>
+      </div>
+      <div class="s-card">
+        <h3>灌区认知 · 沉默的断层</h3>
+        <div class="chart" id="ch-void"></div>
+        <p class="s-note">超过半数受访者（<b>53.95%</b>）从未听说过里运河—高邮灌区，深入了解其历史与功能者不足 <b>1%</b>——世界灌溉工程遗产，仍是身边的「隐形宝藏」。</p>
+      </div>
+      <div class="s-card">
+        <h3>传统技艺 · 本地活态 vs 外界符号</h3>
+        <div class="chart" id="ch-tech"></div>
+        <p class="s-note">当地村民对稻作、水产等基础技艺认知率<b>超 90%</b>（活态传承基础良好）；但外界认知高度集中于「稻鸭共作」「鱼鹰捕鱼」等少数符号，多数技艺鲜为人知。</p>
+      </div>
+      <div class="s-card">
+        <h3>认知虽不足 · 价值认同却很高</h3>
+        <div class="chart" id="ch-value"></div>
+        <p class="s-note"><b>83.9%</b> 受访者认为农业文化遗产可促进就业与经济发展——认知与认同之间的落差，正是数字活化最值得发力的窗口。</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /page-survey -->
+
+<!-- ================= 研学路线 ================= -->
+<div class="page" id="page-routes">
+<section class="sec routes-sec" id="routes">
+  <div class="wrap">
+    <div class="lbl">研学路线 · 从湖到餐桌</div>
+    <h2 class="tt">三条路线，读懂一片湖</h2>
+    <p class="sub">路线如水流，把高邮湖、农业基地、古闸工程与非遗工坊串成一条完整的故事链。</p>
+    <div class="flowmap">
+      <div class="flow-src">
+        <span class="fs-i">🌊</span>
+        <span class="fs-t">高邮湖</span>
+        <span class="fs-s">从湖到餐桌</span>
+      </div>
+      <div class="flow-lanes">
+        <!-- 水脉寻踪 -->
+        <div class="flow-lane lane1">
+          <svg class="fl-svg" viewBox="0 0 520 90" aria-hidden="true">
+            <path d="M6,46 C 70,14 130,78 195,46 S 325,78 390,46 S 500,16 514,46" fill="none" stroke="#4a7480" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+            <circle cx="130" cy="48" r="7" class="fl-dot" stroke="#4a7480"/><text x="130" y="25" text-anchor="middle" class="fl-dot-label">平津堰</text>
+            <circle cx="260" cy="54" r="7" class="fl-dot" stroke="#4a7480"/><text x="260" y="82" text-anchor="middle" class="fl-dot-label">车逻闸</text>
+            <circle cx="390" cy="42" r="7" class="fl-dot" stroke="#4a7480"/><text x="390" y="19" text-anchor="middle" class="fl-dot-label">南关坝</text>
+          </svg>
+          <div class="fl-card">
+            <div class="num">壹 · 水脉寻踪</div>
+            <h3>探索灌溉工程遗产</h3>
+            <p>从平津堰到车逻闸，跟随古老闸口重走「蓄水—调水—配水」之路，看一湖水如何化作万亩良田。</p>
+            <div class="go"><span>查看路线 →</span></div>
+          </div>
+        </div>
+        <!-- 稻田密码 -->
+        <div class="flow-lane lane2">
+          <svg class="fl-svg" viewBox="0 0 520 90" aria-hidden="true">
+            <path d="M6,46 C 70,14 130,78 195,46 S 325,78 390,46 S 500,16 514,46" fill="none" stroke="#2d6a4f" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+            <circle cx="130" cy="48" r="7" class="fl-dot" stroke="#2d6a4f"/><text x="130" y="25" text-anchor="middle" class="fl-dot-label">春插秧</text>
+            <circle cx="260" cy="54" r="7" class="fl-dot" stroke="#2d6a4f"/><text x="260" y="82" text-anchor="middle" class="fl-dot-label">夏共作</text>
+            <circle cx="390" cy="42" r="7" class="fl-dot" stroke="#2d6a4f"/><text x="390" y="19" text-anchor="middle" class="fl-dot-label">秋丰收</text>
+          </svg>
+          <div class="fl-card">
+            <div class="num">贰 · 稻田密码</div>
+            <h3>体验稻鸭鱼蟹生态智慧</h3>
+            <p>下田插秧、赶鸭入田，亲手感受「鸭吃虫、鱼松土、蟹翻泥」的立体共作，解密千年生态循环。</p>
+            <div class="go"><span>查看路线 →</span></div>
+          </div>
+        </div>
+        <!-- 湖畔人家 -->
+        <div class="flow-lane lane3">
+          <svg class="fl-svg" viewBox="0 0 520 90" aria-hidden="true">
+            <path d="M6,46 C 70,14 130,78 195,46 S 325,78 390,46 S 500,16 514,46" fill="none" stroke="#a5653f" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
+            <circle cx="130" cy="48" r="7" class="fl-dot" stroke="#a5653f"/><text x="130" y="25" text-anchor="middle" class="fl-dot-label">学民歌</text>
+            <circle cx="260" cy="54" r="7" class="fl-dot" stroke="#a5653f"/><text x="260" y="82" text-anchor="middle" class="fl-dot-label">腌鸭蛋</text>
+            <circle cx="390" cy="42" r="7" class="fl-dot" stroke="#a5653f"/><text x="390" y="19" text-anchor="middle" class="fl-dot-label">渔村故事</text>
+          </svg>
+          <div class="fl-card">
+            <div class="num">叁 · 湖畔人家</div>
+            <h3>感受民歌·饮食·传统技艺</h3>
+            <p>学一句高邮民歌，腌一枚咸鸭蛋，听渔村人家讲湖上的故事——把文化带回家。</p>
+            <div class="go"><span>查看路线 →</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /page-routes -->
+
+<!-- ================= 互动游戏中心 ================= -->
+<div class="page" id="page-games">
+<section class="sec game-sec" id="games">
+  <div class="wrap">
+    <div class="lbl">互动游戏中心</div>
+    <h2 class="tt">在游戏中，读懂遗产</h2>
+    <p class="sub">把调水、种田、传歌变成可体验的叙事，让千年智慧在指尖「活」起来。</p>
+    <div class="game3">
+      <div class="gc g1">
+        <div class="cover">🪵<span class="watermark">· 已上线 ·</span></div>
+        <div class="bd">
+          <h3>小小水利师</h3>
+          <div class="en">SIMULATION · 水资源管理</div>
+          <p>扮演灌区实习水利员闯三关——春·开闸引水（浅水勤灌，留出下游生活用水）、夏·水田分账（稻田与鸭塘鱼塘分水）、秋·大旱调度（先生活、后生产、再生态）。选对选错都有老水伯讲解，结局按得分评称号，闯完送你一张世界灌溉工程遗产知识卡片。</p>
+          <button class="gbtn" onclick="openGame()">🎮 立即游玩</button>
+        </div>
+      </div>
+      <div class="gc g2">
+        <div class="cover">🌾<span class="watermark">· 筹备中 ·</span></div>
+        <div class="bd">
+          <h3>稻田守护者</h3>
+          <div class="en">SIMULATION · 生态农业</div>
+          <p>经营一整年「稻鸭鱼蟹」共作农田：春放鸭入田、夏治虫防洪、秋收稻捕鱼、冬备来年。在虫害、旱情与成本之间做取舍——是沿用「以鸭控虫、以鱼松土」的老法，还是靠化肥农药，都由你决定。目标：让稻、鸭、鱼、蟹在同一片田里共生一整年。</p>
+          <button class="gbtn">敬请期待</button>
+        </div>
+      </div>
+      <div class="gc g3">
+        <div class="cover">🎵<span class="watermark">· 筹备中 ·</span></div>
+        <div class="bd">
+          <h3>高邮歌谣</h3>
+          <div class="en">RHYTHM · 文化传承</div>
+          <p>跟随高邮民歌非遗传承人，从《数鸭蛋》唱起：先学唱、再跟唱、最后独立考唱，完成三段传唱任务。每学会一首，就解锁一曲背后的水乡故事与生活记忆。让湖边代代相传的声音，借由你的歌声传得更远。</p>
+          <button class="gbtn">敬请期待</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div><!-- /page-games -->
+
+<!-- ================= 数字展厅 ================= -->
+<div class="page" id="page-gallery">
+<section class="sec gallery-sec" id="gallery">
+  <div class="wrap">
+    <div class="lbl">数字展厅</div>
+    <h2 class="tt">一湖一图，皆成记忆</h2>
+    <p class="sub">我们的镜头，记录下高邮湖的四季与生活。点击图片可放大。</p>
+    <div class="gal">
+      <a href="./img/g1.jpg" data-cap="大运河 · 高邮段"><img src="./img/g1.jpg" alt="大运河高邮段"><span class="cap">大运河 · 高邮段</span></a>
+      <a href="./img/g2.jpg" data-cap="沿湖渔村"><img src="./img/g2.jpg" alt="沿湖渔村"><span class="cap">沿湖渔村</span></a>
+      <a href="./img/g3.jpg" data-cap="高邮鸭 · 地理标志物种"><img src="./img/g3.jpg" alt="高邮鸭"><span class="cap">高邮鸭 · 地理标志物种</span></a>
+      <a href="./img/g4.jpg" data-cap="镇国寺塔"><img src="./img/g4.jpg" alt="镇国寺塔"><span class="cap">镇国寺塔</span></a>
+      <a href="./img/g5.jpg" data-cap="车逻闸 · 世界灌溉工程遗产"><img src="./img/g5.jpg" alt="车逻闸"><span class="cap">车逻闸 · 世界灌溉工程遗产</span></a>
+      <a href="./img/g6.jpg" data-cap="非遗鱼拓"><img src="./img/g6.jpg" alt="非遗鱼拓"><span class="cap">非遗鱼拓</span></a>
+      <a href="./img/g7.jpg" data-cap="渔民生活"><img src="./img/g7.jpg" alt="渔民生活"><span class="cap">渔民生活</span></a>
+      <a href="./img/g8.jpg" data-cap="里运河—高邮灌区"><img src="./img/g8.jpg" alt="高邮灌区"><span class="cap">里运河—高邮灌区</span></a>
+      <a href="./img/g9.jpg" data-cap="高邮湖 · 烟波浩渺"><img src="./img/g9.jpg" alt="高邮湖"><span class="cap">高邮湖 · 烟波浩渺</span></a>
+      <a href="./img/g10.jpg" data-cap="高邮湖 · 航拍俯瞰"><img src="./img/g10.jpg" alt="高邮湖航拍"><span class="cap">高邮湖 · 航拍俯瞰</span></a>
+      <a href="./img/g11.jpg" data-cap="龙虬庄遗址 · 七千年前的文明"><img src="./img/g11.jpg" alt="龙虬庄遗址"><span class="cap">龙虬庄遗址 · 七千年前的文明</span></a>
+      <a href="./img/g12.jpg" data-cap="盂城驿 · 明代驿递 · 国家级文保"><img src="./img/g12.jpg" alt="盂城驿"><span class="cap">盂城驿 · 明代驿递</span></a>
+      <a href="./img/g13.jpg" data-cap="车逻闸 · 仍在服役的古闸"><img src="./img/g13.jpg" alt="车逻闸"><span class="cap">车逻闸 · 仍在服役的古闸</span></a>
+      <a href="./img/g14.jpg" data-cap="渔具 · 湖上人家的生计"><img src="./img/g14.jpg" alt="渔具"><span class="cap">渔具 · 湖上人家的生计</span></a>
+      <a href="./img/g15.jpg" data-cap="渔文化展览 · 打鱼经"><img src="./img/g15.jpg" alt="渔文化展览"><span class="cap">渔文化展览 · 打鱼经</span></a>
+      <a href="./img/g16.jpg" data-cap="水乡风光 · 高邮"><img src="./img/g16.jpg" alt="高邮水乡风光"><span class="cap">水乡风光 · 高邮</span></a>
+    </div>
+  </div>
+</section>
+</div><!-- /page-gallery -->
+
+<!-- ================= 关于我们 · 三重困境与青年回应 ================= -->
+<div class="page" id="page-about">
+<section class="sec about-sec" id="about">
+  <div class="wrap">
+    <div class="lbl">关于我们 · 青年实践</div>
+    <h2 class="tt">三重困境，一份青年答卷</h2>
+    <p class="sub">一次从书斋走向湖田的调研，让我们看清了高邮多类型遗产的「三重困境」——这座网站，正是我们对困境的回应。</p>
+    <div class="dilemma-grid">
+      <div class="dg">
+        <div class="dg-icon">🪢</div>
+        <h3>文化疏离</h3>
+        <p>农民、渔民、非遗传承人各自守护着一类遗产，却缺乏共同的文化认同——他们甚至互不认识对方手中的「宝贝」。</p>
+        <span class="dg-sol">→ 数字地图：让三类遗产的空间关联被看见</span>
+      </div>
+      <div class="dg">
+        <div class="dg-icon">🧩</div>
+        <h3>阐释断裂</h3>
+        <p>水利、农业、非遗各讲各的故事，缺乏统一的历史脉络，「水—田—人」的共生关系难以被公众真正理解。</p>
+        <span class="dg-sol">→ 研学路线：以「从闸口到餐桌」串起完整叙事</span>
+      </div>
+      <div class="dg">
+        <div class="dg-icon">📵</div>
+        <h3>代际断层</h3>
+        <p>青年群体对本地遗产认知与参与度偏低，传统技艺与民俗在年轻人中渐渐失声。</p>
+        <span class="dg-sol">→ 互动游戏：让千年智慧成为可体验的叙事</span>
+      </div>
+    </div>
+    <div class="about-box">
+      <h3>青年实践 · 来自扬州大学的调研团队</h3>
+      <p>我们是一群来自扬州大学的青年调研者，以高邮湖泊湿地多类型遗产为研究对象。带着书斋里的疑问，我们两次深入高邮湖区——2025 年 8 月与 2026 年 1 月，走遍芦苇荡湿地公园、高宝邵伯湖渔管办、界首镇永安村、方巷镇沿湖村与江苏高邮鸭集团：发问卷、做访谈、拍影像、看闸坝、听民歌。</p>
+      <div class="about-stats">
+        <div class="as"><b>2</b><span>次实地调研</span></div>
+        <div class="as"><b>215</b><span>份有效问卷 · 回收率 90.7%</span></div>
+        <div class="as"><b>10</b><span>人次深度访谈</span></div>
+        <div class="as"><b>800+</b><span>张实地影像记录</span></div>
+      </div>
+      <p>从问卷数据、深度访谈与镜头记录出发，我们建成了这座「遗产融绘 · 魅力高邮」数字平台——希望以青年实践，让高邮「水—田—人」共生的文明，被更多人看见、理解，并一起守护。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 底部 CTA ================= -->
+<section class="cta">
+  <div class="bg"></div>
+  <div class="veil"></div>
+  <div class="inner">
+    <div class="words">遗产并非停留在过去，<br>而是在今天继续生长。</div>
+    <div class="btns">
+      <button class="cbtn filled" onclick="openJoin()">🌱 加入守护计划</button>
+      <button class="cbtn" onclick="openGzh()">📮 关注公众号</button>
+      <button class="cbtn" onclick="openShare()">📣 分享高邮故事</button>
+    </div>
+    <div class="tiny">守护高邮，从读懂高邮开始</div>
+  </div>
+</section>
+</div><!-- /page-about -->
+
+<!-- ================= 页脚 ================= -->
+<footer class="ft">
+  <h3>遗产融绘 · 魅力高邮</h3>
+  <div class="sub-en">GAOYOU LAKE-WETLAND MULTI-HERITAGE DIGITAL PLATFORM</div>
+  <p>高邮湖泊湿地多类型遗产数字活化平台<br>集农业文化遗产 · 世界灌溉工程遗产 · 非物质文化遗产于一体<br>以青年实践响应文化强国战略，服务乡村振兴</p>
+  <div class="foot-src">© 2026 遗产融绘 · 魅力高邮 &nbsp;|&nbsp; 数据来源：高邮实地调研（2025.08 / 2026.01）&nbsp;|&nbsp; 摄影：高邮实地拍摄</div>
+</footer>
+
+<!-- ================= 数字展厅 · 灯箱 ================= -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="关闭">×</button>
+  <figure class="lb-fig">
+    <img id="lbImg" src="" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-nav lb-prev" id="lbPrev" aria-label="上一张">‹</button>
+  <button class="lb-nav lb-next" id="lbNext" aria-label="下一张">›</button>
+</div>
+
+<!-- ================= 弹窗：小小水利师 ================= -->
+<div class="modal" id="gameModal">
+  <div class="box">
+    <button class="close" onclick="closeModal('gameModal')">×</button>
+    <h3>🎮 《小小水利师 · 高邮灌区》</h3>
+    <p>一款以「里运河—高邮灌区」为舞台的调水决策叙事游戏。你将扮演灌区实习水利员，闯过三关，读懂「水—田—人」共生的世界灌溉工程遗产。</p>
+    <div class="hl">📜 三关剧情</div>
+    <ol>
+      <li><b>春 · 开闸引水</b>——正值泡田，你第一次握住车逻闸的启闭机摇把：一鼓作气全开、先灌满田，还是按「浅水勤灌」分时段进水、留出下游村庄的生活用水？</li>
+      <li><b>夏 · 水田分账</b>——上游来水有限：把水全灌进稻田、鸭塘鱼塘先不管，还是按「先保稻田、兼顾鱼塘」的老法分渠分流、谁都不渴着？</li>
+      <li><b>秋 · 大旱调度</b>——高邮湖水位告急，人、田、湖都要水：各闸平均分水谁也不得罪，还是按「先生活、后生产、再生态」逐级调配？</li>
+    </ol>
+    <div class="hl">🏅 结局结算</div>
+    <p>三关决策决定你的得分与称号（见习合格 / 见习通过 / 还需历练）。无论选对选错，老水伯都会逐关讲解调水的门道——先秤人命、再秤收成、最后秤一湖的生灵。</p>
+    <div class="hl">📖 遗产知识卡片</div>
+    <p>通关解锁：里运河—高邮灌区 2021 年入选「世界灌溉工程遗产」（全国首个依托运河的世界灌溉工程遗产）；「蓄水—调水—配水」体系与西堤三闸；平津堰（唐）、南关坝（明）、车逻闸（明·清）等仍在服役的活态工程；以及它滋养出的「稻鸭鱼蟹」共作与高邮民歌、咸鸭蛋制作技艺。</p>
+    <div class="hl">💡 如何游玩</div>
+    <p>本游戏随平台配套资料一并提供（Ren'Py 桌面版，可离线游玩）。HTML5 网页版正在打包，上线后点击「立即游玩」即可在浏览器内直接开始。</p>
+  </div>
+</div>
+
+<!-- ================= 弹窗：关注公众号 ================= -->
+<div class="modal" id="gzhModal">
+  <div class="box" style="text-align:center">
+    <button class="close" onclick="closeModal('gzhModal')">×</button>
+    <h3>📮 关注公众号</h3>
+    <img src="./img/gzh-qr.jpg" alt="关注公众号「融绘贯通」" style="width:210px;height:210px;margin:12px auto 18px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.16);display:block">
+    <p style="margin:0">长按识别二维码，关注「融绘贯通」<br>获取高邮遗产故事与研学活动第一手资讯</p>
+  </div>
+</div>
+
+<!-- ================= 弹窗：加入守护计划 ================= -->
+<div class="modal" id="joinModal">
+  <div class="box">
+    <button class="close" onclick="closeModal('joinModal')">×</button>
+    <h3>🌱 加入守护计划</h3>
+    <p>成为高邮文化遗产的「数字守护人」，一起把「水—田—人」的故事讲给更多人听。</p>
+    <p style="margin-top:10px">你可以：<br>· 参与线下研学与非遗体验活动<br>· 投稿你镜头下的高邮故事<br>· 成为「小小水利师」游戏的测试玩家</p>
+    <div class="hl">💌 报名方式：关注公众号后留言「守护计划」+ 联系方式，我们会主动联系你。</div>
+  </div>
+</div>
+
+<!-- ================= 弹窗：分享 ================= -->
+<div class="modal" id="shareModal">
+  <div class="box">
+    <button class="close" onclick="closeModal('shareModal')">×</button>
+    <h3>📣 分享高邮故事</h3>
+    <p>复制下面这段文案，把它发给你的朋友——让一湖一田一人的故事，传得更远。</p>
+    <div class="hl">「千年高邮湖，养出稻鸭鱼蟹，也养出了歌谣与鸭蛋。你愿意和我一起，读懂这片『水—田—人』共生的文明吗？」——遗产融绘 · 魅力高邮</div>
+    <p style="margin-top:12px">也可长按 / 截图分享本页，让更多人走近世界灌溉工程遗产、走近高邮。</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>window.echarts||document.write('<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"><\/script>');</script>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>window.maplibregl||document.write('<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"><\/script>');</script>
+<script>
+(function(){
+  /* ---- 导航滚动变实底 ---- */
+(function(){
+  function m(){ if(window.innerWidth<=700){ var h=document.querySelector('.hero-inner'); if(h){ h.style.justifyContent='center'; h.style.minHeight='100vh'; h.style.height='100vh'; h.style.paddingTop='6vh'; h.style.paddingBottom='2vh'; } } }
+  m(); window.addEventListener('resize', m);
+})();
+  var nav=document.getElementById('nav');
+  var currentPage='home';
+  window.addEventListener('scroll',function(){nav.classList.toggle('solid',window.scrollY>60||currentPage!=='home');},{passive:true});
+
+  /* ---- 单页切换：首页门户 ↔ 各板块页面 ---- */
+  window.showPage=function(id){
+    currentPage=id;
+    document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('active',p.id==='page-'+id);});
+    document.body.classList.toggle('on-home',id==='home');
+    nav.classList.toggle('solid',id!=='home');
+    window.scrollTo(0,0);
+    if(id==='map'&&window.__gyMap){setTimeout(function(){window.__gyMap.resize();},80);}
+    if(id==='survey'&&window.__charts){setTimeout(function(){window.__charts.forEach(function(c){if(c)c.resize();});},80);}
+  };
+  document.querySelectorAll('[data-page]').forEach(function(a){
+    a.addEventListener('click',function(e){e.preventDefault();window.showPage(a.getAttribute('data-page'));});
+  });
+  window.showPage('home');
+
+  /* ---- 弹窗 ---- */
+  window.openGame=function(){document.getElementById('gameModal').classList.add('open');};
+  window.openGzh=function(){document.getElementById('gzhModal').classList.add('open');};
+  window.openJoin=function(){document.getElementById('joinModal').classList.add('open');};
+  window.openShare=function(){document.getElementById('shareModal').classList.add('open');};
+  window.closeModal=function(id){document.getElementById(id).classList.remove('open');};
+  document.querySelectorAll('.modal').forEach(function(m){
+    m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('open');});
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(function(m){m.classList.remove('open');});});
+
+  /* ---- 数字展厅：灯箱浏览（点击放大 + 左右切换）---- */
+  var lbList=[];
+  document.querySelectorAll('.gal a').forEach(function(a,idx){
+    lbList.push({href:a.getAttribute('href'),cap:a.getAttribute('data-cap')||''});
+    a.addEventListener('click',function(ev){ev.preventDefault();lbOpen(idx);});
+  });
+  var lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),lbCur=0;
+  function lbOpen(i){lbCur=i;lbImg.src=lbList[i].href;lbCap.textContent=lbList[i].cap;lb.classList.add('open');document.body.style.overflow='hidden';}
+  function lbGo(d){lbCur=(lbCur+d+lbList.length)%lbList.length;lbImg.src=lbList[lbCur].href;lbCap.textContent=lbList[lbCur].cap;}
+  function lbClose(){lb.classList.remove('open');document.body.style.overflow='';}
+  if(lb){
+    document.getElementById('lbClose').addEventListener('click',lbClose);
+    document.getElementById('lbPrev').addEventListener('click',function(){lbGo(-1);});
+    document.getElementById('lbNext').addEventListener('click',function(){lbGo(1);});
+    lb.addEventListener('click',function(e){if(e.target===lb)lbClose();});
+    document.addEventListener('keydown',function(e){
+      if(!lb.classList.contains('open'))return;
+      if(e.key==='Escape')lbClose();
+      if(e.key==='ArrowLeft')lbGo(-1);
+      if(e.key==='ArrowRight')lbGo(1);
+    });
+  }
+
+  /* ---- 三脉卡片：点击交互动画（水流动画 / 四季轮转 / 灯火歌声）---- */
+  var SEASONS=[['春','🌱','播种'],['夏','🌾','共作'],['秋','🍂','丰收'],['冬','❄️','传承']];
+  document.querySelectorAll('.tc-explore').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var tc=btn.closest('.tc'),anim=tc.querySelector('.tc-anim');
+      var type=btn.getAttribute('data-anim');
+      if(anim._t)clearTimeout(anim._t);
+      if(anim._si)clearInterval(anim._si);
+      anim.classList.remove('show'); void anim.offsetWidth;
+      anim.classList.add('show');
+      if(type==='season'){
+        var i=0,em=anim.querySelector('.se-emoji'),nm=anim.querySelector('.se-name');
+        em.textContent=SEASONS[0][1];nm.textContent=SEASONS[0][0]+' · '+SEASONS[0][2];
+        anim._si=setInterval(function(){i=(i+1)%SEASONS.length;em.textContent=SEASONS[i][1];nm.textContent=SEASONS[i][0]+' · '+SEASONS[i][2];},950);
+      }
+      anim._t=setTimeout(function(){anim.classList.remove('show');if(anim._si)clearInterval(anim._si);},4800);
+    });
+  });
+
+  /* ---- 滚动渐现 ---- */
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.style.opacity=1;en.target.style.transform='translateY(0)';io.unobserve(en.target);}});},{threshold:.08});
+  document.querySelectorAll('.three>.tc,.rc,.gc,.tl-node').forEach(function(el){
+    el.style.opacity=0;el.style.transform='translateY(26px)';el.style.transition='opacity .7s ease,transform .7s ease';io.observe(el);
+  });
+
+  /* ================== 高邮湖数字地图（MapLibre GL · 3D 倾斜俯瞰 + 飞入动画） ================== */
+  if(!window.maplibregl){
+    document.getElementById('heritage-map').innerHTML='<div style="padding:80px 20px;text-align:center;color:#9a9180;font-size:15px">3D 地图组件加载失败，请检查网络后刷新。</div>';
+  }else{
+    var C={gate:'#4a7480',farm:'#2d6a4f',culture:'#a34d3c'};
+    var CAT={gate:'灌区闸口',farm:'农业遗产',culture:'非遗文化'};
+    function p(n,t,s){return '<b>'+n+'</b><br><small style="color:#999">'+t+'</small><br><span style="font-size:14px;color:#555">'+s+'</span>';}
+
+    /* 高德栅格瓦片底图（标准 XYZ，国内加载快）+ 初始省域视角（带 3D 倾斜） */
+    var m=new maplibregl.Map({
+      container:'heritage-map',
+      style:{
+        version:8,
+        sources:{
+          sat:{type:'raster',tiles:['https://webst01.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}'],tileSize:256,maxzoom:16,attribution:'高德卫星影像'},
+          street:{type:'raster',tiles:['https://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}'],tileSize:256,maxzoom:18,attribution:'高德地图'},
+          terrain:{type:'raster-dem',tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],tileSize:256,maxzoom:14,encoding:'terrarium',attribution:'SRTM · AWS Terrain Tiles'}
+        },
+        layers:[
+          {id:'sat',type:'raster',source:'sat',layout:{visibility:'none'}},
+          {id:'street',type:'raster',source:'street'},
+          {id:'hs',type:'hillshade',source:'terrain',paint:{
+            'hillshade-exaggeration':1,
+            'hillshade-highlight-color':'rgba(255,255,255,0.42)',
+            'hillshade-shadow-color':'rgba(25,35,55,0.34)',
+            'hillshade-accent-color':'rgba(0,0,0,0.18)'
+          }}
+        ],
+        fog:{color:'#cfe2f2',high:3200,spaceColor:'#dbe9f5',horizonBlend:0.18,start:2500,end:15000}
+      },
+      center:[119.42,32.82],zoom:10.5,minZoom:8.5,maxZoom:16,pitch:45,bearing:0,maxPitch:85,
+      maxBounds:[[117.0,30.0],[122.0,35.0]],
+      attributionControl:true
+    });
+    window.__gyMap=m; /* 调试句柄：便于在控制台检查地图状态（不影响页面） */
+    m.addControl(new maplibregl.NavigationControl({showCompass:true}),'top-left');
+
+    /* 同一时间只保留一个点位弹窗，避免越开越多 */
+    var lastPopup=null;
+    m.on('popupopen',function(e){ if(lastPopup&&lastPopup!==e.popup){lastPopup.remove();} lastPopup=e.popup; });
+    m.on('popupclose',function(e){ if(lastPopup===e.popup){lastPopup=null;} });
+
+    /* ---- 底图切换按钮：卫星影像 ⇄ 高德街景（地形/蓝湖/标注共用） ---- */
+    var baseIsSat=false; /* 默认高德街景（用户要的"最一开始的颜色"），卫星在切换按钮里 */
+    var baseBtn=document.createElement('button');
+    baseBtn.id='mapBaseToggle';
+    baseBtn.textContent='🛰 卫星影像';
+    baseBtn.title='切换底图';
+    baseBtn.style.cssText='position:absolute;left:12px;bottom:12px;z-index:5;padding:7px 15px;border:1px solid rgba(176,138,62,.55);border-radius:20px;font-size:14px;font-weight:700;letter-spacing:.05em;cursor:pointer;background:rgba(255,253,246,.94);color:#2d6a4f;box-shadow:0 3px 12px rgba(0,0,0,.22);transition:.2s';
+    document.getElementById('heritage-map').appendChild(baseBtn);
+    baseBtn.addEventListener('click',function(){
+      baseIsSat=!baseIsSat;
+      m.setLayoutProperty('sat','visibility',baseIsSat?'visible':'none');
+      m.setLayoutProperty('street','visibility',baseIsSat?'none':'visible');
+      baseBtn.textContent=baseIsSat?'🗺 高德街景':'🛰 卫星影像';
+    });
+
+    /* ---- 回到全景：一键复位到覆盖全部 11 处遗产点位的默认视角 ---- */
+    var resetBtn=document.createElement('button');
+    resetBtn.textContent='⌂ 回到全景';
+    resetBtn.title='复位到覆盖全部 11 处遗产点位的全景视角';
+    resetBtn.style.cssText='position:absolute;right:12px;bottom:12px;z-index:6;padding:7px 14px;border:1px solid rgba(176,138,62,.55);border-radius:20px;font-size:13.5px;font-weight:700;letter-spacing:.04em;cursor:pointer;background:rgba(255,253,246,.94);color:#2d6a4f;box-shadow:0 3px 12px rgba(0,0,0,.22);transition:.2s';
+    resetBtn.addEventListener('click',function(){
+      m.flyTo({center:[119.40,32.78],zoom:10.8,pitch:55,bearing:0,duration:1800});
+      if(lastPopup){lastPopup.remove();lastPopup=null;}
+    });
+    document.getElementById('heritage-map').appendChild(resetBtn);
+
+    /* ---- 11 个遗产点位（GeoJSON 圆点，配色与图例一致） ---- */
+    var pts=[{n:'平津堰',a:32.79,o:119.43,y:'唐',s:'始建于唐代的活态水利工程，大运河扬州段最古老的水利设施之一。',cat:'gate'},
+      {n:'南关坝',a:32.775,o:119.452,y:'明',s:'灌区核心调控工程，位于高邮城南，古代水利智慧的典范。',cat:'gate'},
+      {n:'车逻闸',a:32.738,o:119.468,y:'明/清',s:'里运河-高邮灌区代表性闸口，至今仍发挥灌溉调控作用。',cat:'gate'},
+      {n:'子婴闸',a:32.948,o:119.368,y:'清',s:'灌区北部关键闸口，调节里运河与灌区之间的水位。',cat:'gate'},
+      {n:'界首小闸',a:32.918,o:119.425,y:'清',s:'界首镇附近灌区闸口，服务周边农业灌溉。',cat:'gate'},
+      {n:'永安村稻鸭共作区',a:32.885,o:119.418,y:'核心区',s:'界首镇永安村，稻鸭鱼蟹共作模式的核心实践区，传统农技传承基地。',cat:'farm'},
+      {n:'沿湖村生态农业区',a:32.658,o:119.355,y:'缓冲区',s:'方巷镇沿湖村，「最美渔村」，渔文化与生态农业融合发展示范区。',cat:'farm'},
+      {n:'高邮鸭养殖基地',a:32.792,o:119.455,y:'企业',s:'国家地理标志物种高邮鸭的保种与养殖基地。',cat:'farm'},
+      {n:'高邮民歌传习所',a:32.782,o:119.445,y:'国家级',s:'国家级非遗高邮民歌的传承基地，《数鸭蛋》入选中小学音乐教材。',cat:'culture'},
+      {n:'芦苇荡湿地公园',a:32.835,o:119.285,y:'景区',s:'高邮湖滩郊野公园，集生态观光与非遗展示于一体。',cat:'culture'},
+      {n:'渔民祭祀文化区',a:32.845,o:119.35,y:'民俗',s:'开捕节、七公会等传统渔俗的主要活动区域。',cat:'culture'}];
+    /* HTML 标记：彩色圆点 + 名称标签（重叠时自动避让，hover 显示，点击弹窗） */
+    var mk=[];
+    pts.forEach(function(s){
+      var el=document.createElement('div');
+      el.style.cssText='display:flex;align-items:center;gap:6px;padding:3px 11px 3px 6px;border-radius:18px;background:rgba(255,253,247,.96);border:1px solid rgba(176,138,62,.5);box-shadow:0 3px 10px rgba(40,30,10,.2);transform:translate(-50%,-100%);cursor:pointer;z-index:3;';
+      el.innerHTML='<span style="width:13px;height:13px;border-radius:50%;background:'+C[s.cat]+';border:2px solid #fff;box-shadow:0 0 7px '+C[s.cat]+'aa;display:inline-block;flex:none"></span><span class="ml" style="font-size:12.5px;font-weight:700;color:#333;white-space:nowrap;letter-spacing:.02em">'+s.n+'</span>';
+      var M=new maplibregl.Marker({element:el,anchor:'bottom'})
+        .setLngLat([s.o,s.a])
+        .setPopup(new maplibregl.Popup({offset:20,maxWidth:'300px'}).setHTML(p(s.n,CAT[s.cat]+' · '+s.y,s.s)))
+        .addTo(m);
+      mk.push({M:M,el:el,pt:[s.o,s.a],w:el.offsetWidth+10}); /* 预存标签宽度，供碰撞计算 */
+    });
+
+    /* ---- 标签碰撞避让：按投影位置检测重叠，隐藏次要标签；hover 临时显示 ---- */
+    function layoutLabels(){
+      var m0=window.__gyMap,placed=[];
+      mk.forEach(function(k){
+        var s0=m0.project(k.pt),collide=false;
+        for(var i=0;i<placed.length;i++){
+          var a=placed[i];
+          if(Math.abs(s0.x-a.x)<k.w/2+a.w/2 && Math.abs(s0.y-a.y)<34){collide=true;break;}
+        }
+        if(collide){k.el.querySelector('.ml').style.display='none';k.el.style.zIndex=2;}
+        else{k.el.querySelector('.ml').style.display='';k.el.style.zIndex=3;placed.push({x:s0.x,y:s0.y,w:k.w});}
+      });
+    }
+    m.on('move',layoutLabels);m.on('zoom',layoutLabels);m.on('idle',layoutLabels);
+    mk.forEach(function(k){
+      k.el.addEventListener('mouseenter',function(){k.el.querySelector('.ml').style.display='';k.el.style.zIndex=10;});
+      k.el.addEventListener('mouseleave',layoutLabels);
+    });
+
+    /* ---- 湖面范围 + 水脉关联虚线（GeoJSON） ---- */
+    var lakeRing=[[32.95,119.25],[32.98,119.35],[32.92,119.48],[32.85,119.52],[32.72,119.48],[32.62,119.42],[32.6,119.3],[32.68,119.2],[32.78,119.18],[32.88,119.22],[32.95,119.25]].map(function(pt){return [pt[1],pt[0]];});
+    var waterFeats=[[[32.79,119.43],[32.738,119.468],[32.885,119.418]],
+      [[32.775,119.452],[32.792,119.455],[32.782,119.445]],
+      [[32.948,119.368],[32.918,119.425],[32.885,119.418]],
+      [[32.885,119.418],[32.658,119.355],[32.845,119.35]]].map(function(c){return {type:'Feature',properties:{kind:'water'},geometry:{type:'LineString',coordinates:c.map(function(pt){return [pt[1],pt[0]];})}};});
+    /* 农田（绿）与村落（黄）示意区域：贴近各点位绘制的多边形，示意「农田—村落」空间分布 */
+    var farmAreas=[
+      [[32.883,119.415],[32.888,119.416],[32.889,119.421],[32.884,119.422]],
+      [[32.654,119.352],[32.660,119.353],[32.661,119.358],[32.655,119.359]],
+      [[32.789,119.452],[32.795,119.453],[32.796,119.458],[32.790,119.459]]
+    ].map(function(ring){return {type:'Feature',properties:{kind:'farm'},geometry:{type:'Polygon',coordinates:[ring.map(function(p){return [p[1],p[0]];})]}};});
+    var villageAreas=[
+      [[32.8835,119.417],[32.8855,119.418],[32.8855,119.420],[32.8835,119.420]],
+      [[32.656,119.354],[32.659,119.355],[32.659,119.357],[32.656,119.357]],
+      [[32.776,119.440],[32.782,119.441],[32.783,119.446],[32.777,119.447]]
+    ].map(function(ring){return {type:'Feature',properties:{kind:'village'},geometry:{type:'Polygon',coordinates:[ring.map(function(p){return [p[1],p[0]];})]}};});
+    var heritage={type:'FeatureCollection',features:[
+      {type:'Feature',properties:{kind:'lake'},geometry:{type:'Polygon',coordinates:[lakeRing]}}
+    ].concat(waterFeats,farmAreas,villageAreas)};
+
+    m.on('load',function(){
+      /* 真实地形高程：按 SRTM 海拔渲染起伏，垂直夸张 5 倍让平原的落差也清晰可见 */
+      m.setTerrain({source:'terrain',exaggeration:5});
+      m.addSource('heritage',{type:'geojson',data:heritage});
+      m.addLayer({id:'lake-fill',type:'fill',source:'heritage',filter:['==',['get','kind'],'lake'],
+        paint:{'fill-color':'#3a8ac0','fill-opacity':0.32}});
+      m.addLayer({id:'lake-line',type:'line',source:'heritage',filter:['==',['get','kind'],'lake'],
+        paint:{'line-color':'#4a7480','line-opacity':0.45,'line-width':2}});
+      m.addLayer({id:'farm-fill',type:'fill',source:'heritage',filter:['==',['get','kind'],'farm'],
+        paint:{'fill-color':'#6aa84f','fill-opacity':0.35}});
+      m.addLayer({id:'farm-line',type:'line',source:'heritage',filter:['==',['get','kind'],'farm'],
+        paint:{'line-color':'#5a8f44','line-opacity':0.5,'line-width':1.5}});
+      m.addLayer({id:'village-fill',type:'fill',source:'heritage',filter:['==',['get','kind'],'village'],
+        paint:{'fill-color':'#d9a441','fill-opacity':0.42}});
+      m.addLayer({id:'village-line',type:'line',source:'heritage',filter:['==',['get','kind'],'village'],
+        paint:{'line-color':'#c28a2e','line-opacity':0.55,'line-width':1.5}});
+      m.addLayer({id:'water-line',type:'line',source:'heritage',filter:['==',['get','kind'],'water'],
+        paint:{'line-color':'#8aa9ad','line-opacity':0.7,'line-width':2,'line-dasharray':[5,8]}});
+    });
+
+    /* ---- 飞入动画：滚到地图时从区域全景（倾斜）飞入高邮湖区 3D 俯瞰 ----
+       等地形瓦片就绪再飞（过早触发会被地形采样卡住） */
+    var ioMap=new IntersectionObserver(function(es){
+      es.forEach(function(en){if(en.isIntersecting){
+        ioMap.disconnect();
+        function fly(){m.flyTo({center:[119.40,32.78],zoom:10.8,pitch:55,bearing:0,duration:4500});}
+        if(m.loaded()&&m.areTilesLoaded()){fly();}else{m.once('idle',fly);}
+      }});
+    },{threshold:.35});
+    ioMap.observe(document.getElementById('heritage-map'));
+  }
+})();
+</script>
+
+<script>
+/* ================== 现状 · ECharts 图表 ================== */
+(function(){
+  var CG='#2d6a4f', CGOLD='#b08a3e', CBLUE='#4a7480', CRED='#a34d3c', CMUT='#d8cfbc';
+  function axisL(){return {color:'#4a453b',fontSize:12};}
+  if(!window.echarts){
+    document.querySelectorAll('.chart').forEach(function(el){
+      el.innerHTML='<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#9a9180;font-size:14px">图表组件加载失败，请检查网络后刷新。</div>';
+    });
+    return;
+  }
+  function mk(id,opt){
+    var el=document.getElementById(id); if(!el) return;
+    var c=echarts.init(el); c.setOption(opt);
+    (window.__charts=window.__charts||[]).push(c);
+    window.addEventListener('resize',function(){c.resize();});
+    return c;
+  }
+  /* 图表 1：多类型遗产公众认知分化（横向条形，从低到高） */
+  mk('ch-cog',{
+    grid:{left:8,right:44,top:12,bottom:8,containLabel:true},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){return p[0].name+'：<b>'+p[0].value+'%</b>';}},
+    xAxis:{type:'value',max:100,axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:'#efe8d9'}}},
+    yAxis:{type:'category',data:['灌区 · 知晓世界遗产身份','运河 · 实地到访了解','农遗 · 了解湖泊湿地农业系统','非遗 · 了解或参与民俗'],
+      axisLabel:axisL(),axisLine:{lineStyle:{color:'#d8cfbc'}}},
+    series:[{type:'bar',barWidth:'50%',data:[
+      {value:12.56,itemStyle:{color:CRED}},
+      {value:21.4,itemStyle:{color:CBLUE}},
+      {value:23.25,itemStyle:{color:CGOLD}},
+      {value:88.37,itemStyle:{color:CG}}
+    ],label:{show:true,position:'right',formatter:'{c}%',color:'#4a453b',fontWeight:700}}]
+  });
+  /* 图表 2：灌区认知断层（环形） */
+  mk('ch-void',{
+    tooltip:{trigger:'item',formatter:'{b}：{c}%'},
+    legend:{bottom:0,textStyle:{color:'#5a564a',fontSize:12}},
+    series:[{type:'pie',radius:['40%','64%'],center:['50%','44%'],
+      data:[
+        {name:'从未听说过',value:53.95,itemStyle:{color:CRED}},
+        {name:'听说过但不了解',value:32.49,itemStyle:{color:CMUT}},
+        {name:'仅知世界遗产标签',value:12.56,itemStyle:{color:CGOLD}},
+        {name:'有深入了解',value:1,itemStyle:{color:CG}}
+      ],
+      label:{show:true,formatter:'{b}\n{c}%',fontSize:11,color:'#4a453b'},
+      labelLine:{length:12,length2:8},
+      emphasis:{scaleSize:6}
+    }]
+  });
+  /* 图表 3：传统技艺 · 本地活态 vs 外界符号（分组条形） */
+  mk('ch-tech',{
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){return p[0].name+'：<b>'+p[0].value+'%</b>';}},
+    legend:{top:0,textStyle:{color:'#5a564a',fontSize:12}},
+    grid:{left:8,right:20,top:40,bottom:8,containLabel:true},
+    xAxis:{type:'category',data:['稻鸭共作','鱼鹰捕鱼','鱼类混养','鱼虾蟹混养'],axisLabel:axisL(),axisLine:{lineStyle:{color:'#d8cfbc'}}},
+    yAxis:{type:'value',axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:'#efe8d9'}}},
+    series:[
+      {name:'当地村民',type:'bar',barWidth:'30%',data:[72,70,70,70],itemStyle:{color:CG},label:{show:true,position:'top',formatter:'{c}%',color:'#2d6a4f',fontSize:11,fontWeight:700}},
+      {name:'外界公众',type:'bar',barWidth:'30%',data:[43.5,29,11.3,6.5],itemStyle:{color:CGOLD},label:{show:true,position:'top',formatter:'{c}%',color:'#8a6a2c',fontSize:11,fontWeight:700}}
+    ]
+  });
+  /* 图表 4：价值认同（横向条形） */
+  mk('ch-value',{
+    grid:{left:8,right:44,top:12,bottom:8,containLabel:true},
+    tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){return p[0].name+'：<b>'+p[0].value+'%</b>';}},
+    xAxis:{type:'value',max:100,axisLabel:{formatter:'{value}%'},splitLine:{lineStyle:{color:'#efe8d9'}}},
+    yAxis:{type:'category',data:['调节气候、涵养水源','观光休闲与科普教育','促进就业与经济发展'],
+      axisLabel:axisL(),axisLine:{lineStyle:{color:'#d8cfbc'}}},
+    series:[{type:'bar',barWidth:'46%',data:[
+      {value:61.0,itemStyle:{color:CG}},
+      {value:72.9,itemStyle:{color:CG}},
+      {value:83.9,itemStyle:{color:CG}}
+    ],label:{show:true,position:'right',formatter:'{c}%',color:'#4a453b',fontWeight:700}}]
+  });
+})();
+</script>
+
+<script>
+window.addEventListener('load', function(){
+  if (window.innerWidth <= 700) {
+    var h = document.querySelector('.hero-inner');
+    if (h) { h.style.justifyContent = 'center'; h.style.minHeight = '100vh'; h.style.height = '100vh'; h.style.paddingTop = '6vh'; h.style.paddingBottom = '2vh'; }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+﻿import puppeteer from "puppeteer-core";
+const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
+const browser = await puppeteer.launch({ executablePath: EDGE, headless: "new", args: ["--no-sandbox"] });
+const m = await browser.newPage();
+await m.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+await m.goto("http://localhost:8000/index-m.html", { waitUntil: "networkidle0", timeout: 60000 });
+await new Promise(r => setTimeout(r, 900));
+const home = await m.evaluate(() => ({ ft: getComputedStyle(document.querySelector(".ft")).display, hasPlatform: document.querySelector(".ft p") ? document.querySelector(".ft p").textContent.slice(0, 12) : "none" }));
+console.log("HOME:", JSON.stringify(home));
+await m.evaluate(() => window.showPage("water"));
+await new Promise(r => setTimeout(r, 400));
+const sub = await m.evaluate(() => ({ ft: getComputedStyle(document.querySelector(".ft")).display, hasPlatform: document.querySelector(".ft p") ? document.querySelector(".ft p").textContent.slice(0, 12) : "none" }));
+console.log("WATER:", JSON.stringify(sub));
+await m.screenshot({ path: "D:/新文科比赛/高邮网站/gaoyou-pages/screenshots/footer-restored.png", fullPage: true });
+await browser.close();
