@@ -536,6 +536,36 @@ section{scroll-margin-top:64px}
 </section>
 </div><!-- /page-explore -->
 
+<style>
+.w2{padding:0 2px 28px}
+.w2img{display:block;width:100%;border-radius:16px;margin:10px 0 4px}
+.w2-lead{color:#4e6154;font-size:13px;line-height:1.95;margin:8px 0 2px;font-family:var(--serif);letter-spacing:.02em}
+.w2-note{background:linear-gradient(135deg,#eef6f1,#f7f2e3);border:1px solid #d9e4d4;border-radius:14px;padding:12px 14px;margin:8px 0 10px;font-size:13px;line-height:1.9;color:#33503e}
+.w2-note b{color:#a88432}
+details.ws{border:1px solid #e0e5d3;border-radius:14px;background:#fffdf6;overflow:hidden;margin:8px 0}
+details.ws summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:12px 14px;font-family:var(--serif);font-weight:700;color:#1f4a36;font-size:14px;letter-spacing:.02em}
+details.ws summary::-webkit-details-marker{display:none}
+details.ws summary::after{content:'＋';margin-left:auto;color:#b08a35;font-weight:700;font-family:var(--sans)}
+details.ws[open] summary::after{content:'－'}
+.ws .wsbd{color:#4a5a4d;font-size:13px;line-height:1.95;border-top:1px dashed #e5eadc;margin:0 14px;padding:10px 0 12px}
+.tl{position:relative;list-style:none;margin:12px 0 6px;padding-left:18px}
+.tl::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,#bcd7cf,#8fb5a8,#d9c692)}
+.tl li{position:relative;list-style:none;margin:0 0 14px}
+.tl li::before{content:'';position:absolute;left:-18px;top:5px;width:10px;height:10px;border-radius:50%;background:#2f6f5c;border:2px solid #fff;box-shadow:0 0 0 2px #cfe0d6}
+.tl .tp{font-family:var(--serif);font-weight:700;color:#173a2e;font-size:14px}
+.tl .td{color:#8a6d30;font-size:11px;letter-spacing:.08em;margin-top:1px}
+.tl .tx{color:#55665a;font-size:12.5px;line-height:1.85;margin-top:3px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0 6px}
+.stat{background:#fff;border:1px solid #e4e8d8;border-radius:14px;text-align:center;padding:11px 6px}
+.stat b{display:block;font-family:var(--serif);font-size:19px;color:#b08a35;line-height:1.25}
+.stat span{font-size:11px;color:#5a6b5f}
+.story{position:relative;background:linear-gradient(160deg,#0f2b22,#173a2e);color:#efe7d0;border-radius:18px;padding:18px 18px 16px;margin:14px 0 6px}
+.story h4{font-family:var(--brush);font-size:19px;color:#f0dfa8;margin-bottom:8px;letter-spacing:.08em}
+.story p{font-size:13px;line-height:2;color:#e6dcc0;opacity:.96;margin-bottom:4px}
+.story .qt{display:block;text-align:center;font-family:var(--lishu);color:#f3e6b8;font-size:13px;margin-top:10px;letter-spacing:.06em}
+.w2 .sub-back{margin-top:16px}
+</style>
+
 <!-- ================= 水之源 · 灌溉工程遗产 ================= -->
 <div class="page" id="page-water">
 <section class="sec pulse" id="water" style="padding-top:0">
@@ -548,35 +578,49 @@ section{scroll-margin-top:64px}
       <p class="w-sub">灌溉工程遗产 · 里运河—高邮灌区</p>
     </div>
   </div>
-  <div class="wrap">
-    <p class="sub">三座古闸，让高邮湖的水千年不断地流向万亩农田。点击闸门，看水流如何被驯服、被送往田间。</p>
-    <div class="w-sluice" aria-hidden="true">
-      <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
-        <path class="ws-wave1" d="M0 98 Q25 93 50 98 T100 98 T150 98 T200 98 V120 H0 Z" fill="#3a8ac0" opacity=".55"/>
-        <path class="ws-wave2" d="M0 106 Q25 101 50 106 T100 106 T150 106 T200 106 V120 H0 Z" fill="#2f6f9f" opacity=".6"/>
-        <rect x="66" y="16" width="68" height="8" rx="3" fill="#5c5a52"/>
-        <rect x="70" y="22" width="10" height="92" fill="#7c7a72"/>
-        <rect x="120" y="22" width="10" height="92" fill="#7c7a72"/>
-        <g class="ws-gate">
-          <rect x="82" y="40" width="36" height="62" fill="#8a6a44"/>
-          <rect x="84" y="46" width="32" height="9" fill="#a5845a"/>
-          <rect x="84" y="59" width="32" height="9" fill="#9a7a50"/>
-          <rect x="84" y="72" width="32" height="9" fill="#a5845a"/>
-          <rect x="84" y="85" width="32" height="9" fill="#9a7a50"/>
-        </g>
-        <circle cx="100" cy="100" r="3" fill="#ffffff" opacity=".8"/>
-      </svg>
+  <div class="wrap w2">
+    <img class="w2img" src="./img/water/hu.jpg" alt="高邮湖湿地">
+    <p class="w2-lead">高邮因水而生。高邮湖、里运河与大运河三条水系在此交汇，湖、河之间西堤三闸，河、田之间归海五坝、六闸九洞——一部"防不足，泄有余"的千年治水史。</p>
+    <p class="w2-lead" style="color:#8a6d30;font-size:12.5px">自湖而河，由闸至田。看水如何被驯服，又被温柔地送往万亩农田。</p>
+
+    <div class="lbl" style="margin-top:8px">壹 · 水工遗产 · 世界灌溉工程遗产</div>
+    <div class="w2-note"><b>里运河—高邮灌区</b> 2021 年入选<b>世界灌溉工程遗产</b>，为江苏首个。现存水工遗产点，逐个点开看：</div>
+    <details class="ws"><summary>平津堰 · 唐（约806—820）</summary><div class="wsbd">淮南节度使李吉甫主持修筑，是高邮最早的系统性水利工程，淮扬运河现存<b>唯一古堰</b>，至今仍防洪灌溉、调水供水。</div></details>
+    <details class="ws"><summary>南关坝 · 明（1414）</summary><div class="wsbd">原名五里坝，平江伯陈瑄建，后经靳辅、张鹏翮改建为石坝。条石浆砌，金门实测长 211 米。归海五坝之一。</div></details>
+    <details class="ws"><summary>车逻坝 · 明（1414）</summary><div class="wsbd">陈瑄建，后改石坝，金门实测长 208 米，现存南北裹头与部分坝体。归海五坝之一，配水与防洪并重。</div></details>
+    <details class="ws"><summary>子婴闸 · 明</summary><div class="wsbd">位于界首镇，里运河与灌区之间的重要配水枢纽，<b>至今仍在运行</b>。</div></details>
+
+    <img class="w2img" src="./img/water/nanGuan.jpg" alt="南关坝遗址">
+    <div class="story">
+      <h4>归海五坝 · 开，还是不开？</h4>
+      <p>开了，下游泽国、民田尽没；不开，运堤溃决、漕运断绝。嘉庆年间百姓以命拦坝，道光年间数千人阻开四坝。</p>
+      <p>归海坝名为"归海"，实为"归田"。每一次开合，都是一次"以空间换时间"的艰难取舍。</p>
+      <span class="qt">「水涨听其自漫而俱堤，水小听其溢蓄而济远」</span>
     </div>
-    <div class="w-gates">
-      <button class="wg" data-gate="车逻闸" type="button"><span class="wg-ico">🚪</span><span class="wg-name">车逻闸</span><span class="wg-era">明代 · 归海五坝</span></button>
-      <button class="wg" data-gate="南关坝" type="button"><span class="wg-ico">🏯</span><span class="wg-name">南关坝</span><span class="wg-era">明代 · 归海五坝</span></button>
-      <button class="wg" data-gate="高邮灌区" type="button"><span class="wg-ico">🌾</span><span class="wg-name">高邮灌区</span><span class="wg-era">世界灌溉工程遗产</span></button>
+
+    <div class="lbl" style="margin-top:8px">贰 · 千年水史 · 五段演变</div>
+    <ul class="tl">
+      <li><div class="tp">湖沼农耕初探</div><div class="td">距今 7000–5000 年 · 龙虬庄</div><div class="tx">先民在湖沼采集渔猎、栽稻为生，高邮的稻作农业由此发端。</div></li>
+      <li><div class="tp">水利体系奠基</div><div class="td">隋唐 · 平津堰</div><div class="tx">李吉甫筑平津堰——有记载以来最早的运河水利工程，"防不足，泄有余"自此而始。</div></li>
+      <li><div class="tp">闸坝技术成熟</div><div class="td">宋元 · 水关与斗门</div><div class="tx">筑高邮城设水关，置斗门九十、滚水坝，河湖与闸坝日渐联为一体。</div></li>
+      <li><div class="tp">减水坝体系形成</div><div class="td">明代</div><div class="tx">筑湖堤、开康济河、修子婴闸，近三百年建设使水利走向系统化。</div></li>
+      <li><div class="tp">千年治水巅峰</div><div class="td">清代 · 归海五坝</div><div class="tx">康熙朝建南关等减水坝，乾隆年间成归海五坝；条石糯米汁灌缝、铁锭连坝面，坚固如磐。</div></li>
+      <li><div class="tp">世界灌溉工程遗产</div><div class="td">2021</div><div class="tx">里运河—高邮灌区入选世界灌溉工程遗产，江苏首个，千年水脉被世界看见。</div></li>
+    </ul>
+
+    <div class="lbl" style="margin-top:8px">叁 · 今日灌区 ·「数字大脑」</div>
+    <div class="stats">
+      <div class="stat"><b>68</b><span>闸门远程控制站</span></div>
+      <div class="stat"><b>94</b><span>视频监控站</span></div>
+      <div class="stat"><b>153</b><span>水量计量点</span></div>
+      <div class="stat"><b>100</b><span>田间水层监测点</span></div>
+      <div class="stat"><b>20万亩</b><span>数字精准灌溉（2025）</span></div>
+      <div class="stat"><b>江苏唯一</b><span>数字孪生灌区先行先试</span></div>
     </div>
-    <div class="w-flow" id="wFlow"><div class="w-flow-line"></div><div class="w-flow-txt">🌊 湖水正流经闸门，奔向万亩农田……</div></div>
-    <div class="w-info" id="wInfo"><h3 id="wInfoName"></h3><p id="wInfoText"></p></div>
-    <div class="chips"><span class="chip">平津堰（唐）</span><span class="chip">南关坝（明）</span><span class="chip">车逻闸</span><span class="chip">子婴闸</span></div>
-    <div class="motto">「水，是高邮文明的起点。」</div>
-    <a class="sub-back" href="#" data-page="explore">← 返回探索高邮</a>
+    <img class="w2img" src="./img/water/yunHe.jpg" alt="运河故道 · 闸渠">
+    <p class="w2-lead">灌区装上"数字大脑"：遥感、墒情、气象汇入"一张图"，缺水亮红、供水远程遥控；闸洞二维码"用水早知道"，农民扫一扫便知何时放水。河海大学等高校深度参与，产学研让古老灌区持续焕新，正从"经验驱动"走向"数据智能驱动"。</p>
+    <div class="motto">「防不足，泄有余——水与人的故事，从未结束。」</div>
+    <a class="sub-back" href="#" data-page="field">去看田之魂 →</a>
   </div>
 </section>
 </div><!-- /page-water -->
@@ -593,21 +637,42 @@ section{scroll-margin-top:64px}
       <p class="w-sub">农业文化遗产 · 高邮湖泊湿地农业系统</p>
     </div>
   </div>
-  <div class="wrap">
-    <p class="sub">一片稻田，从湖岸长出来：鸭吃虫、鱼松土、蟹翻泥、稻供遮阴。点击稻田，看四季轮转。</p>
-    <div class="f-seasons">
-      <button class="fs" data-season="春" type="button"><span class="fs-emoji">🌱</span><span class="fs-name">春 · 播种</span></button>
-      <button class="fs" data-season="夏" type="button"><span class="fs-emoji">🌾</span><span class="fs-name">夏 · 共作</span></button>
-      <button class="fs" data-season="秋" type="button"><span class="fs-emoji">🍂</span><span class="fs-name">秋 · 丰收</span></button>
-      <button class="fs" data-season="冬" type="button"><span class="fs-emoji">❄️</span><span class="fs-name">冬 · 传承</span></button>
+  <div class="wrap w2">
+    <p class="w2-lead">水塑造了田，田养育了人。高邮湖的湖水不仅滋养万顷良田，更孕育了独特的农业文化遗产——<b>"稻鸭鱼蟹"立体循环农业系统</b>。</p>
+    <p class="w2-lead" style="color:#8a6d30;font-size:12.5px">点击稻、鸭、鱼、蟹，探索高邮湖的生态密码。</p>
+
+    <div class="lbl" style="margin-top:8px">壹 · 「稻鸭鱼蟹」共生探索</div>
+    <details class="ws"><summary>🌾 稻 · 共生体系的基座</summary><div class="wsbd">稻田为鱼、鸭、蟹提供栖息与遮荫，落入水中的稻花、浮游生物、昆虫杂草籽，都是鱼鸭蟹的天然食物。稻田更依托高邮湖—里运河水文共同体、经灌区闸洞稳定供水——<b>没有这片水，就没有这片田</b>。</div></details>
+    <details class="ws"><summary>🦆 鸭 · 生态链的驱动者</summary><div class="wsbd">鸭在稻田穿行觅食，清除虫害与杂草，减少农药；游动搅土增氧；鸭粪入田成有机肥，减少化肥。种养结合，鸭壮稻丰蛋更香。</div></details>
+    <details class="ws"><summary>🐟 鱼 · 水质的守护者</summary><div class="wsbd">鲢鳙鲤鲫等鱼类游于水中上层，吞食有机碎屑与蓝藻，调节水体肥度、防止富营养化；其排泄物又化作虾蟹饵料，实现互利共生。</div></details>
+    <details class="ws"><summary>🦀 蟹 · 底层的清道夫</summary><div class="wsbd">中华绒螯蟹生活于水体底层，清除底栖残体、净化底层环境。鱼净中层、蟹清底层、鸭控虫草，各司其职，共护生态平衡。</div></details>
+
+    <img class="w2img" src="./img/water/duck.jpg" alt="高邮鸭 · 稻田共作">
+
+    <div class="lbl" style="margin-top:8px">贰 · 农业文化遗产荣誉</div>
+    <div class="stats">
+      <div class="stat"><b>6万+</b><span>系统总面积（公顷）</span></div>
+      <div class="stat"><b>2017</b><span>第四批中国重要农业文化遗产</span></div>
+      <div class="stat"><b>唯一</b><span>以水为主体的农遗（名录首个）</span></div>
+      <div class="stat"><b>候选</b><span>全球重要农业文化遗产项目</span></div>
     </div>
-    <div class="w-info" id="fInfo"><h3 id="fInfoName"></h3><p id="fInfoText"></p></div>
-    <div class="f-eco">
-      <span class="eco">🦆 鸭吃虫</span><span class="eco">🐟 鱼松土</span><span class="eco">🦀 蟹翻泥</span><span class="eco">🌾 稻供遮阴</span>
-    </div>
-    <div class="chips"><span class="chip">稻鸭鱼蟹共作</span><span class="chip">生态循环</span><span class="chip">四季轮转</span><span class="chip">种质资源</span></div>
-    <div class="motto">「一粒米背后，是千年的生态智慧。」</div>
-    <a class="sub-back" href="#" data-page="explore">← 返回探索高邮</a>
+    <div class="w2-note">2017 年高邮湖泊湿地农业系统入选<b>第四批中国重要农业文化遗产</b>，是中国名录中<b>首个、也是目前唯一以水为主体</b>的农业文化遗产，并成为<b>全球重要农业文化遗产</b>项目候选。</div>
+
+    <div class="lbl" style="margin-top:8px">叁 · 高邮鸭品种</div>
+    <details class="ws"><summary>品种概况</summary><div class="wsbd">高邮鸭（高邮麻鸭）与北京鸭、绍兴鸭并称<b>中国三大名鸭</b>。年产蛋约 200 枚，双黄蛋是高邮的标志性特产。2005 年定为国家级畜禽遗传资源保护品种，江苏唯一列入《国家级畜禽品种资源保护名录》的地方鸭。</div></details>
+    <details class="ws"><summary>养殖模式</summary><div class="wsbd">经典<b>稻鸭共作</b>：鸭在稻田放养，食虫草螺蚯，50㎡/只效益最佳。如今已发展出鱼鸭混养、湿地基地养殖，及"笼上养鸭""发酵床养鸭"和"云上牧场"智慧养鸭等新模式。</div></details>
+    <details class="ws"><summary>种质保护</summary><div class="wsbd">保种场—核心群—家系管理三位一体：国家级高邮鸭保种场现存<b>58 个家系</b>；与扬州大学等育成"苏邮1号"；实行核心群<b>"一鸭一码"</b>溯源，确保基因不流失。</div></details>
+
+    <img class="w2img" src="./img/water/shrimp.jpg" alt="高邮青虾 · 生态养殖">
+    <div class="lbl" style="margin-top:8px">肆 · 特色农业技术</div>
+    <details class="ws"><summary>稻作耕种</summary><div class="wsbd">源自两汉陂塘蓄水灌溉；以湖、河、潭蓄水，闸、洞、关、坝调水，干支斗渠三级配水，形成"防不足，泄有余"的灌溉体系。</div></details>
+    <details class="ws"><summary>水产养殖</summary><div class="wsbd">"鱼虾蟹生态混养"充分利用水体空间；绿色生态养殖取代"高密度高投放"；薄膜大棚错峰 + 水质在线监测 + 智慧渔业，获评"中国大闸蟹生态养殖示范市"。</div></details>
+    <details class="ws"><summary>鱼类混养</summary><div class="wsbd">鲢鳙上层滤食、中层摄虫、底层清理，形成立体结构；鱼类调节肥度、净化水质，排泄物化作饵料，实现水体自净与饵料循环。</div></details>
+    <details class="ws"><summary>鱼虾蟹混养</summary><div class="wsbd">稻田或水体中鱼、虾、蟹同养：鱼净水、虾蟹清底，各居其位。里下河农科所"水稻+罗氏沼虾"等试验实现经济效益与生态效益"双丰收"。</div></details>
+    <details class="ws"><summary>鱼鹰捕鱼</summary><div class="wsbd">传统的渔猎协作：一船八只鸬鹚，颈系麻绳防吞大鱼；"牧鹰人"抄鱼回舱、奖小鱼后鱼鹰再入水——人与鸟的古老默契，至今仍在湖面延续。</div></details>
+
+    <div class="motto">「一粒米、一只鸭、一尾鱼——高邮田的灵魂，是共生。」</div>
+    <a class="sub-back" href="#" data-page="people">去看人之韵 →</a>
   </div>
 </section>
 </div><!-- /page-field -->
@@ -624,18 +689,32 @@ section{scroll-margin-top:64px}
       <p class="w-sub">非物质文化遗产 · 湖畔人文</p>
     </div>
   </div>
-  <div class="wrap">
-    <p class="sub">夜幕降临，湖边村落亮起灯火：老人唱起民歌，匠人腌着鸭蛋，渔民讲着湖泊的故事。点击灯火，听一听。</p>
-    <div class="p-lights">
-      <button class="pl" data-kind="民歌" type="button"><span class="pl-emoji">🎵</span><span class="pl-name">高邮民歌</span><span class="pl-note">老人 · 唱</span></button>
-      <button class="pl" data-kind="咸鸭蛋" type="button"><span class="pl-emoji">🥚</span><span class="pl-name">咸鸭蛋技艺</span><span class="pl-note">匠人 · 做</span></button>
-      <button class="pl" data-kind="渔文化" type="button"><span class="pl-emoji">🐟</span><span class="pl-name">渔文化习俗</span><span class="pl-note">渔民 · 讲</span></button>
-    </div>
-    <div class="p-flow" id="pFlow"><span class="p-flow-emoji">🏮</span><span class="p-flow-txt">村落灯火亮起，歌声与手艺在夜色里延续……</span></div>
-    <div class="w-info" id="pInfo"><h3 id="pInfoName"></h3><p id="pInfoText"></p></div>
-    <div class="chips"><span class="chip">高邮民歌</span><span class="chip">咸鸭蛋制作</span><span class="chip">渔文化</span><span class="chip">十二红</span></div>
-    <div class="motto">「人，是遗产真正的守护者。」</div>
-    <a class="sub-back" href="#" data-page="explore">← 返回探索高邮</a>
+  <div class="wrap w2">
+    <p class="w2-lead">高邮有一首民歌，叫《数鸭蛋》。1957 年，民歌手把它唱进了中南海；2010 年，又唱进了上海世博会。1 项国家级非遗、11 项省级非遗、84 项市级项目、71 位传承人——它们是高邮人过日子的手艺与歌声。</p>
+    <p class="w2-lead" style="color:#8a6d30;font-size:12.5px">它不是展柜里的遗产，是田埂上唱的歌、厨房里腌的蛋、湖面上点的灯。</p>
+
+    <div class="lbl" style="margin-top:8px">壹 · 非遗技艺</div>
+    <details class="ws"><summary>🎵 高邮民歌 · 国家级（2008）</summary><div class="wsbd">源自新石器时代的号子、田歌与摇橹小调，柔婉兼爽朗。代表作《数鸭蛋》由《鸭蛋号子》改编——"一只鸭子一张嘴，两只眼睛两条腿，呱呱，伊啧啧来"。王兰英等从田埂唱进中南海，走过了 66 年。</div></details>
+    <details class="ws"><summary>🥚 咸鸭蛋制作技艺 · 省级</summary><div class="wsbd">南北朝即有记载的"腌出来的非遗"：选蛋看光，灰包/泥灰/黄泥/盐水四法，"滚泥滚灰"约 50 天成。蛋白鲜细嫩，蛋黄松沙油——汪曾祺"筷子头一扎下去，吱——红油冒出来"。</div></details>
+    <details class="ws"><summary>🎭 其他非遗</summary><div class="wsbd">临泽高跷、界首茶干、卸甲肩担木偶戏、秦邮董糖、菱塘回回习俗……各带一股高邮的水土气。</div></details>
+
+    <div class="lbl" style="margin-top:8px">贰 · 人文环境</div>
+    <img class="w2img" src="./img/water/life.jpg" alt="高邮湖畔生活">
+    <details class="ws"><summary>🦆 一只鸭子，陪高邮人一辈子</summary><div class="wsbd">定亲送<b>肥鸭</b>、结婚送<b>交颈鸭</b>、探亲送<b>光鸭</b>、催生送<b>仔鸭</b>、抓周送<b>野鸭</b>、上学送<b>含葱鸭</b>——从出生到成家，鸭子把高邮人的日子过成了仪式。</div></details>
+    <details class="ws"><summary>🎼 水边的歌与戏</summary><div class="wsbd">卸甲肩担木偶戏一人担箱走村串户；临泽高跷踩街翻腾；石锁翻飞如玩具。还有"高邮八景"传说——甓社珠光的巨蚌夜夜吐珠，连沈括都写进了《梦溪笔谈》。</div></details>
+    <details class="ws"><summary>🗣 水边的谚语</summary><div class="wsbd">种田人把节气刻在舌尖："打了春，赤脚奔""立秋三场雨，秕稻变成米"。渔家最怕"三个八"：八千流量、八米水位、八级大风——每句都是用命换来的。</div></details>
+    <details class="ws"><summary>🏮 水边的神</summary><div class="wsbd">大禹排淮注江道出于邮；唐代柳毅封"圣水将军"；宋代耿七公悬壶济世，庙前石柱夜夜悬灯为归帆引路——"耿庙神灯"列为秦邮八景，渔民信的其实是平安。</div></details>
+
+    <div class="lbl" style="margin-top:8px">叁 · 风物人情 · 节庆</div>
+    <details class="ws"><summary>🥚 咸鸭蛋与全鸭宴</summary><div class="wsbd">秦少游以咸鸭蛋馈苏东坡；袁枚《随园食单》："腌蛋以高邮为佳，颜色红而油多。"高邮鸭脂肪低，盐水鸭、老鸭汤、琵琶鸭皆入席。秦邮董糖、界首茶干、三垛方酥、临泽汤羊，每一样都带着水土气。</div></details>
+    <details class="ws"><summary>🏮 七公会</summary><div class="wsbd">耿七公是湖畔渔民的保护神。春社（清明前后）与农历十月十五水官生日各办一次：江湖十八帮渔船云集，竖百雀幡、挂龙凤旗、点一盏灯——"一盏灯灭了，千万盏灯还亮在心里。"</div></details>
+    <details class="ws"><summary>📅 双黄鸭蛋节 · 邮文化节</summary><div class="wsbd">1991 年首届中国高邮双黄鸭蛋节；现两年一届鸭蛋节、两年一届邮文化节交替，以蛋为媒、借节招商。高邮是全国唯一以"邮"命名的城市。</div></details>
+    <details class="ws"><summary>🌕 元宵灯展 · 秦观七夕 · 端午</summary><div class="wsbd">元宵"灯映古驿，春满邮城"；三垛镇是秦少游故里，"两情若是久长时"话七夕；端午包粽、佩香囊、射五毒，配一只红油咸鸭蛋。</div></details>
+    <details class="ws"><summary>🐲 汤庄舞龙</summary><div class="wsbd">始于清末，每逢春节多支舞龙队走街串巷，已列入扬州市级非遗。</div></details>
+
+    <img class="w2img" src="./img/water/scene.jpg" alt="高邮城景">
+    <div class="motto">「人，是遗产真正的守护者——田埂上的歌，还在唱。」</div>
+    <a class="sub-back" href="#" data-page="timeline">去看穿越千年 →</a>
   </div>
 </section>
 </div><!-- /page-people -->
@@ -647,25 +726,24 @@ section{scroll-margin-top:64px}
     <div class="lbl">文化故事 · 穿越千年</div>
     <h2 class="tt">一湖一千年</h2>
     <p class="sub">从治水理田到歌谣传唱，高邮的故事沿着水脉层层铺展。</p>
-    <div class="tl">
-      <div class="tl-node reveal">
-        <div class="nimg"><img src="./img/tl_ancient.jpg" alt="古代·治水与农耕"></div>
-        <div class="era">古代 · 因水而生</div>
-        <ul><li>水利建设：平津堰（唐）、南关坝（明）等活态工程奠基</li><li>运河交通：里运河联通南北，舟楫往来</li><li>农业生产形成：低洼圩田里长出水乡农耕文明</li></ul>
-        <span class="ndot"></span>
-      </div>
-      <div class="tl-node reveal">
-        <div class="nimg"><img src="./img/tl_modern.jpg" alt="近现代·渔耕生活"></div>
-        <div class="era">近现代 · 因水而兴</div>
-        <ul><li>乡村生活：沿湖渔村炊烟，人水相依</li><li>渔业发展：稻鸭鱼蟹共作模式成熟</li><li>传统技艺传承：民歌、腌制技艺代代相传</li></ul>
-        <span class="ndot"></span>
-      </div>
-      <div class="tl-node reveal">
-        <div class="nimg"><img src="./img/tl_today.jpg" alt="今日·遗产保护与活化"></div>
-        <div class="era">今日 · 因水而新</div>
-        <ul><li>2017 高邮湖泊湿地农业系统入选中国重要农业文化遗产</li><li>2021 里运河—高邮灌区列入世界灌溉工程遗产</li><li>数字化活化利用：让古老智慧在指尖「活」起来</li></ul>
-        <span class="ndot"></span>
-      </div>
+    <div class="w2" style="padding:0">
+      <details class="ws"><summary>古代 · 因水而生（距今7000—1840）</summary><div class="wsbd">
+        <p><b>龙虬庄 · 距今 7000–5000 年</b><br>先民在湖沼环境采集渔猎、栽稻为生，留下中华农耕文明较早的印记。</p>
+        <p style="margin-top:6px"><b>唐宋 · 农牧渔格局形成</b><br>堤塘河道开发，水稻、水产、家禽渐成体系；平津堰（唐）成为最早的系统性水利工程。</p>
+        <p><b>明清 · 闸坝洞关</b><br>兴圩堆垛治理水患，归海五坝、东堤六闸九洞陆续建成；南关坝（1414）、子婴闸至今仍在运行。</p>
+      </div></details>
+      <details class="ws"><summary>近现代 · 因水而兴（1840—2000）</summary><div class="wsbd">
+        <p><b>晚清至民国</b><br>灌区修缮扩建，灌溉、航运、防洪并进；高邮民歌、咸鸭蛋制作技艺进一步丰富。</p>
+        <p style="margin-top:6px"><b>新中国成立后</b><br>50–60 年代新建车逻洞、周山水闸等工程；高邮鸭走向规模化、标准化；《数鸭蛋》广为传唱，成为文化名片。</p>
+      </div></details>
+      <details class="ws"><summary>今日 · 因水而新（2000—至今）</summary><div class="wsbd">
+        <p><b>遗产认定</b><br>2017 高邮湖泊湿地农业系统入选中国重要农业文化遗产；2021 里运河—高邮灌区列入世界灌溉工程遗产；大运河（高邮段）为世界文化遗产组成部分。</p>
+        <p style="margin-top:6px"><b>制度保护</b><br>2025 出台《里运河—高邮灌区灌溉工程遗产保护管理办法》，保护迈入法治化。</p>
+        <p><b>数字化活化</b><br>"数绘湖田"平台以数字技术整合资源、沉浸式转化；团队 2025·8 / 2026·1 两次赴高邮湖区调研，问卷 237 份、访谈 10 人次、照片 800+ 张。</p>
+      </div></details>
+      <img class="w2img" src="./img/water/hu.jpg" alt="千年湖田">
+      <div class="motto">「水还是那片水，田还是那片田——遗产并非停留在过去，而是在今天继续生长。」</div>
+      <a class="sub-back" href="#" data-page="map">去看数字地图 →</a>
     </div>
   </div>
 </section>
@@ -688,6 +766,12 @@ section{scroll-margin-top:64px}
     </div>
     <div class="mbox"><div id="heritage-map"></div></div>
     <div class="m-note">数据来源：高邮实地调研 · 2025 年 8 月 / 2026 年 1 月</div>
+    <a href="https://c8a7b676cca8489190bede3a08973e89.app.workbuddy.link/" target="_blank" rel="noopener" style="display:block;text-align:center;background:linear-gradient(135deg,#e6cf92,#c9a55c);color:#3a2c0e;border-radius:24px;padding:12px 14px;font-weight:700;font-size:14px;margin:12px 0;text-decoration:none;box-shadow:0 4px 12px rgba(120,90,20,.18)">🌐 进入三维遗产地图 →</a>
+    <div class="lbl" style="margin-top:6px">点位分类</div>
+    <details class="ws"><summary>水利工程类</summary><div class="wsbd">平津堰 · 南关坝 · 子婴闸 · 界首小闸 · 车逻闸 · 琵琶洞 · 南水关洞</div></details>
+    <details class="ws"><summary>农业遗产类</summary><div class="wsbd">高邮湖泊湿地农业系统核心区 · 稻鸭共作示范田 · 高邮鸭养殖基地</div></details>
+    <details class="ws"><summary>非遗文化类</summary><div class="wsbd">高邮民歌传习所 · 咸鸭蛋制作技艺展示工坊 · 相关民俗活动场所</div></details>
+    <details class="ws"><summary>自然生态类</summary><div class="wsbd">高邮湖芦苇荡湿地公园 · 高邮湖西堤风景区</div></details>
     <div class="m-stats">
       <div class="m-stat"><b>215</b><span>份有效问卷 · 回收率 90.7%</span></div>
       <div class="m-stat"><b>10</b><span>人次深度访谈</span></div>
@@ -737,58 +821,28 @@ section{scroll-margin-top:64px}
   <div class="wrap">
     <div class="lbl">研学路线 · 从湖到餐桌</div>
     <h2 class="tt">三条路线，读懂一片湖</h2>
-    <p class="sub">路线如水流，把高邮湖、农业基地、古闸工程与非遗工坊串成一条完整的故事链。</p>
-    <div class="flowmap">
-      <div class="flow-src reveal">
-        <span class="fs-i">🌊</span>
-        <span class="fs-t">高邮湖</span>
-        <span class="fs-s">从湖到餐桌</span>
-      </div>
-      <div class="flow-lanes">
-        <div class="flow-lane lane1 reveal">
-          <svg class="fl-svg" viewBox="0 0 520 90" aria-hidden="true">
-            <path d="M6,46 C 70,14 130,78 195,46 S 325,78 390,46 S 500,16 514,46" fill="none" stroke="#4a7480" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
-            <circle cx="130" cy="48" r="7" class="fl-dot" stroke="#4a7480"/><text x="130" y="25" text-anchor="middle" class="fl-dot-label">平津堰</text>
-            <circle cx="260" cy="54" r="7" class="fl-dot" stroke="#4a7480"/><text x="260" y="82" text-anchor="middle" class="fl-dot-label">车逻闸</text>
-            <circle cx="390" cy="42" r="7" class="fl-dot" stroke="#4a7480"/><text x="390" y="19" text-anchor="middle" class="fl-dot-label">南关坝</text>
-          </svg>
-          <div class="fl-card">
-            <div class="num">壹 · 水脉寻踪</div>
-            <h3>探索灌溉工程遗产</h3>
-            <p>从平津堰到车逻闸，跟随古老闸口重走「蓄水—调水—配水」之路，看一湖水如何化作万亩良田。</p>
-            <div class="go">查看路线 →</div>
-          </div>
-        </div>
-        <div class="flow-lane lane2 reveal">
-          <svg class="fl-svg" viewBox="0 0 520 90" aria-hidden="true">
-            <path d="M6,46 C 70,14 130,78 195,46 S 325,78 390,46 S 500,16 514,46" fill="none" stroke="#2d6a4f" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
-            <circle cx="130" cy="48" r="7" class="fl-dot" stroke="#2d6a4f"/><text x="130" y="25" text-anchor="middle" class="fl-dot-label">春插秧</text>
-            <circle cx="260" cy="54" r="7" class="fl-dot" stroke="#2d6a4f"/><text x="260" y="82" text-anchor="middle" class="fl-dot-label">夏共作</text>
-            <circle cx="390" cy="42" r="7" class="fl-dot" stroke="#2d6a4f"/><text x="390" y="19" text-anchor="middle" class="fl-dot-label">秋丰收</text>
-          </svg>
-          <div class="fl-card">
-            <div class="num">贰 · 稻田密码</div>
-            <h3>体验稻鸭鱼蟹生态智慧</h3>
-            <p>下田插秧、赶鸭入田，亲手感受「鸭吃虫、鱼松土、蟹翻泥」的立体共作，解密千年生态循环。</p>
-            <div class="go">查看路线 →</div>
-          </div>
-        </div>
-        <div class="flow-lane lane3 reveal">
-          <svg class="fl-svg" viewBox="0 0 520 90" aria-hidden="true">
-            <path d="M6,46 C 70,14 130,78 195,46 S 325,78 390,46 S 500,16 514,46" fill="none" stroke="#a5653f" stroke-width="3" stroke-dasharray="6 7" stroke-linecap="round"/>
-            <circle cx="130" cy="48" r="7" class="fl-dot" stroke="#a5653f"/><text x="130" y="25" text-anchor="middle" class="fl-dot-label">学民歌</text>
-            <circle cx="260" cy="54" r="7" class="fl-dot" stroke="#a5653f"/><text x="260" y="82" text-anchor="middle" class="fl-dot-label">腌鸭蛋</text>
-            <circle cx="390" cy="42" r="7" class="fl-dot" stroke="#a5653f"/><text x="390" y="19" text-anchor="middle" class="fl-dot-label">渔村故事</text>
-          </svg>
-          <div class="fl-card">
-            <div class="num">叁 · 湖畔人家</div>
-            <h3>感受民歌·饮食·传统技艺</h3>
-            <p>学一句高邮民歌，腌一枚咸鸭蛋，听渔村人家讲湖上的故事——把文化带回家。</p>
-            <div class="go">查看路线 →</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <p class="sub">从闸口到稻田，从湿地到餐桌——把灌溉工程遗产、农业文化遗产与非遗贯通成一条可行走、可体验的文化课堂。</p>
+
+    <details class="ws"><summary>路线一 · 从闸口到餐桌——贯通之旅</summary><div class="wsbd">
+      <p><b>主线：水 → 田 → 人</b>，串起三大遗产。</p>
+      <p style="margin-top:6px"><b>第一站 · 闸口探秘（水利工程）</b><br>参观车逻闸、南关坝等古水利设施，了解「防不足，泄有余」的治水智慧，观察闸口如何调节高邮湖与农田的水量。</p>
+      <p><b>第二站 · 稻田密码（农业遗产）</b><br>走进稻鸭共作示范田，观察「稻鸭鱼蟹」立体共作如何运转，理解高邮鸭养殖与稻田生态循环的关系。</p>
+      <p><b>第三站 · 湖畔人家（非遗体验）</b><br>走进高邮民歌传习所听水乡歌谣，体验咸鸭蛋制作技艺，品尝高邮湖鲜与地方美食。</p>
+    </div></details>
+
+    <details class="ws"><summary>路线二 · 小小水利师——灌区工程探索</summary><div class="wsbd">
+      <p><b>目标：中小学生</b></p>
+      <p style="margin-top:6px">以里运河—高邮灌区为主要课堂：实地观察灌区闸口 → 学习「防不足，泄有余」理念 → 参与水位测量与调水模拟实验，理解古代水利的科学原理及其对农业的支撑。</p>
+    </div></details>
+
+    <details class="ws"><summary>路线三 · 稻田守护者——生态农业体验</summary><div class="wsbd">
+      <p><b>目标：中小学生及亲子家庭</b></p>
+      <p style="margin-top:6px">以高邮湖泊湿地农业系统为核心课堂：观察稻鸭共作、了解「稻鸭鱼蟹」生态循环，动手插秧、放鸭，感受传统生态农业的智慧与魅力。</p>
+    </div></details>
+
+    <div class="chips" style="margin-top:12px"><span class="chip">世界灌溉工程遗产</span><span class="chip">稻鸭鱼蟹</span><span class="chip">非遗技艺</span><span class="chip">从湖到餐桌</span></div>
+    <div class="motto">「每一段旅程，都是一次与千年农耕文明的对话。」</div>
+    <a class="sub-back" href="#" data-page="games">去看互动游戏 →</a>
   </div>
 </section>
 </div><!-- /page-routes -->
@@ -890,15 +944,16 @@ section{scroll-margin-top:64px}
       </div>
     </div>
     <div class="about-box reveal">
-      <h3>青年实践 · 来自扬州大学的调研团队</h3>
-      <p>我们是一群来自扬州大学的青年调研者，以高邮湖泊湿地多类型遗产为研究对象。带着书斋里的疑问，我们两次深入高邮湖区——2025 年 8 月与 2026 年 1 月，走遍芦苇荡湿地公园、高宝邵伯湖渔管办、界首镇永安村、方巷镇沿湖村与江苏高邮鸭集团：发问卷、做访谈、拍影像、看闸坝、听民歌。</p>
+      <h3>青年实践 · 南京农业大学多学科团队</h3>
+      <p>我们来自南京农业大学人文与社会发展学院、理学院、金融学院与生命科学学院——以「水—田—人」为研究主线的多学科青年团队。带着书斋里的疑问，两次深入高邮湖区（2025 年 8 月 / 2026 年 1 月），走访沿湖村、永安村、高邮湖芦苇荡湿地公园、高宝邵伯湖渔业管理处、江苏高邮鸭发展集团、高邮市水利局及沿线闸坝点位：发放问卷 237 份（有效 215 份）、深度访谈 10 人次、采集影像 800 余张。</p>
       <div class="about-stats">
+        <div class="as"><b>237</b><span>份问卷发放 · 有效 215</span></div>
         <div class="as"><b>2</b><span>次实地调研</span></div>
-        <div class="as"><b>215</b><span>份有效问卷 · 回收率 90.7%</span></div>
         <div class="as"><b>10</b><span>人次深度访谈</span></div>
         <div class="as"><b>800+</b><span>张实地影像记录</span></div>
       </div>
-      <p>从问卷数据、深度访谈与镜头记录出发，我们建成了这座「数绘湖田 · 魅力高邮」数字平台——希望以青年实践，让高邮「水—田—人」共生的文明，被更多人看见、理解，并一起守护。</p>
+      <p>从问卷、深度访谈与镜头出发，我们建成这座「数绘湖田 · 魅力高邮」数字平台——数字地图、研学路线、互动游戏与三大遗产板块，把高邮「水—田—人」共生的文明讲给更多人听，也让更多人一起守护。</p>
+      <p style="margin-top:12px;color:#8a6d30"><b>加入我们</b>：公众号 · 小红书「融会贯通遗产研习社」</p>
     </div>
   </div>
 </section>

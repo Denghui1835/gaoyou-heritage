@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="数绘湖田 · 魅力高邮——高邮湖泊湿地多类型遗产数字活化平台。桌面版：按 AI 设计稿 1:1 重建，导航/卡片/按钮均可点击进入各板块。">
+<title>数绘湖田 · 魅力高邮 | 高邮湖泊湿地多类型遗产数字活化平台（桌面版）</title>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:#e2d3b8;              /* 画布外围暖纸底 */
+  font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
+
+/* ===== 设计稿缩放舞台：把 1536×1024 画布铺满窗口宽度 ===== */
+#view{position:relative;width:100%;}
+#stage{
+  position:relative;width:1536px;height:1024px;margin:0 auto;
+  transform-origin:top center;
+}
+#art{position:absolute;inset:0;z-index:1}
+
+/* ===== 透明交互热区 ===== */
+.hot{position:absolute;z-index:5;display:block;cursor:pointer;border-radius:10px;outline:none;text-decoration:none;
+  transition:box-shadow .22s ease,background .22s ease}
+.hot.nobg{cursor:pointer}
+.hot.nav:hover{background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+/* 卡片/按钮式入口：悬停时描一圈暖金细线，提示可点 */
+.hot.card:hover,.hot.cta:hover,.hot.fbtn:hover{
+  box-shadow:inset 0 0 0 3px rgba(232,199,122,.9), inset 0 0 0 999px rgba(255,255,255,.035);
+}
+.hot:focus-visible{box-shadow:0 0 0 3px rgba(176,138,62,.75)}
+.hot .tip{position:absolute;display:none;white-space:nowrap;background:rgba(15,40,32,.92);color:#fff;
+  font-size:13px;padding:5px 12px;border-radius:6px;left:50%;transform:translateX(-50%);bottom:calc(100% + 8px);z-index:9}
+.hot:hover .tip{display:block}
+
+/* ===== 搜索快速跳转浮层 ===== */
+#qbox{position:absolute;left:1082px;top:6px;width:210px;height:60px;z-index:6;cursor:pointer}
+#qmenu{position:absolute;left:1082px;top:68px;width:210px;z-index:20;display:none;background:rgba(18,52,44,.97);
+  border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:6px;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+#qmenu.open{display:block}
+#qmenu a{display:flex;align-items:center;gap:8px;color:#dbe9e2;font-size:14px;text-decoration:none;padding:8px 12px;border-radius:7px}
+#qmenu a:hover{background:rgba(255,255,255,.14);color:#fff}
+#qmenu a b{color:#e6c887;font-weight:600}
+
+/* ===== 右下角：设备切换 / 到顶部 ===== */
+.ctl{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;gap:8px}
+.ctl a{display:inline-flex;align-items:center;gap:6px;background:rgba(20,50,42,.9);color:#eee;text-decoration:none;
+  font-size:13px;padding:7px 13px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:.2s}
+.ctl a:hover{background:#2d6a4f;transform:translateY(-2px)}
+
+/* ===== 弹窗（沿用占位版交互） ===== */
+.modal{position:fixed;inset:0;z-index:1500;display:none;align-items:center;justify-content:center;background:rgba(14,30,22,.55);backdrop-filter:blur(3px);padding:16px}
+.modal.open{display:flex}
+.modal-box{background:#fdfaf2;border-radius:18px;max-width:420px;width:100%;padding:26px 26px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.modal-box h3{font-family:'KaiTi','STKaiti',serif;font-size:20px;color:#173a2e;margin-bottom:10px}
+.modal-box p{font-size:14px;color:#6b6354;line-height:1.9;margin-bottom:14px}
+.modal-box img{max-width:200px;margin:0 auto 12px;border-radius:8px;display:block}
+.mclose{margin-top:4px;padding:9px 30px;border-radius:24px;border:none;background:#2d6a4f;color:#fff;font-size:13px;letter-spacing:.12em;cursor:pointer}
+
+/* ===== 调试模式：#index-desktop.html#debug 显示热区位置便于对齐校验 ===== */
+body.dbg .hot{background:rgba(255,64,0,.25);box-shadow:inset 0 0 0 2px #ff3b00}
+body.dbg .hot .tip{display:block;background:#c22;color:#fff;bottom:auto;top:calc(100% + 4px);font-weight:700}
+</style>
+</head>
+<body>
+<a id="top"></a>
+
+<div id="view">
+  <div id="stage">
+    <img id="art" src="./img/desk/desk-full.png" alt="数绘湖田 · 魅力高邮 —— 桌面版全景页（图内文字为设计稿定稿）" width="1536" height="1024">
+
+    <!-- ===== 顶栏导航（透明热区，覆盖在图上文字处） ===== -->
+    <a class="hot nav"  style="left:402px;top:0;width:74px;height:76px" href="#top" title="首页"><span class="tip">首页</span></a>
+    <a class="hot nav"  style="left:468px;top:0;width:126px;height:76px" href="./index-m.html#page-explore" title="探索高邮"><span class="tip">探索高邮</span></a>
+    <a class="hot nav"  style="left:574px;top:0;width:122px;height:76px" href="./index-m.html#page-map" title="遗产地图"><span class="tip">遗产地图</span></a>
+    <a class="hot nav"  style="left:672px;top:0;width:122px;height:76px" href="./index-m.html#page-timeline" title="文化故事"><span class="tip">文化故事</span></a>
+    <a class="hot nav"  style="left:772px;top:0;width:122px;height:76px" href="./index-m.html#page-routes" title="研学路线"><span class="tip">研学路线</span></a>
+    <a class="hot nav"  style="left:874px;top:0;width:128px;height:76px" href="./index-m.html#page-games" title="互动游戏"><span class="tip">互动游戏</span></a>
+
+    <!-- 搜索框：点击展开快速跳转 -->
+    <div id="qbox" title="搜索/快速跳转"><span class="tip" style="display:none">搜索</span></div>
+    <div id="qmenu">
+      <a href="./index-m.html#page-explore"><b>▸</b> 探索高邮（三脉总览）</a>
+      <a href="./index-m.html#page-map"><b>▸</b> 遗产数字地图</a>
+      <a href="./index-m.html#page-timeline"><b>▸</b> 穿越千年 · 文化故事</a>
+      <a href="./index-m.html#page-routes"><b>▸</b> 研学路线</a>
+      <a href="./index-m.html#page-games"><b>▸</b> 互动游戏中心</a>
+    </div>
+
+    <!-- ===== Hero 主按钮 ===== -->
+    <a class="hot cta" style="left:584px;top:400px;width:292px;height:52px" href="./index-m.html#page-explore" title="开启高邮遗产之旅 →"><span class="tip">开启高邮遗产之旅</span></a>
+
+    <!-- ===== 三脉大卡：水之源 / 田之澜 / 人之韵 ===== -->
+    <a class="hot card" style="left:110px;top:532px;width:360px;height:212px" href="./index-m.html#page-water"  title="水之源"><span class="tip">水之源 —— 走进水脉与灌溉遗产</span></a>
+    <a class="hot card" style="left:520px;top:532px;width:360px;height:212px" href="./index-m.html#page-field"  title="田之澜"><span class="tip">田之澜 —— 农业文化遗产里的农耕智慧</span></a>
+    <a class="hot card" style="left:930px;top:532px;width:360px;height:212px" href="./index-m.html#page-people" title="人之韵"><span class="tip">人之韵 —— 水乡烟火与代代传承</span></a>
+
+    <!-- ===== 四大入口卡：穿越千年 / 数字地图 / 研学路线 / 互动游戏 ===== -->
+    <a class="hot card" style="left:130px;top:788px;width:250px;height:152px" href="./index-m.html#page-timeline" title="穿越千年"><span class="tip">穿越千年 · 解码高邮时间线</span></a>
+    <a class="hot card" style="left:465px;top:788px;width:250px;height:152px" href="./index-m.html#page-map"     title="高邮湖数字地图"><span class="tip">高邮湖数字地图 · 探索遗产分布</span></a>
+    <a class="hot card" style="left:775px;top:788px;width:250px;height:152px" href="./index-m.html#page-routes"   title="研学路线"><span class="tip">研学路线 · 三条主题路线</span></a>
+    <a class="hot card" style="left:1105px;top:788px;width:250px;height:152px" href="./index-m.html#page-games"    title="互动游戏中心"><span class="tip">互动游戏中心 · 寓教于乐</span></a>
+
+    <!-- ===== 页脚三个按钮 ===== -->
+    <a class="hot fbtn" style="left:480px;top:1006px;width:126px;height:38px" href="javascript:void 0" data-modal="join"  title="加入守护计划"><span class="tip">加入守护计划</span></a>
+    <a class="hot fbtn" style="left:612px;top:1006px;width:124px;height:38px" href="javascript:void 0" data-modal="gzh"   title="关注公众号"><span class="tip">关注公众号</span></a>
+    <a class="hot fbtn" style="left:742px;top:1006px;width:126px;height:38px" href="javascript:void 0" data-modal="share" title="分享高邮故事"><span class="tip">分享高邮故事</span></a>
+  </div>
+</div>
+
+<!-- 右下角辅助：切到手机版 / 回顶部 -->
+<div class="ctl">
+  <a href="./index.html#mobile" title="切到手机版预览">📱 手机版</a>
+  <a href="#top" title="回到顶部">⬆ 顶部</a>
+</div>
+
+<!-- ===== 弹窗 ===== -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <h3 id="mt">标题</h3>
+    <div id="mb"></div>
+    <button class="mclose" onclick="closeModal()">知道了</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* 1) 把 1536×1024 画布铺满窗口宽度（并整体下移一屏缓冲，便于滚动到底部） */
+  var view=document.getElementById('view');
+  var stage=document.getElementById('stage');
+  var S=1536,H=1024;
+  if(location.hash.indexOf('debug')>=0) document.body.classList.add('dbg');
+  function fit(){
+    var s=Math.max(1, Math.min(document.documentElement.clientWidth/S, 3));
+    stage.style.transform='scale('+s+')';
+    view.style.height=Math.ceil(H*s+8)+'px';
+  }
+  window.addEventListener('resize',fit); fit();
+
+  /* 2) 弹窗内容（沿用桌面占位版文案与二维码资源） */
+  window.openModal=function(type){
+    var t=document.getElementById('mt'),b=document.getElementById('mb');
+    if(type==='join'){t.textContent='加入守护计划';b.innerHTML='<p>感谢您的关注！后续我们将开放高邮遗产守护志愿者报名通道，一起用青年行动守护「水—田—人」共生的文明长卷。</p>';}
+    else if(type==='gzh'){t.textContent='关注公众号';b.innerHTML='<img src="./img/gzh-qr.jpg" alt="公众号二维码"><p>扫码关注官方公众号，获取最新调研手记与研学资讯。</p>';}
+    else{t.textContent='分享高邮故事';b.innerHTML='<p>复制下方链接分享给朋友，让更多人看见高邮的千年湿地文明：</p><p style="word-break:break-all;color:#2d6a4f;font-size:13px;margin-top:6px">'+location.href+'</p>';}
+    document.getElementById('modal').classList.add('open');
+  };
+  window.closeModal=function(){document.getElementById('modal').classList.remove('open');};
+  var modal=document.getElementById('modal');
+  modal.addEventListener('click',function(e){if(e.target===this)closeModal();});
+  document.querySelectorAll('[data-modal]').forEach(function(a){
+    a.addEventListener('click',function(){openModal(this.getAttribute('data-modal'));});
+  });
+
+  /* 3) 搜索框 → 快速跳转菜单 */
+  var qbox=document.getElementById('qbox'),qmenu=document.getElementById('qmenu');
+  qbox.addEventListener('click',function(e){e.stopPropagation();qmenu.classList.toggle('open');});
+  document.addEventListener('click',function(){qmenu.classList.remove('open');});
+})();
+</script>
+</body>
+</html>

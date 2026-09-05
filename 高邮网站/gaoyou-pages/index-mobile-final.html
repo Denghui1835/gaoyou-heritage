@@ -251,8 +251,13 @@ button{font-family:inherit;touch-action:manipulation}
 .hero-title-img{
   display:block;width:min(53vw,232px);height:auto;margin:0 auto;
   filter:drop-shadow(0 3px 8px rgba(60,40,10,.25));
+  transform:translateY(-6px);
 }
 
+.hero-meta{
+  display:flex;flex-direction:column;align-items:center;
+  transform:translateY(-6px);
+}
 .hero-subtitle{
   margin-top:10px;
   font-family:var(--lishu);font-size:14px;letter-spacing:.26em;text-indent:.26em;
@@ -296,7 +301,7 @@ button{font-family:inherit;touch-action:manipulation}
 }
 .portal{
   position:relative;z-index:4;
-  padding:62px 16px 0;
+  padding:32px 16px 0;
 }
 .portal-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
@@ -371,10 +376,12 @@ button{font-family:inherit;touch-action:manipulation}
 
 /* ========== 页脚 ========== */
 .footer{
-  background:var(--grn-x);color:#d9d2bd;text-align:center;padding:16px 16px 20px;
+  background:var(--grn-x);color:#d9d2bd;text-align:center;
+  min-height:112px;
+  padding:8px 16px calc(18px + env(safe-area-inset-bottom,0px));
 }
-.footer h3{font-family:var(--brush);font-size:20px;letter-spacing:.12em;color:var(--gold-xl);margin-bottom:6px;line-height:1.4}
-.footer p{font-size:11px;line-height:1.7;color:#a8a08a;letter-spacing:.04em}
+.footer h3{font-family:var(--brush);font-size:21px;letter-spacing:.12em;color:var(--gold-xl);margin-bottom:6px;line-height:1.3}
+.footer p{font-size:11px;line-height:1.5;color:#bdb5a0;letter-spacing:.04em}
 
 /* 弹窗 */
 .modal{position:fixed;inset:0;z-index:1100;display:none;align-items:center;justify-content:center;background:rgba(14,30,22,.55);backdrop-filter:blur(3px);padding:16px}
@@ -441,11 +448,12 @@ button{font-family:inherit;touch-action:manipulation}
 
 
   <div class="hero-content">
-    <img class="hero-title-img" src="./img/hero-title.png" alt="数绘湖田 · 魅力高邮">
-    <p class="hero-subtitle">一湖水 · 一片田 · 一方人</p>
-    <p class="hero-subtitle2">探索千年湿地文明</p>
-
-    <button class="hero-btn" id="startBtn" type="button"><img class="hero-btn-img" src="./img/hero-btn.png" alt="开启高邮遗产之旅"></button>
+    <img class="hero-title-img" src="./img/hero-title.png" alt="遗产融绘 · 魅力高邮">
+    <div class="hero-meta">
+      <p class="hero-subtitle">一湖水 · 一片田 · 一方人</p>
+      <p class="hero-subtitle2">探索千年湿地文明</p>
+      <button class="hero-btn" id="startBtn" type="button"><img class="hero-btn-img" src="./img/hero-btn.png" alt="开启高邮遗产之旅"></button>
+    </div>
   </div>
 
   <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
@@ -556,7 +564,7 @@ button{font-family:inherit;touch-action:manipulation}
       body.innerHTML='<p>感谢您的关注！后续我们将开放高邮遗产守护志愿者报名通道，一起用青年行动守护「水—田—人」共生的文明长卷。</p>';
     }else if(type==='gzh'){
       title.textContent='关注公众号';
-      body.innerHTML='<img src="./img/gzh-qr.jpg" alt="公众号二维码"><p>扫码关注「数绘湖田 · 魅力高邮」官方公众号，获取最新调研手记与研学资讯。</p>';
+      body.innerHTML='<img src="./img/gzh-qr.jpg" alt="公众号二维码"><p>扫码关注「遗产融绘 · 魅力高邮」官方公众号，获取最新调研手记与研学资讯。</p>';
     }else{
       title.textContent='分享高邮故事';
       body.innerHTML='<p>复制下方链接分享给朋友，让更多人看见高邮的千年湿地文明：</p><p style="word-break:break-all;color:var(--grn);font-size:13px;margin-top:8px">'+location.href+'</p>';
