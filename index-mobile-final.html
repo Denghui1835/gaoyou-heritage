@@ -65,8 +65,6 @@ button{font-family:inherit;touch-action:manipulation}
 .scroll-wrap{
   width:100%;
   height:100%;
-  display:flex;
-  flex-direction:column;
   overflow-y:auto;
   overflow-x:hidden;
   -webkit-overflow-scrolling:touch;
@@ -78,7 +76,6 @@ button{font-family:inherit;touch-action:manipulation}
   content:'';position:fixed;top:0;left:0;right:0;height:98px;z-index:800;pointer-events:none;
   background:linear-gradient(180deg,#173a2e 0%,#173a2e 60%,transparent 100%);
 }
-.scroll-wrap > *{flex:none}
 .scroll-wrap::-webkit-scrollbar{display:none}
 
 /* ========== 顶部导航 ========== */
@@ -182,8 +179,8 @@ button{font-family:inherit;touch-action:manipulation}
 /* ========== 首屏 Hero（紧凑：整页背景用首屏插画） ========== */
 .hero{
   position:relative;
-  height:320px;
-  min-height:320px;
+  height:34svh;
+  min-height:250px;
   display:flex;flex-direction:column;
   background:transparent;
 }
@@ -254,8 +251,13 @@ button{font-family:inherit;touch-action:manipulation}
 .hero-title-img{
   display:block;width:min(53vw,232px);height:auto;margin:0 auto;
   filter:drop-shadow(0 3px 8px rgba(60,40,10,.25));
+  transform:translateY(-6px);
 }
 
+.hero-meta{
+  display:flex;flex-direction:column;align-items:center;
+  transform:translateY(-6px);
+}
 .hero-subtitle{
   margin-top:10px;
   font-family:var(--lishu);font-size:14px;letter-spacing:.26em;text-indent:.26em;
@@ -299,7 +301,7 @@ button{font-family:inherit;touch-action:manipulation}
 }
 .portal{
   position:relative;z-index:4;
-  padding:48px 16px 0;
+  padding:32px 16px 0;
 }
 .portal-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
@@ -311,8 +313,8 @@ button{font-family:inherit;touch-action:manipulation}
 }
 .pc-card-img{
   display:block;width:100%;height:auto;
-  aspect-ratio:0.88/1;
-  object-fit:fill;
+  aspect-ratio:0.98/1;
+  object-fit:cover;object-position:center;
   border-radius:12px;
   box-shadow:0 8px 20px rgba(60,40,10,.14);
 }
@@ -322,7 +324,7 @@ button{font-family:inherit;touch-action:manipulation}
 /* ========== 功能入口区 ========== */
 .features{
   background:transparent;
-  padding:8px 4px 10px;
+  padding:8px 4px 0;
   position:relative;z-index:4;
 }
 .feat-strip{
@@ -335,7 +337,7 @@ button{font-family:inherit;touch-action:manipulation}
 }
 .feat-item img{
   display:block;width:100%;height:auto;border-radius:12px;
-  aspect-ratio:0.525/1;object-fit:fill;
+  aspect-ratio:0.53/1;object-fit:cover;object-position:center top;
   box-shadow:0 8px 20px rgba(60,40,10,.14);
 }
 .feat-item:active{transform:translateY(-2px)}
@@ -344,7 +346,7 @@ button{font-family:inherit;touch-action:manipulation}
 /* ========== 语录与 CTA ========== */
 .quote-sec{
   background:transparent;
-  padding:4px 16px 17px;
+  padding:2px 16px 8px;
   text-align:center;
   position:relative;
 }
@@ -374,11 +376,12 @@ button{font-family:inherit;touch-action:manipulation}
 
 /* ========== 页脚 ========== */
 .footer{
-  background:var(--grn-x);color:#d9d2bd;text-align:center;padding:16px 16px 20px;
-  flex:1 0 auto;
+  background:var(--grn-x);color:#d9d2bd;text-align:center;
+  min-height:112px;
+  padding:8px 16px calc(18px + env(safe-area-inset-bottom,0px));
 }
-.footer h3{font-family:var(--brush);font-size:20px;letter-spacing:.12em;color:var(--gold-xl);margin-bottom:6px;line-height:1.4}
-.footer p{font-size:11px;line-height:1.7;color:#a8a08a;letter-spacing:.04em}
+.footer h3{font-family:var(--brush);font-size:21px;letter-spacing:.12em;color:var(--gold-xl);margin-bottom:6px;line-height:1.3}
+.footer p{font-size:11px;line-height:1.5;color:#bdb5a0;letter-spacing:.04em}
 
 /* 弹窗 */
 .modal{position:fixed;inset:0;z-index:1100;display:none;align-items:center;justify-content:center;background:rgba(14,30,22,.55);backdrop-filter:blur(3px);padding:16px}
@@ -445,11 +448,12 @@ button{font-family:inherit;touch-action:manipulation}
 
 
   <div class="hero-content">
-    <img class="hero-title-img" src="./img/hero-title.png?v=2" alt="数绘湖田 · 魅力高邮">
-    <p class="hero-subtitle">一湖水 · 一片田 · 一方人</p>
-    <p class="hero-subtitle2">探索千年湿地文明</p>
-
-    <button class="hero-btn" id="startBtn" type="button"><img class="hero-btn-img" src="./img/hero-btn.png" alt="开启高邮遗产之旅"></button>
+    <img class="hero-title-img" src="./img/hero-title.png" alt="遗产融绘 · 魅力高邮">
+    <div class="hero-meta">
+      <p class="hero-subtitle">一湖水 · 一片田 · 一方人</p>
+      <p class="hero-subtitle2">探索千年湿地文明</p>
+      <button class="hero-btn" id="startBtn" type="button"><img class="hero-btn-img" src="./img/hero-btn.png" alt="开启高邮遗产之旅"></button>
+    </div>
   </div>
 
   <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
@@ -560,7 +564,7 @@ button{font-family:inherit;touch-action:manipulation}
       body.innerHTML='<p>感谢您的关注！后续我们将开放高邮遗产守护志愿者报名通道，一起用青年行动守护「水—田—人」共生的文明长卷。</p>';
     }else if(type==='gzh'){
       title.textContent='关注公众号';
-      body.innerHTML='<img src="./img/gzh-qr.jpg" alt="公众号二维码"><p>扫码关注「数绘湖田 · 魅力高邮」官方公众号，获取最新调研手记与研学资讯。</p>';
+      body.innerHTML='<img src="./img/gzh-qr.jpg" alt="公众号二维码"><p>扫码关注「遗产融绘 · 魅力高邮」官方公众号，获取最新调研手记与研学资讯。</p>';
     }else{
       title.textContent='分享高邮故事';
       body.innerHTML='<p>复制下方链接分享给朋友，让更多人看见高邮的千年湿地文明：</p><p style="word-break:break-all;color:var(--grn);font-size:13px;margin-top:8px">'+location.href+'</p>';

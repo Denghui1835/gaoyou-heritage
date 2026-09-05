@@ -1,14 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="description" content="高邮湖泊湿地多类型遗产数字活化平台——集农业文化遗产、世界灌溉工程遗产、非物质文化遗产于一体的沉浸式文化长卷。">
 <script>
-/* 站点为手机版：统一跳转到手机版（桌面浏览器显示手机框；加 #desktop 可看桌面版） */
-if(!location.hash.includes('desktop')){
-  location.replace('./index-mobile-final.html');
-}
+/* ===== 站点入口路由 =====
+   规则（2026-09-05 与用户确认）：
+   - 手机 / 窄屏 / 触屏打开 → 手机定稿 index-mobile-final.html（永不变，已锁）
+   - PC 宽屏打开 → 桌面版 index-desktop.html（照 AI 参考图 1:1 重建的落地页）
+   - 加 #mobile 强制手机版、#desktop 强制桌面版 */
+(function(){
+  try{
+    var h=(location.hash||'').toLowerCase();
+    var coarse=window.matchMedia&&window.matchMedia('(pointer:coarse)').matches;
+    var isNarrow=window.innerWidth<=1080 || (coarse && window.innerWidth<1500);
+    if(h.indexOf('mobile')>=0){ location.replace('./index-mobile-final.html'); }
+    else if(h.indexOf('desktop')>=0 || !isNarrow){ location.replace('./index-desktop.html'); }
+    else { location.replace('./index-mobile-final.html'); }
+  }catch(e){}
+})();
 </script>
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <title>数绘湖田 · 魅力高邮 | 高邮湖泊湿地多类型遗产数字活化平台</title><link rel="preconnect" href="https://fonts.googleapis.cn"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
@@ -478,7 +489,7 @@ section{scroll-margin-top:70px}
     <div class="hero-inner">
       <div class="hero-kicker">高邮湖泊湿地多类型遗产数字活化平台</div>
       <div class="hero-divider" aria-hidden="true"></div>
-      <h1>数绘湖田<em>魅力高邮</em></h1>
+      <h1>遗产融绘<em>魅力高邮</em></h1>
       <p class="hero-sub">一湖水，润泽千年<br>一方田，孕育智慧<br>一群人，守护传承</p>
       <button class="hero-btn" data-page="explore" type="button"><span class="btn-cap left" aria-hidden="true"></span><span class="btn-roll">开启高邮遗产之旅</span><span class="btn-cap right" aria-hidden="true"></span></button>
     </div>
